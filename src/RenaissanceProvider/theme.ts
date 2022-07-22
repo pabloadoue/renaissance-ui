@@ -1,5 +1,5 @@
-import { extendTheme } from 'native-base';
 import { Harmonizer } from 'color-harmony';
+import { extendTheme } from 'native-base';
 
 var harmonizer = new Harmonizer();
 

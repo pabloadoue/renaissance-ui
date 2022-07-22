@@ -2,7 +2,8 @@ import {
     RenaissanceProvider,
     TRenaissanceProviderProps,
 } from './RenaissanceProvider';
+import { TUIIconName, TUIIconProps, UIIcon } from './UIIcon';
 
-export { RenaissanceProvider };
+export { UIIcon, RenaissanceProvider };
 
-export type { TRenaissanceProviderProps };
+export type { TRenaissanceProviderProps, TUIIconName, TUIIconProps };

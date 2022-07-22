@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { NativeBaseProvider, useColorMode } from 'native-base';
-import type { LinkingOptions } from '@react-navigation/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import type { LinkingOptions } from '@react-navigation/native';
+import { NativeBaseProvider, useColorMode } from 'native-base';
 
-import theme from './theme';
 import Navigator from './navigator';
+import theme from './theme';
 
 export function RenaissanceProvider(props: TRenaissanceProviderProps) {
     const { colorMode } = props;

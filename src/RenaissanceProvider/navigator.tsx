@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-    NavigationContainer,
     DefaultTheme,
-    NavigationContainerProps,
     LinkingOptions,
+    NavigationContainer,
+    NavigationContainerProps,
 } from '@react-navigation/native';
 import { useTheme } from 'native-base';
 
