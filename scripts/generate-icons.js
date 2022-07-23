@@ -11,10 +11,9 @@ const src = path.resolve(__dirname, '../src/UIIcon/src');
 const dest = path.resolve(__dirname, '../src/UIIcon');
 
 const definitions = {};
-const iconNames = [];
 
 buildDefinitions(src).then(() => {
-    const files = fs.readdirSync(dest, { withFileTypes: true });
+    /*const files = fs.readdirSync(dest, { withFileTypes: true });
     for (let file of files) {
         if (!file.isDirectory()) {
             const filePath = path.resolve(dest, file.name);
@@ -28,10 +27,10 @@ buildDefinitions(src).then(() => {
 
     for (let component of components) {
         if (!component.isDirectory()) {
-            const filePath = path.resolve(dest, 'components', component.name);
-            fs.unlinkSync(filePath);
+            //const filePath = path.resolve(dest, 'components', component.name);
+            //fs.unlinkSync(filePath);
         }
-    }
+    }*/
 
     buildFiles(definitions).then((indexDefinitions) => {
         buildIndex(indexDefinitions).then(() => {
@@ -40,8 +39,8 @@ buildDefinitions(src).then(() => {
     });
 });
 
-async function buildIndex(definitions) {
-    const { imports, cases, iconTypes, iconNames } = definitions;
+async function buildIndex(indexDefinitions) {
+    const { imports, cases, iconTypes, iconNames } = indexDefinitions;
     let content = `import React from 'react';
     import type {IIconProps} from 'native-base';
     ${imports}
@@ -145,71 +144,85 @@ async function buildFiles(icons) {
             iconTypes.push(`'${iconOutputName}'`);
             iconNames.push(`${iconName}`);
 
-            let variants = ``;
-
-            if (solid) {
-                variants += `case('solid'):
-                                return <Icon viewBox='${solid.viewBox}' {...props}>
-                                    ${solid.svg}
-                                </Icon>;
-                            `;
-            }
-
-            if (outline) {
-                variants += `case('outline'):
-                                return <Icon viewBox='${outline.viewBox}' {...props}>
-                                    ${outline.svg}
-                                </Icon>;
-                            `;
-            }
-
-            if (round) {
-                variants += `case('round'):
-                                return <Icon viewBox='${round.viewBox}' {...props}>
-                                    ${round.svg}
-                                </Icon>;
-                            `;
-            }
-
-            if (sharp) {
-                variants += `case('sharp'):
-                                return <Icon viewBox='${sharp.viewBox}' {...props}>
-                                    ${sharp.svg}
-                                </Icon>;
-                            `;
-            }
-
-            let content = `
-            import React from 'react';
-            import {Icon} from 'native-base';
-            import {${dependencies.join(',')}} from 'react-native-svg';
-            
-            export default function Icon${iconName}(props: any){
-
-                switch(props.variant){
-                    ${variants}
-                    default:
-                        return <Icon viewBox='${fallback.viewBox}' {...props}>
-                            ${fallback.svg}
-                        </Icon>;
-                }
-            }
-            `;
+            const iconPath = path.resolve(
+                dest,
+                'components',
+                `${iconName}Icon.tsx`
+            );
 
             imports += `import Icon${iconName} from './components/${iconName}Icon';\n`;
             cases += `      case '${iconOutputName}':\n`;
             cases += `          return <Icon${iconName} {...props} />;\n`;
 
-            content = await prettier.format(content, { parser: 'typescript' });
+            if (fs.existsSync(iconPath)) {
+                console.log(`      Exists`);
+            } else {
+                let variants = ``;
 
-            fs.writeFileSync(
-                path.resolve(dest, 'components', `${iconName}Icon.tsx`),
-                content
-            );
+                if (solid) {
+                    variants += `case('solid'):
+                                    return <Icon viewBox='${solid.viewBox}' {...props}>
+                                        ${solid.svg}
+                                    </Icon>;
+                                `;
+                }
 
-            await lintFile(
-                path.resolve(dest, 'components', `${iconName}Icon.tsx`)
-            );
+                if (outline) {
+                    variants += `case('outline'):
+                                    return <Icon viewBox='${outline.viewBox}' {...props}>
+                                        ${outline.svg}
+                                    </Icon>;
+                                `;
+                }
+
+                if (round) {
+                    variants += `case('round'):
+                                    return <Icon viewBox='${round.viewBox}' {...props}>
+                                        ${round.svg}
+                                    </Icon>;
+                                `;
+                }
+
+                if (sharp) {
+                    variants += `case('sharp'):
+                                    return <Icon viewBox='${sharp.viewBox}' {...props}>
+                                        ${sharp.svg}
+                                    </Icon>;
+                                `;
+                }
+
+                let content = `
+                import React from 'react';
+                import {Icon} from 'native-base';
+                import {${dependencies.join(',')}} from 'react-native-svg';
+                
+                export default function Icon${iconName}(props: any){
+    
+                    switch(props.variant){
+                        ${variants}
+                        default:
+                            return <Icon viewBox='${
+                                fallback.viewBox
+                            }' {...props}>
+                                ${fallback.svg}
+                            </Icon>;
+                    }
+                }
+                `;
+
+                content = await prettier.format(content, {
+                    parser: 'typescript',
+                });
+
+                fs.writeFileSync(
+                    path.resolve(dest, 'components', `${iconName}Icon.tsx`),
+                    content
+                );
+
+                await lintFile(
+                    path.resolve(dest, 'components', `${iconName}Icon.tsx`)
+                );
+            }
         }
     }
 
@@ -229,6 +242,7 @@ function parseIcon(svgString) {
     const dependencies = [];
 
     const iterator = deepIterator(svgObject);
+    // eslint-disable-next-line no-shadow
     for (let { key, value, path } of iterator) {
         const parsedPath = path.join('.');
         const parentPath = path.slice(0, -1).join('.');
@@ -349,7 +363,7 @@ async function buildDefinitions(srcDir) {
                         }
                     }
                     if (Object.keys(definition).length > 0) {
-                        if (Object.keys(definitions).length <= 10) {
+                        if (Object.keys(definitions).length <= 1500) {
                             definitions[name] = definition;
                         } else {
                             definitions[name] = definition;
