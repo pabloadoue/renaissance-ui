@@ -1,9 +1,4 @@
-import React, {
-    forwardRef,
-    useEffect,
-    useImperativeHandle,
-    useState,
-} from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
 import uuid from 'react-native-uuid';
 import findValue from '@pabloadoue/find-value';
 import iterate from 'object-deep-iteration';
@@ -12,52 +7,45 @@ import setval from 'setval';
 import validator from './Validator';
 
 const Handler = (props: TFormHandlerProps, ref: any) => {
-    const [fields, setFields] = useState({
+    /*const [fields, setFields] = useState({
         ...props.fields,
-    });
+    });*/
 
-    useEffect(() => {
+    /*useEffect(() => {
         setFields({
             ...props.fields,
         });
-    }, [props.fields]);
+    }, [props.fields]);*/
 
-    useEffect(() => {
-    }, [props.saving]);
+    useEffect(() => {}, [props.saving]);
 
     const change = (e: { name: string; value: any }) => {
         const { name, value } = e;
-        const updatedFields = fields;
+        const updatedFields = props.fields;
         const field = findValue(updatedFields, name);
-        if (field && typeof field.value !== "undefined") {
+        if (field && typeof field.value !== 'undefined') {
             setval(updatedFields, `${name}.value`, value, '.');
         }
         if (typeof props.update === 'function') {
             props.update({
-                ...fields,
+                ...props.fields,
                 ...updatedFields,
             });
         }
-        setFields({
-            ...fields,
-            ...updatedFields,
-        });
     };
 
     const submit = () => {
         const { skipValidation } = props;
-        const { response, error, valid } = fieldsSubmit(fields, skipValidation);
+        const { response, error, valid } = fieldsSubmit(
+            props.fields,
+            skipValidation
+        );
 
-        setFields({
-            ...fields,
-            ...error,
-        });
-
-        if (typeof props.submit === "function") {
+        if (typeof props.submit === 'function') {
             if (valid) {
-                props.submit(null, response, fields);
+                props.submit(null, response, props.fields);
             } else {
-                props.submit(error, response, fields);
+                props.submit(error, response, props.fields);
             }
         }
     };
@@ -82,11 +70,15 @@ const Handler = (props: TFormHandlerProps, ref: any) => {
                         field.error = validField;
                     }
                 }
-                setval(responseFields, path, field.value, ".");
-                setval(errorFields, `${path}.value`, field.value, ".");
+                setval(responseFields, path, field.value, '.');
+                setval(errorFields, `${path}.value`, field.value, '.');
             }
         });
-        return { response: responseFields, error: errorFields, valid: validResponse };
+        return {
+            response: responseFields,
+            error: errorFields,
+            valid: validResponse,
+        };
     }
 
     const content = (children: any): any => {
@@ -105,21 +97,22 @@ const Handler = (props: TFormHandlerProps, ref: any) => {
                         : findValue(child, 'props.disabled') || false;
 
                     const childName = findValue(child, 'props.name') || null;
-                    const fieldProps = childName
+                    /*const fieldProps = childName
                         ? findValue(fields, childName)
-                        : {};
-                    const childProps = findValue(child, "props") || {};
+                        : {};*/
+                    //const childProps = findValue(child, "props") || {};
 
                     const key = childName ? childName : uuid.v4();
 
                     return React.cloneElement(child, {
+                        //@ts-ignore
                         children: childs,
                         disabled: disabled,
                         change: change,
                         fields: props.fields,
                         key: key,
-                        ...childProps,
-                        ...fieldProps,
+                        //...childProps,
+                        //...fieldProps,
                     });
                 } else {
                     return child;
@@ -131,9 +124,9 @@ const Handler = (props: TFormHandlerProps, ref: any) => {
 
     useImperativeHandle(ref, () => {
         return {
-            submit: submit
-        }
-    })
+            submit: submit,
+        };
+    });
 
     return <>{content(props.children)}</>;
 };
@@ -141,8 +134,8 @@ const Handler = (props: TFormHandlerProps, ref: any) => {
 export const FormHandler = forwardRef(Handler);
 
 export type TFormHanderRef = {
-    submit: () => void
-}
+    submit: () => void;
+};
 
 export function validateField(
     field: TField,
@@ -224,15 +217,15 @@ type ValidationRuleCheckType = (
 
 export interface TTextInputField extends TBaseField {
     type?:
-    | 'email'
-    | 'password'
-    | 'number'
-    | 'phone'
-    | 'text'
-    | 'decimal'
-    | 'search'
-    | 'url'
-    | 'uri';
+        | 'email'
+        | 'password'
+        | 'number'
+        | 'phone'
+        | 'text'
+        | 'decimal'
+        | 'search'
+        | 'url'
+        | 'uri';
     value: string;
     label?: string;
 }

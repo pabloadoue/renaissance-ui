@@ -1,6 +1,12 @@
+import React, { useRef, useState } from 'react';
 import { View } from 'native-base';
-import React, { useState, useRef } from 'react';
-import { FormHandler, TTextInputField, UITextInput, UIButton, TFormHanderRef } from 'renaissance-ui';
+import {
+    FormHandler,
+    TFormHanderRef,
+    TTextInputField,
+    UIButton,
+    UITextInput,
+} from 'renaissance-ui';
 
 export default function Components(_props: any) {
     const formRef = useRef<TFormHanderRef>(null);
@@ -10,16 +16,16 @@ export default function Components(_props: any) {
             name: 'Text1',
             value: '',
             label: 'Text Input',
-            type: 'text'
+            type: 'text',
         },
     });
 
-    const submit = (error: any, body: any, fields: any) => {
+    const submit = (error: any, body: any, updated: any) => {
         if (formRef.current) {
             if (error) {
                 setFields({ ...error });
             } else {
-                setFields({ ...fields });
+                setFields({ ...updated });
                 setSaving(true);
 
                 console.log(body);
@@ -28,28 +34,32 @@ export default function Components(_props: any) {
                 }, 1000);
             }
         }
-    }
+    };
 
-    return <>
-        <FormHandler
-            ref={formRef}
-            fields={fields}
-            submit={submit}
-            saving={saving}
-            update={(update) => {
-                setFields(update);
-            }}
-        >
-            <UITextInput {...fields.Text1} />
-        </FormHandler>
-        <View>
-            <UIButton label="Submit Fields" loading={saving} onPress={() => {
-                if (formRef.current) {
-                    formRef.current.submit();
-                }
-            }} />
-        </View>
-    </>;
+    return (
+        <>
+            <FormHandler
+                ref={formRef}
+                fields={fields}
+                submit={submit}
+                saving={saving}
+                update={(update) => setFields(update)}
+            >
+                <UITextInput {...fields.Text1} />
+            </FormHandler>
+            <View>
+                <UIButton
+                    label="Submit Fields"
+                    loading={saving}
+                    onPress={() => {
+                        if (formRef.current) {
+                            formRef.current.submit();
+                        }
+                    }}
+                />
+            </View>
+        </>
+    );
 }
 
 type FieldsType = {
