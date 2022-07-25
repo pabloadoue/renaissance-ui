@@ -13,7 +13,7 @@ const TextInput = (props: TTextInputField, ref: any) => {
     const inputRef = useRef<any>(null);
     const [focused, setFocused] = useState(false);
     const [borderBottomWidth, setBorderBottomWidth] = useState(0.5);
-    const [borderBottomColor, setBorderBottomColor] = useState('gray4');
+    const [borderBottomColor, setBorderBottomColor] = useState('gray4.500');
 
     useEffect(() => {
         if (props.borderBottom || props.error) {
@@ -43,7 +43,7 @@ const TextInput = (props: TTextInputField, ref: any) => {
         } else if (focused) {
             setBorderBottomColor('blue.500');
         } else {
-            setBorderBottomColor('gray4');
+            setBorderBottomColor('gray4.500');
         }
     }, [props.error, focused]);
 

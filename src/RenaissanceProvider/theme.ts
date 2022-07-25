@@ -123,21 +123,23 @@ const handler = {
                     },
                 },
                 IconButton: {
-                    lg: {
-                        px: 3,
-                        py: 1.5,
-                    },
-                    md: {
-                        px: 3,
-                        py: 1.5,
-                    },
-                    sm: {
-                        px: 3,
-                        py: 1.5,
-                    },
-                    xs: {
-                        px: 3,
-                        py: 1,
+                    sizes: {
+                        lg: {
+                            px: 1.5,
+                            py: 1.5,
+                        },
+                        md: {
+                            px: 1.5,
+                            py: 1.5,
+                        },
+                        sm: {
+                            px: 1.5,
+                            py: 1.5,
+                        },
+                        xs: {
+                            px: 1.5,
+                            py: 1,
+                        },
                     },
                 },
                 Input: {},
@@ -173,6 +175,9 @@ const handler = {
                 },
                 gray6: {
                     ...handler.colorMixin(colors.gray6),
+                },
+                red: {
+                    ...handler.colorMixin(colors.red),
                 },
             },
         });

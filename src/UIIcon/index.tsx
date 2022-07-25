@@ -84,6 +84,7 @@ import IconChromeReaderMode from './components/ChromeReaderModeIcon';
 import IconCircleNotifications from './components/CircleNotificationsIcon';
 import IconClass from './components/ClassIcon';
 import IconCloseFullscreen from './components/CloseFullscreenIcon';
+import IconClose from './components/CloseIcon';
 import IconCode from './components/CodeIcon';
 import IconCodeOff from './components/CodeOffIcon';
 import IconCommentBank from './components/CommentBankIcon';
@@ -102,6 +103,58 @@ import IconCurrencyExchange from './components/CurrencyExchangeIcon';
 import IconDangerous from './components/DangerousIcon';
 import IconDashboardCustomize from './components/DashboardCustomizeIcon';
 import IconDashboard from './components/DashboardIcon';
+import IconDataExploration from './components/DataExplorationIcon';
+import IconDataThresholding from './components/DataThresholdingIcon';
+import IconDateRange from './components/DateRangeIcon';
+import IconDeleteForever from './components/DeleteForeverIcon';
+import IconDelete from './components/DeleteIcon';
+import IconDeleteOutline from './components/DeleteOutlineIcon';
+import IconDensityLarge from './components/DensityLargeIcon';
+import IconDensityMedium from './components/DensityMediumIcon';
+import IconDensitySmall from './components/DensitySmallIcon';
+import IconDescription from './components/DescriptionIcon';
+import IconDisabledByDefault from './components/DisabledByDefaultIcon';
+import IconDisabledVisible from './components/DisabledVisibleIcon';
+import IconDisplaySettings from './components/DisplaySettingsIcon';
+import IconDns from './components/DnsIcon';
+import IconDoneAll from './components/DoneAllIcon';
+import IconDone from './components/DoneIcon';
+import IconDoneOutline from './components/DoneOutlineIcon';
+import IconDonutLarge from './components/DonutLargeIcon';
+import IconDonutSmall from './components/DonutSmallIcon';
+import IconDragIndicator from './components/DragIndicatorIcon';
+import IconDynamicForm from './components/DynamicFormIcon';
+import IconEco from './components/EcoIcon';
+import IconEditCalendar from './components/EditCalendarIcon';
+import IconEditDocument from './components/EditDocumentIcon';
+import IconEditOff from './components/EditOffIcon';
+import IconEditSquare from './components/EditSquareIcon';
+import IconEject from './components/EjectIcon';
+import IconEuroSymbol from './components/EuroSymbolIcon';
+import IconEvent from './components/EventIcon';
+import IconEventRepeat from './components/EventRepeatIcon';
+import IconEventSeat from './components/EventSeatIcon';
+import IconExitToApp from './components/ExitToAppIcon';
+import IconExpand from './components/ExpandIcon';
+import IconExplore from './components/ExploreIcon';
+import IconExploreOff from './components/ExploreOffIcon';
+import IconExtension from './components/ExtensionIcon';
+import IconExtensionOff from './components/ExtensionOffIcon';
+import IconFace from './components/FaceIcon';
+import IconFaceUnlock from './components/FaceUnlockIcon';
+import IconFactCheck from './components/FactCheckIcon';
+import IconFavoriteBorder from './components/FavoriteBorderIcon';
+import IconFavorite from './components/FavoriteIcon';
+import IconFax from './components/FaxIcon';
+import IconFeedback from './components/FeedbackIcon';
+import IconFilePresent from './components/FilePresentIcon';
+import IconFilterAlt from './components/FilterAltIcon';
+import IconFilterAltOff from './components/FilterAltOffIcon';
+import IconFilterListAlt from './components/FilterListAltIcon';
+import IconFindInPage from './components/FindInPageIcon';
+import IconFindReplace from './components/FindReplaceIcon';
+import IconLightbulb from './components/LightbulbIcon';
+import IconMenu from './components/MenuIcon';
 
 export function UIIcon(props: TUIIconProps) {
     switch (props.name) {
@@ -307,6 +360,112 @@ export function UIIcon(props: TUIIconProps) {
             return <IconDashboard {...props} />;
         case 'dashboard-customize':
             return <IconDashboardCustomize {...props} />;
+        case 'data-exploration':
+            return <IconDataExploration {...props} />;
+        case 'data-thresholding':
+            return <IconDataThresholding {...props} />;
+        case 'date-range':
+            return <IconDateRange {...props} />;
+        case 'delete':
+            return <IconDelete {...props} />;
+        case 'delete-forever':
+            return <IconDeleteForever {...props} />;
+        case 'delete-outline':
+            return <IconDeleteOutline {...props} />;
+        case 'density-large':
+            return <IconDensityLarge {...props} />;
+        case 'density-medium':
+            return <IconDensityMedium {...props} />;
+        case 'density-small':
+            return <IconDensitySmall {...props} />;
+        case 'description':
+            return <IconDescription {...props} />;
+        case 'disabled-by-default':
+            return <IconDisabledByDefault {...props} />;
+        case 'disabled-visible':
+            return <IconDisabledVisible {...props} />;
+        case 'display-settings':
+            return <IconDisplaySettings {...props} />;
+        case 'dns':
+            return <IconDns {...props} />;
+        case 'done':
+            return <IconDone {...props} />;
+        case 'done-all':
+            return <IconDoneAll {...props} />;
+        case 'done-outline':
+            return <IconDoneOutline {...props} />;
+        case 'donut-large':
+            return <IconDonutLarge {...props} />;
+        case 'donut-small':
+            return <IconDonutSmall {...props} />;
+        case 'drag-indicator':
+            return <IconDragIndicator {...props} />;
+        case 'dynamic-form':
+            return <IconDynamicForm {...props} />;
+        case 'eco':
+            return <IconEco {...props} />;
+        case 'edit-calendar':
+            return <IconEditCalendar {...props} />;
+        case 'edit-document':
+            return <IconEditDocument {...props} />;
+        case 'edit-off':
+            return <IconEditOff {...props} />;
+        case 'edit-square':
+            return <IconEditSquare {...props} />;
+        case 'eject':
+            return <IconEject {...props} />;
+        case 'euro-symbol':
+            return <IconEuroSymbol {...props} />;
+        case 'event':
+            return <IconEvent {...props} />;
+        case 'event-repeat':
+            return <IconEventRepeat {...props} />;
+        case 'event-seat':
+            return <IconEventSeat {...props} />;
+        case 'exit-to-app':
+            return <IconExitToApp {...props} />;
+        case 'expand':
+            return <IconExpand {...props} />;
+        case 'explore':
+            return <IconExplore {...props} />;
+        case 'explore-off':
+            return <IconExploreOff {...props} />;
+        case 'extension':
+            return <IconExtension {...props} />;
+        case 'extension-off':
+            return <IconExtensionOff {...props} />;
+        case 'face':
+            return <IconFace {...props} />;
+        case 'face-unlock':
+            return <IconFaceUnlock {...props} />;
+        case 'fact-check':
+            return <IconFactCheck {...props} />;
+        case 'favorite':
+            return <IconFavorite {...props} />;
+        case 'favorite-border':
+            return <IconFavoriteBorder {...props} />;
+        case 'fax':
+            return <IconFax {...props} />;
+        case 'feedback':
+            return <IconFeedback {...props} />;
+        case 'file-present':
+            return <IconFilePresent {...props} />;
+        case 'filter-alt':
+            return <IconFilterAlt {...props} />;
+        case 'filter-alt-off':
+            return <IconFilterAltOff {...props} />;
+        case 'filter-list-alt':
+            return <IconFilterListAlt {...props} />;
+        case 'find-in-page':
+            return <IconFindInPage {...props} />;
+        case 'find-replace':
+            return <IconFindReplace {...props} />;
+        case 'lightbulb':
+            return <IconLightbulb {...props} />;
+        case 'close':
+            return <IconClose {...props} />;
+        case 'menu':
+            return <IconMenu {...props} />;
     }
 }
 
@@ -414,7 +573,60 @@ export type TUIIconName =
     | 'currency-exchange'
     | 'dangerous'
     | 'dashboard'
-    | 'dashboard-customize';
+    | 'dashboard-customize'
+    | 'data-exploration'
+    | 'data-thresholding'
+    | 'date-range'
+    | 'delete'
+    | 'delete-forever'
+    | 'delete-outline'
+    | 'density-large'
+    | 'density-medium'
+    | 'density-small'
+    | 'description'
+    | 'disabled-by-default'
+    | 'disabled-visible'
+    | 'display-settings'
+    | 'dns'
+    | 'done'
+    | 'done-all'
+    | 'done-outline'
+    | 'donut-large'
+    | 'donut-small'
+    | 'drag-indicator'
+    | 'dynamic-form'
+    | 'eco'
+    | 'edit-calendar'
+    | 'edit-document'
+    | 'edit-off'
+    | 'edit-square'
+    | 'eject'
+    | 'euro-symbol'
+    | 'event'
+    | 'event-repeat'
+    | 'event-seat'
+    | 'exit-to-app'
+    | 'expand'
+    | 'explore'
+    | 'explore-off'
+    | 'extension'
+    | 'extension-off'
+    | 'face'
+    | 'face-unlock'
+    | 'fact-check'
+    | 'favorite'
+    | 'favorite-border'
+    | 'fax'
+    | 'feedback'
+    | 'file-present'
+    | 'filter-alt'
+    | 'filter-alt-off'
+    | 'filter-list-alt'
+    | 'find-in-page'
+    | 'find-replace'
+    | 'lightbulb'
+    | 'close'
+    | 'menu';
 export const UIIcons = [
     '123',
     '3d-rotation',
@@ -517,4 +729,57 @@ export const UIIcons = [
     'dangerous',
     'dashboard',
     'dashboard-customize',
+    'data-exploration',
+    'data-thresholding',
+    'date-range',
+    'delete',
+    'delete-forever',
+    'delete-outline',
+    'density-large',
+    'density-medium',
+    'density-small',
+    'description',
+    'disabled-by-default',
+    'disabled-visible',
+    'display-settings',
+    'dns',
+    'done',
+    'done-all',
+    'done-outline',
+    'donut-large',
+    'donut-small',
+    'drag-indicator',
+    'dynamic-form',
+    'eco',
+    'edit-calendar',
+    'edit-document',
+    'edit-off',
+    'edit-square',
+    'eject',
+    'euro-symbol',
+    'event',
+    'event-repeat',
+    'event-seat',
+    'exit-to-app',
+    'expand',
+    'explore',
+    'explore-off',
+    'extension',
+    'extension-off',
+    'face',
+    'face-unlock',
+    'fact-check',
+    'favorite',
+    'favorite-border',
+    'fax',
+    'feedback',
+    'file-present',
+    'filter-alt',
+    'filter-alt-off',
+    'filter-list-alt',
+    'find-in-page',
+    'find-replace',
+    'lightbulb',
+    'close',
+    'menu',
 ];

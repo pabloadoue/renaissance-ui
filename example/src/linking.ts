@@ -14,6 +14,9 @@ export default function Linking() {
                         inputs: {
                             path: 'inputs',
                         },
+                        modals: {
+                            path: 'modals',
+                        },
                     },
                 },
             },

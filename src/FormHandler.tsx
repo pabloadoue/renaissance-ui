@@ -111,6 +111,7 @@ const Handler = (props: TFormHandlerProps, ref: any) => {
                         change: change,
                         fields: props.fields,
                         key: key,
+                        borderBottom: true,
                         //...childProps,
                         //...fieldProps,
                     });
@@ -182,7 +183,7 @@ export function validateField(
     return result;
 }
 
-type TFormHandlerProps = {
+export type TFormHandlerProps = {
     saving?: boolean;
     children: JSX.Element | JSX.Element[];
     fields: TFormHandlerFields;

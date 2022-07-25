@@ -24,7 +24,10 @@ export function UIButton(props: TUIButtonProps) {
                     )
                 }
                 onPress={() => {
-                    if (typeof props.onPress === 'function') {
+                    if (
+                        typeof props.onPress === 'function' &&
+                        props.disabled !== true
+                    ) {
                         props.onPress();
                     }
                 }}
@@ -39,9 +42,12 @@ export function UIButton(props: TUIButtonProps) {
                 isDisabled={props.disabled}
                 colorScheme={props.color}
                 size={props.size}
-                icon={<UIIcon name={props.icon} size={'xl'} />}
+                icon={<UIIcon name={props.icon} size={'md'} />}
                 onPress={() => {
-                    if (typeof props.onPress === 'function') {
+                    if (
+                        typeof props.onPress === 'function' &&
+                        props.disabled !== true
+                    ) {
                         props.onPress();
                     }
                 }}
@@ -61,7 +67,7 @@ UIButton.defaultProps = {
 
 export type TUIButtonProps = {
     label?: string;
-    size: 'sm' | 'md' | 'lg';
+    size?: 'sm' | 'md' | 'lg';
     icon?: TUIIconName;
     leftIcon?: TUIIconName;
     rightIcon?: TUIIconName;
@@ -69,5 +75,13 @@ export type TUIButtonProps = {
     disabled?: boolean;
     onPress?: () => void;
     color?: string;
-    variant?: 'solid' | 'subtle' | 'link' | 'outline' | 'ghost';
+    variant?: TUIButtonVariant;
 };
+
+export type TUIButtonVariant =
+    | 'solid'
+    | 'subtle'
+    | 'link'
+    | 'outline'
+    | 'ghost';
+export type TUIButtonSize = 'sm' | 'md' | 'lg';

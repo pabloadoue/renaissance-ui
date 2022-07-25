@@ -8,7 +8,9 @@ import {
     UITextInput,
 } from 'renaissance-ui';
 
-export default function Components(_props: any) {
+import Header from './header';
+
+export default function Components(props: any) {
     const formRef = useRef<TFormHanderRef>(null);
     const [saving, setSaving] = useState(false);
     const [fields, setFields] = useState<FieldsType>({
@@ -38,25 +40,31 @@ export default function Components(_props: any) {
 
     return (
         <>
-            <FormHandler
-                ref={formRef}
-                fields={fields}
-                submit={submit}
-                saving={saving}
-                update={(update) => setFields(update)}
-            >
-                <UITextInput {...fields.Text1} />
-            </FormHandler>
-            <View>
-                <UIButton
-                    label="Submit Fields"
-                    loading={saving}
-                    onPress={() => {
-                        if (formRef.current) {
-                            formRef.current.submit();
-                        }
-                    }}
-                />
+            <Header
+                navigation={props.navigation}
+                setColorMode={props.setColorMode}
+            />
+            <View flex={1} style={{ paddingTop: 200 }}>
+                <FormHandler
+                    ref={formRef}
+                    fields={fields}
+                    submit={submit}
+                    saving={saving}
+                    update={(update) => setFields(update)}
+                >
+                    <UITextInput {...fields.Text1} />
+                    <View>
+                        <UIButton
+                            label="Submit Fields"
+                            loading={saving}
+                            onPress={() => {
+                                if (formRef.current) {
+                                    formRef.current.submit();
+                                }
+                            }}
+                        />
+                    </View>
+                </FormHandler>
             </View>
         </>
     );

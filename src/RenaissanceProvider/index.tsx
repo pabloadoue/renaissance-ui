@@ -12,6 +12,8 @@ export function RenaissanceProvider(props: TRenaissanceProviderProps) {
     const lightTheme = theme('light', props.pallete, props.fonts);
     const darkTheme = theme('dark', props.pallete, props.fonts);
 
+    //console.log('Lighttheme', lightTheme);
+
     const getTheme = (mode: 'light' | 'dark' | null | undefined) => {
         if (mode === 'dark') {
             return darkTheme;
