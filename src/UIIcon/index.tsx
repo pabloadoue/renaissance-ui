@@ -12,6 +12,96 @@ import IconAccountBalance from './components/AccountBalanceIcon';
 import IconAccountBalanceWallet from './components/AccountBalanceWalletIcon';
 import IconAccountBox from './components/AccountBoxIcon';
 import IconAccountCircle from './components/AccountCircleIcon';
+import IconAddCard from './components/AddCardIcon';
+import IconAddchart from './components/AddchartIcon';
+import IconAddHome from './components/AddHomeIcon';
+import IconAddShoppingCart from './components/AddShoppingCartIcon';
+import IconAddTask from './components/AddTaskIcon';
+import IconAddToDrive from './components/AddToDriveIcon';
+import IconAdminPanelSettings from './components/AdminPanelSettingsIcon';
+import IconAdsClick from './components/AdsClickIcon';
+import IconAlarmAdd from './components/AlarmAddIcon';
+import IconAlarm from './components/AlarmIcon';
+import IconAlarmOff from './components/AlarmOffIcon';
+import IconAlarmOn from './components/AlarmOnIcon';
+import IconAllInbox from './components/AllInboxIcon';
+import IconAllOut from './components/AllOutIcon';
+import IconAnalytics from './components/AnalyticsIcon';
+import IconAnchor from './components/AnchorIcon';
+import IconAndroid from './components/AndroidIcon';
+import IconAnnouncement from './components/AnnouncementIcon';
+import IconApi from './components/ApiIcon';
+import IconAppBlocking from './components/AppBlockingIcon';
+import IconAppShortcut from './components/AppShortcutIcon';
+import IconArrowCircleDown from './components/ArrowCircleDownIcon';
+import IconArrowCircleLeft from './components/ArrowCircleLeftIcon';
+import IconArrowCircleRight from './components/ArrowCircleRightIcon';
+import IconArrowCircleUp from './components/ArrowCircleUpIcon';
+import IconArrowOutward from './components/ArrowOutwardIcon';
+import IconArrowRightAlt from './components/ArrowRightAltIcon';
+import IconArticle from './components/ArticleIcon';
+import IconAspectRatio from './components/AspectRatioIcon';
+import IconAssessment from './components/AssessmentIcon';
+import IconAssignment from './components/AssignmentIcon';
+import IconAssignmentInd from './components/AssignmentIndIcon';
+import IconAssignmentLate from './components/AssignmentLateIcon';
+import IconAssignmentReturned from './components/AssignmentReturnedIcon';
+import IconAssignmentReturn from './components/AssignmentReturnIcon';
+import IconAssignmentTurnedIn from './components/AssignmentTurnedInIcon';
+import IconAssuredWorkload from './components/AssuredWorkloadIcon';
+import IconAutorenew from './components/AutorenewIcon';
+import IconBackup from './components/BackupIcon';
+import IconBackupTable from './components/BackupTableIcon';
+import IconBalance from './components/BalanceIcon';
+import IconBatchPrediction from './components/BatchPredictionIcon';
+import IconBook from './components/BookIcon';
+import IconBookmarkAdded from './components/BookmarkAddedIcon';
+import IconBookmarkAdd from './components/BookmarkAddIcon';
+import IconBookmarkBorder from './components/BookmarkBorderIcon';
+import IconBookmark from './components/BookmarkIcon';
+import IconBookmarkRemove from './components/BookmarkRemoveIcon';
+import IconBookmarks from './components/BookmarksIcon';
+import IconBookOnline from './components/BookOnlineIcon';
+import IconBrowseGallery from './components/BrowseGalleryIcon';
+import IconBugReport from './components/BugReportIcon';
+import IconBuildCircle from './components/BuildCircleIcon';
+import IconBuild from './components/BuildIcon';
+import IconCached from './components/CachedIcon';
+import IconCalendarMonth from './components/CalendarMonthIcon';
+import IconCalendarToday from './components/CalendarTodayIcon';
+import IconCalendarViewDay from './components/CalendarViewDayIcon';
+import IconCalendarViewMonth from './components/CalendarViewMonthIcon';
+import IconCalendarViewWeek from './components/CalendarViewWeekIcon';
+import IconCameraEnhance from './components/CameraEnhanceIcon';
+import IconCancelScheduleSend from './components/CancelScheduleSendIcon';
+import IconCardGiftcard from './components/CardGiftcardIcon';
+import IconCardMembership from './components/CardMembershipIcon';
+import IconCardTravel from './components/CardTravelIcon';
+import IconChangeHistory from './components/ChangeHistoryIcon';
+import IconCheckCircle from './components/CheckCircleIcon';
+import IconCheckCircleOutline from './components/CheckCircleOutlineIcon';
+import IconChromeReaderMode from './components/ChromeReaderModeIcon';
+import IconCircleNotifications from './components/CircleNotificationsIcon';
+import IconClass from './components/ClassIcon';
+import IconCloseFullscreen from './components/CloseFullscreenIcon';
+import IconCode from './components/CodeIcon';
+import IconCodeOff from './components/CodeOffIcon';
+import IconCommentBank from './components/CommentBankIcon';
+import IconCommit from './components/CommitIcon';
+import IconCommute from './components/CommuteIcon';
+import IconCompareArrows from './components/CompareArrowsIcon';
+import IconCompress from './components/CompressIcon';
+import IconContactless from './components/ContactlessIcon';
+import IconContactPage from './components/ContactPageIcon';
+import IconContactSupport from './components/ContactSupportIcon';
+import IconCopyright from './components/CopyrightIcon';
+import IconCreditCard from './components/CreditCardIcon';
+import IconCreditCardOff from './components/CreditCardOffIcon';
+import IconCss from './components/CssIcon';
+import IconCurrencyExchange from './components/CurrencyExchangeIcon';
+import IconDangerous from './components/DangerousIcon';
+import IconDashboardCustomize from './components/DashboardCustomizeIcon';
+import IconDashboard from './components/DashboardIcon';
 
 export function UIIcon(props: TUIIconProps) {
     switch (props.name) {
@@ -37,6 +127,186 @@ export function UIIcon(props: TUIIconProps) {
             return <IconAccountBox {...props} />;
         case 'account-circle':
             return <IconAccountCircle {...props} />;
+        case 'add-card':
+            return <IconAddCard {...props} />;
+        case 'add-home':
+            return <IconAddHome {...props} />;
+        case 'add-shopping-cart':
+            return <IconAddShoppingCart {...props} />;
+        case 'add-task':
+            return <IconAddTask {...props} />;
+        case 'add-to-drive':
+            return <IconAddToDrive {...props} />;
+        case 'addchart':
+            return <IconAddchart {...props} />;
+        case 'admin-panel-settings':
+            return <IconAdminPanelSettings {...props} />;
+        case 'ads-click':
+            return <IconAdsClick {...props} />;
+        case 'alarm':
+            return <IconAlarm {...props} />;
+        case 'alarm-add':
+            return <IconAlarmAdd {...props} />;
+        case 'alarm-off':
+            return <IconAlarmOff {...props} />;
+        case 'alarm-on':
+            return <IconAlarmOn {...props} />;
+        case 'all-inbox':
+            return <IconAllInbox {...props} />;
+        case 'all-out':
+            return <IconAllOut {...props} />;
+        case 'analytics':
+            return <IconAnalytics {...props} />;
+        case 'anchor':
+            return <IconAnchor {...props} />;
+        case 'android':
+            return <IconAndroid {...props} />;
+        case 'announcement':
+            return <IconAnnouncement {...props} />;
+        case 'api':
+            return <IconApi {...props} />;
+        case 'app-blocking':
+            return <IconAppBlocking {...props} />;
+        case 'app-shortcut':
+            return <IconAppShortcut {...props} />;
+        case 'arrow-circle-down':
+            return <IconArrowCircleDown {...props} />;
+        case 'arrow-circle-left':
+            return <IconArrowCircleLeft {...props} />;
+        case 'arrow-circle-right':
+            return <IconArrowCircleRight {...props} />;
+        case 'arrow-circle-up':
+            return <IconArrowCircleUp {...props} />;
+        case 'arrow-outward':
+            return <IconArrowOutward {...props} />;
+        case 'arrow-right-alt':
+            return <IconArrowRightAlt {...props} />;
+        case 'article':
+            return <IconArticle {...props} />;
+        case 'aspect-ratio':
+            return <IconAspectRatio {...props} />;
+        case 'assessment':
+            return <IconAssessment {...props} />;
+        case 'assignment':
+            return <IconAssignment {...props} />;
+        case 'assignment-ind':
+            return <IconAssignmentInd {...props} />;
+        case 'assignment-late':
+            return <IconAssignmentLate {...props} />;
+        case 'assignment-return':
+            return <IconAssignmentReturn {...props} />;
+        case 'assignment-returned':
+            return <IconAssignmentReturned {...props} />;
+        case 'assignment-turned-in':
+            return <IconAssignmentTurnedIn {...props} />;
+        case 'assured-workload':
+            return <IconAssuredWorkload {...props} />;
+        case 'autorenew':
+            return <IconAutorenew {...props} />;
+        case 'backup':
+            return <IconBackup {...props} />;
+        case 'backup-table':
+            return <IconBackupTable {...props} />;
+        case 'balance':
+            return <IconBalance {...props} />;
+        case 'batch-prediction':
+            return <IconBatchPrediction {...props} />;
+        case 'book':
+            return <IconBook {...props} />;
+        case 'book-online':
+            return <IconBookOnline {...props} />;
+        case 'bookmark':
+            return <IconBookmark {...props} />;
+        case 'bookmark-add':
+            return <IconBookmarkAdd {...props} />;
+        case 'bookmark-added':
+            return <IconBookmarkAdded {...props} />;
+        case 'bookmark-border':
+            return <IconBookmarkBorder {...props} />;
+        case 'bookmark-remove':
+            return <IconBookmarkRemove {...props} />;
+        case 'bookmarks':
+            return <IconBookmarks {...props} />;
+        case 'browse-gallery':
+            return <IconBrowseGallery {...props} />;
+        case 'bug-report':
+            return <IconBugReport {...props} />;
+        case 'build':
+            return <IconBuild {...props} />;
+        case 'build-circle':
+            return <IconBuildCircle {...props} />;
+        case 'cached':
+            return <IconCached {...props} />;
+        case 'calendar-month':
+            return <IconCalendarMonth {...props} />;
+        case 'calendar-today':
+            return <IconCalendarToday {...props} />;
+        case 'calendar-view-day':
+            return <IconCalendarViewDay {...props} />;
+        case 'calendar-view-month':
+            return <IconCalendarViewMonth {...props} />;
+        case 'calendar-view-week':
+            return <IconCalendarViewWeek {...props} />;
+        case 'camera-enhance':
+            return <IconCameraEnhance {...props} />;
+        case 'cancel-schedule-send':
+            return <IconCancelScheduleSend {...props} />;
+        case 'card-giftcard':
+            return <IconCardGiftcard {...props} />;
+        case 'card-membership':
+            return <IconCardMembership {...props} />;
+        case 'card-travel':
+            return <IconCardTravel {...props} />;
+        case 'change-history':
+            return <IconChangeHistory {...props} />;
+        case 'check-circle':
+            return <IconCheckCircle {...props} />;
+        case 'check-circle-outline':
+            return <IconCheckCircleOutline {...props} />;
+        case 'chrome-reader-mode':
+            return <IconChromeReaderMode {...props} />;
+        case 'circle-notifications':
+            return <IconCircleNotifications {...props} />;
+        case 'class':
+            return <IconClass {...props} />;
+        case 'close-fullscreen':
+            return <IconCloseFullscreen {...props} />;
+        case 'code':
+            return <IconCode {...props} />;
+        case 'code-off':
+            return <IconCodeOff {...props} />;
+        case 'comment-bank':
+            return <IconCommentBank {...props} />;
+        case 'commit':
+            return <IconCommit {...props} />;
+        case 'commute':
+            return <IconCommute {...props} />;
+        case 'compare-arrows':
+            return <IconCompareArrows {...props} />;
+        case 'compress':
+            return <IconCompress {...props} />;
+        case 'contact-page':
+            return <IconContactPage {...props} />;
+        case 'contact-support':
+            return <IconContactSupport {...props} />;
+        case 'contactless':
+            return <IconContactless {...props} />;
+        case 'copyright':
+            return <IconCopyright {...props} />;
+        case 'credit-card':
+            return <IconCreditCard {...props} />;
+        case 'credit-card-off':
+            return <IconCreditCardOff {...props} />;
+        case 'css':
+            return <IconCss {...props} />;
+        case 'currency-exchange':
+            return <IconCurrencyExchange {...props} />;
+        case 'dangerous':
+            return <IconDangerous {...props} />;
+        case 'dashboard':
+            return <IconDashboard {...props} />;
+        case 'dashboard-customize':
+            return <IconDashboardCustomize {...props} />;
     }
 }
 
@@ -54,7 +324,97 @@ export type TUIIconName =
     | 'account-balance'
     | 'account-balance-wallet'
     | 'account-box'
-    | 'account-circle';
+    | 'account-circle'
+    | 'add-card'
+    | 'add-home'
+    | 'add-shopping-cart'
+    | 'add-task'
+    | 'add-to-drive'
+    | 'addchart'
+    | 'admin-panel-settings'
+    | 'ads-click'
+    | 'alarm'
+    | 'alarm-add'
+    | 'alarm-off'
+    | 'alarm-on'
+    | 'all-inbox'
+    | 'all-out'
+    | 'analytics'
+    | 'anchor'
+    | 'android'
+    | 'announcement'
+    | 'api'
+    | 'app-blocking'
+    | 'app-shortcut'
+    | 'arrow-circle-down'
+    | 'arrow-circle-left'
+    | 'arrow-circle-right'
+    | 'arrow-circle-up'
+    | 'arrow-outward'
+    | 'arrow-right-alt'
+    | 'article'
+    | 'aspect-ratio'
+    | 'assessment'
+    | 'assignment'
+    | 'assignment-ind'
+    | 'assignment-late'
+    | 'assignment-return'
+    | 'assignment-returned'
+    | 'assignment-turned-in'
+    | 'assured-workload'
+    | 'autorenew'
+    | 'backup'
+    | 'backup-table'
+    | 'balance'
+    | 'batch-prediction'
+    | 'book'
+    | 'book-online'
+    | 'bookmark'
+    | 'bookmark-add'
+    | 'bookmark-added'
+    | 'bookmark-border'
+    | 'bookmark-remove'
+    | 'bookmarks'
+    | 'browse-gallery'
+    | 'bug-report'
+    | 'build'
+    | 'build-circle'
+    | 'cached'
+    | 'calendar-month'
+    | 'calendar-today'
+    | 'calendar-view-day'
+    | 'calendar-view-month'
+    | 'calendar-view-week'
+    | 'camera-enhance'
+    | 'cancel-schedule-send'
+    | 'card-giftcard'
+    | 'card-membership'
+    | 'card-travel'
+    | 'change-history'
+    | 'check-circle'
+    | 'check-circle-outline'
+    | 'chrome-reader-mode'
+    | 'circle-notifications'
+    | 'class'
+    | 'close-fullscreen'
+    | 'code'
+    | 'code-off'
+    | 'comment-bank'
+    | 'commit'
+    | 'commute'
+    | 'compare-arrows'
+    | 'compress'
+    | 'contact-page'
+    | 'contact-support'
+    | 'contactless'
+    | 'copyright'
+    | 'credit-card'
+    | 'credit-card-off'
+    | 'css'
+    | 'currency-exchange'
+    | 'dangerous'
+    | 'dashboard'
+    | 'dashboard-customize';
 export const UIIcons = [
     '123',
     '3d-rotation',
@@ -67,4 +427,94 @@ export const UIIcons = [
     'account-balance-wallet',
     'account-box',
     'account-circle',
+    'add-card',
+    'add-home',
+    'add-shopping-cart',
+    'add-task',
+    'add-to-drive',
+    'addchart',
+    'admin-panel-settings',
+    'ads-click',
+    'alarm',
+    'alarm-add',
+    'alarm-off',
+    'alarm-on',
+    'all-inbox',
+    'all-out',
+    'analytics',
+    'anchor',
+    'android',
+    'announcement',
+    'api',
+    'app-blocking',
+    'app-shortcut',
+    'arrow-circle-down',
+    'arrow-circle-left',
+    'arrow-circle-right',
+    'arrow-circle-up',
+    'arrow-outward',
+    'arrow-right-alt',
+    'article',
+    'aspect-ratio',
+    'assessment',
+    'assignment',
+    'assignment-ind',
+    'assignment-late',
+    'assignment-return',
+    'assignment-returned',
+    'assignment-turned-in',
+    'assured-workload',
+    'autorenew',
+    'backup',
+    'backup-table',
+    'balance',
+    'batch-prediction',
+    'book',
+    'book-online',
+    'bookmark',
+    'bookmark-add',
+    'bookmark-added',
+    'bookmark-border',
+    'bookmark-remove',
+    'bookmarks',
+    'browse-gallery',
+    'bug-report',
+    'build',
+    'build-circle',
+    'cached',
+    'calendar-month',
+    'calendar-today',
+    'calendar-view-day',
+    'calendar-view-month',
+    'calendar-view-week',
+    'camera-enhance',
+    'cancel-schedule-send',
+    'card-giftcard',
+    'card-membership',
+    'card-travel',
+    'change-history',
+    'check-circle',
+    'check-circle-outline',
+    'chrome-reader-mode',
+    'circle-notifications',
+    'class',
+    'close-fullscreen',
+    'code',
+    'code-off',
+    'comment-bank',
+    'commit',
+    'commute',
+    'compare-arrows',
+    'compress',
+    'contact-page',
+    'contact-support',
+    'contactless',
+    'copyright',
+    'credit-card',
+    'credit-card-off',
+    'css',
+    'currency-exchange',
+    'dangerous',
+    'dashboard',
+    'dashboard-customize',
 ];

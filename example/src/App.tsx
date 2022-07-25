@@ -14,13 +14,17 @@ import {
     Lato_900Black_Italic,
     useFonts,
 } from '@expo-google-fonts/lato';
-//import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import { Text } from 'native-base';
 import {
     RenaissanceProvider,
     TRenaissanceProviderPallete,
 } from 'renaissance-ui';
+
+import Components from './components';
+import Linking from './linking';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -35,7 +39,7 @@ export default function App() {
         Lato_900Black_Italic,
         Lato_900Black,
     });
-    const [colorMode] = useState<'light' | 'dark'>('light');
+    const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
     const [pallete] = useState<TRenaissanceProviderPallete>({
         primary: {
             light: '#c40000',
@@ -100,9 +104,23 @@ export default function App() {
                 colorMode={colorMode}
                 pallete={pallete}
                 fonts={fonts}
+                linking={Linking()}
             >
                 <StatusBar style={colorMode === 'light' ? 'dark' : 'light'} />
-                <Text>Hello World</Text>
+                <Stack.Navigator
+                    screenOptions={{
+                        headerShown: false,
+                    }}
+                >
+                    <Stack.Screen name="components">
+                        {(props) => (
+                            <Components
+                                {...props}
+                                setColorMode={setColorMode}
+                            />
+                        )}
+                    </Stack.Screen>
+                </Stack.Navigator>
             </RenaissanceProvider>
         );
     }

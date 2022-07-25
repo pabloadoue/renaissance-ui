@@ -39,7 +39,7 @@ export function UIButton(props: TUIButtonProps) {
                 isDisabled={props.disabled}
                 colorScheme={props.color}
                 size={props.size}
-                icon={<UIIcon name={props.icon} size={'sm'} />}
+                icon={<UIIcon name={props.icon} size={'xl'} />}
                 onPress={() => {
                     if (typeof props.onPress === 'function') {
                         props.onPress();

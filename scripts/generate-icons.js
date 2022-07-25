@@ -9,9 +9,13 @@ const { exec } = require('child_process');
 const src = path.resolve(__dirname, '../src/UIIcon/src');
 const dest = path.resolve(__dirname, '../src/UIIcon');
 
+let count = 0;
+let cursor = 0;
+
 const definitions = {};
 
 buildDefinitions(src).then(() => {
+    count = Object.keys(definitions).length;
     buildFiles(definitions)
         .then((indexDefinitions) => {
             buildIndex(indexDefinitions).then(() => {
@@ -61,7 +65,9 @@ async function buildIndex(indexDefinitions) {
 async function buildFiles(icons) {
     const imports = [];
     for (let key in icons) {
-        console.log(`Building ${key}`);
+        cursor += 1;
+        console.log(`${cursor}/${count} Building ${key}`);
+
         let definition = icons[key];
         const dependencies = [];
 
@@ -357,7 +363,7 @@ async function buildDefinitions(srcDir) {
                         }
                     }
                     if (Object.keys(definition).length > 0) {
-                        if (Object.keys(definitions).length <= 10) {
+                        if (Object.keys(definitions).length <= 100) {
                             definitions[name] = definition;
                         } else {
                             //definitions[name] = definition;
