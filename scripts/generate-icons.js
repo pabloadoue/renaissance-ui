@@ -4,7 +4,6 @@ const convert = require('xml-js');
 const setval = require('setval');
 const deepIterator = require('deep-iterator').default;
 const capitalize = require('capitalize');
-const prettier = require('prettier');
 const { exec } = require('child_process');
 
 const src = path.resolve(__dirname, '../src/UIIcon/src');
@@ -13,34 +12,30 @@ const dest = path.resolve(__dirname, '../src/UIIcon');
 const definitions = {};
 
 buildDefinitions(src).then(() => {
-    /*const files = fs.readdirSync(dest, { withFileTypes: true });
-    for (let file of files) {
-        if (!file.isDirectory()) {
-            const filePath = path.resolve(dest, file.name);
-            fs.unlinkSync(filePath);
-        }
-    }
-
-    const components = fs.readdirSync(path.resolve(dest, 'components'), {
-        withFileTypes: true,
-    });
-
-    for (let component of components) {
-        if (!component.isDirectory()) {
-            //const filePath = path.resolve(dest, 'components', component.name);
-            //fs.unlinkSync(filePath);
-        }
-    }*/
-
-    buildFiles(definitions).then((indexDefinitions) => {
-        buildIndex(indexDefinitions).then(() => {
-            console.log('done');
-        });
-    });
+    buildFiles(definitions)
+        .then((indexDefinitions) => {
+            buildIndex(indexDefinitions).then(() => {
+                console.log('Done');
+            });
+        })
+        .catch((error) => {});
 });
 
 async function buildIndex(indexDefinitions) {
-    const { imports, cases, iconTypes, iconNames } = indexDefinitions;
+    let imports = '';
+    let cases = '';
+    const types = [];
+    const icons = [];
+
+    indexDefinitions.forEach((definition) => {
+        //console.log(definition);
+        imports += `import Icon${definition.name} from './components/${definition.name}Icon';\n`;
+        cases += `case '${definition.key}':\n`;
+        cases += `return <Icon${definition.name} {...props} />;\n`;
+        types.push(`'${definition.key}'`);
+        icons.push(definition.key);
+    });
+
     let content = `import React from 'react';
     import type {IIconProps} from 'native-base';
     ${imports}
@@ -54,22 +49,17 @@ async function buildIndex(indexDefinitions) {
     export interface TUIIconProps extends IIconProps {
         name: TUIIconName
     }
-    export type TUIIconName = ${iconTypes.join(' | ')};
-    export const UIIcons=${JSON.stringify(iconNames)};
+    export type TUIIconName = ${types.join(' | ')};
+    export const UIIcons=${JSON.stringify(icons)};
     `;
 
-    content = await prettier.format(content, { parser: 'typescript' });
     fs.writeFileSync(path.resolve(dest, `index.tsx`), content);
     await lintFile(path.resolve(dest, `index.tsx`));
-
     return;
 }
 
 async function buildFiles(icons) {
-    let imports = ``;
-    let cases = ``;
-    const iconTypes = [];
-    const iconNames = [];
+    const imports = [];
     for (let key in icons) {
         console.log(`Building ${key}`);
         let definition = icons[key];
@@ -132,106 +122,109 @@ async function buildFiles(icons) {
         }
 
         if (fallback) {
-            let iconNameArray = [];
-            let iconOutputNameArray = [];
-            key.split('_').map((name) => {
-                iconNameArray.push(capitalize(name));
-                iconOutputNameArray.push(name.toLowerCase());
+            const iconName = (() => {
+                const result = [];
+                key.split('-').map((name) => {
+                    result.push(capitalize(name.toLowerCase()));
+                });
+                return result.join('');
+            })();
+
+            const iconCase = (() => {
+                const result = [];
+                key.split('-').map((name) => {
+                    result.push(name.toLowerCase());
+                });
+                return result.join('-');
+            })();
+
+            //check if the imports already exists
+            const importExists = imports.find((importItem) => {
+                return (
+                    importItem.name === iconName || importItem.key === iconCase
+                );
             });
 
-            const iconName = iconNameArray.join('');
-            const iconOutputName = iconOutputNameArray.join('-');
-            iconTypes.push(`'${iconOutputName}'`);
-            iconNames.push(`${iconName}`);
+            if (!importExists) {
+                imports.push({
+                    key: iconCase,
+                    name: iconName,
+                });
 
-            const iconPath = path.resolve(
-                dest,
-                'components',
-                `${iconName}Icon.tsx`
-            );
+                const iconPath = path.resolve(
+                    dest,
+                    'components',
+                    `${iconName}Icon.tsx`
+                );
 
-            imports += `import Icon${iconName} from './components/${iconName}Icon';\n`;
-            cases += `      case '${iconOutputName}':\n`;
-            cases += `          return <Icon${iconName} {...props} />;\n`;
+                if (fs.existsSync(iconPath)) {
+                    console.log(`      Exists`);
+                } else {
+                    let variants = ``;
 
-            if (fs.existsSync(iconPath)) {
-                console.log(`      Exists`);
-            } else {
-                let variants = ``;
-
-                if (solid) {
-                    variants += `case('solid'):
+                    if (solid) {
+                        variants += `case('solid'):
                                     return <Icon viewBox='${solid.viewBox}' {...props}>
                                         ${solid.svg}
                                     </Icon>;
                                 `;
-                }
+                    }
 
-                if (outline) {
-                    variants += `case('outline'):
+                    if (outline) {
+                        variants += `case('outline'):
                                     return <Icon viewBox='${outline.viewBox}' {...props}>
                                         ${outline.svg}
                                     </Icon>;
                                 `;
-                }
+                    }
 
-                if (round) {
-                    variants += `case('round'):
+                    if (round) {
+                        variants += `case('round'):
                                     return <Icon viewBox='${round.viewBox}' {...props}>
                                         ${round.svg}
                                     </Icon>;
                                 `;
-                }
+                    }
 
-                if (sharp) {
-                    variants += `case('sharp'):
+                    if (sharp) {
+                        variants += `case('sharp'):
                                     return <Icon viewBox='${sharp.viewBox}' {...props}>
                                         ${sharp.svg}
                                     </Icon>;
                                 `;
-                }
-
-                let content = `
-                import React from 'react';
-                import {Icon} from 'native-base';
-                import {${dependencies.join(',')}} from 'react-native-svg';
-                
-                export default function Icon${iconName}(props: any){
-    
-                    switch(props.variant){
-                        ${variants}
-                        default:
-                            return <Icon viewBox='${
-                                fallback.viewBox
-                            }' {...props}>
-                                ${fallback.svg}
-                            </Icon>;
                     }
+
+                    let content = `
+                        import React from 'react';
+                        import {Icon} from 'native-base';
+                        import {${dependencies.join(
+                            ','
+                        )}} from 'react-native-svg';
+                
+                        export default function Icon${iconName}(props: any){
+    
+                            switch(props.variant){
+                                ${variants}
+                                default:
+                                    return <Icon viewBox='${
+                                        fallback.viewBox
+                                    }' {...props}>
+                                    ${fallback.svg}
+                        </Icon>;
+                        }
+                    }`;
+
+                    fs.writeFileSync(
+                        path.resolve(dest, 'components', `${iconName}Icon.tsx`),
+                        content
+                    );
+
+                    await lintFile(path.resolve(dest, `index.tsx`));
                 }
-                `;
-
-                content = await prettier.format(content, {
-                    parser: 'typescript',
-                });
-
-                fs.writeFileSync(
-                    path.resolve(dest, 'components', `${iconName}Icon.tsx`),
-                    content
-                );
-
-                await lintFile(
-                    path.resolve(dest, 'components', `${iconName}Icon.tsx`)
-                );
             }
         }
     }
-
-    return {
-        imports: imports,
-        cases: cases,
-        iconTypes: iconTypes,
-        iconNames: iconNames,
-    };
+    return imports;
 }
 
 function parseIcon(svgString) {
@@ -309,7 +302,8 @@ async function buildDefinitions(srcDir) {
             });
             for (let icon of icons) {
                 if (icon.isDirectory()) {
-                    const name = `${entry.name}_${icon.name}`;
+                    //const name = `${entry.name}_${icon.name}`;
+                    const name = icon.name.split('_').join('-').toLowerCase();
                     const variants = fs.readdirSync(
                         path.join(srcDir, entry.name, icon.name),
                         { withFileTypes: true }
@@ -363,10 +357,10 @@ async function buildDefinitions(srcDir) {
                         }
                     }
                     if (Object.keys(definition).length > 0) {
-                        if (Object.keys(definitions).length <= 1500) {
+                        if (Object.keys(definitions).length <= 10) {
                             definitions[name] = definition;
                         } else {
-                            definitions[name] = definition;
+                            //definitions[name] = definition;
                         }
                     }
                 }
