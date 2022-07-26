@@ -12,6 +12,7 @@ import {
     TSelectOption,
     TSwitchInputField,
     TTextInputField,
+    TPercentageField
 } from './FormHandler';
 import {
     RenaissanceProvider,
@@ -28,6 +29,7 @@ import { UISelect } from './UISelect';
 import { UISwitchInput } from './UISwitchInput';
 import { TUITableProps, UITable } from './UITable';
 import { UITextInput } from './UITextInput';
+import { UIPercentageInput } from './UIPercentageInput';
 
 export {
     UIButton,
@@ -42,6 +44,7 @@ export {
     UISwitchInput,
     FormHandler,
     RenaissanceProvider,
+    UIPercentageInput
 };
 
 export type {
@@ -61,4 +64,5 @@ export type {
     TSelectOption,
     TUITableProps,
     TSwitchInputField,
+    TPercentageField
 };

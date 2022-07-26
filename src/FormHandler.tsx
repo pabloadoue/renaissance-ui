@@ -8,17 +8,7 @@ import type { TUIIconName } from './UIIcon';
 import validator from './Validator';
 
 const Handler = (props: TFormHandlerProps, ref: any) => {
-    /*const [fields, setFields] = useState({
-        ...props.fields,
-    });*/
-
-    /*useEffect(() => {
-        setFields({
-            ...props.fields,
-        });
-    }, [props.fields]);*/
-
-    useEffect(() => {}, [props.saving]);
+    useEffect(() => { }, [props.saving]);
 
     const change = (e: { name: string; value: any }) => {
         const { name, value } = e;
@@ -102,10 +92,6 @@ const Handler = (props: TFormHandlerProps, ref: any) => {
                         : findValue(child, 'props.disabled') || false;
 
                     const childName = findValue(child, 'props.name') || null;
-                    /*const fieldProps = childName
-                        ? findValue(fields, childName)
-                        : {};*/
-                    //const childProps = findValue(child, "props") || {};
 
                     const key = childName ? childName : uuid.v4();
 
@@ -115,9 +101,7 @@ const Handler = (props: TFormHandlerProps, ref: any) => {
                         disabled: disabled,
                         change: change,
                         fields: props.fields,
-                        key: key,
-                        //...childProps,
-                        //...fieldProps,
+                        key: key
                     });
                 } else {
                     return child;
@@ -225,15 +209,15 @@ type ValidationRuleCheckType = (
 
 export interface TTextInputField extends TBaseField {
     type?:
-        | 'email'
-        | 'password'
-        | 'number'
-        | 'phone'
-        | 'text'
-        | 'decimal'
-        | 'search'
-        | 'url'
-        | 'uri';
+    | 'email'
+    | 'password'
+    | 'number'
+    | 'phone'
+    | 'text'
+    | 'decimal'
+    | 'search'
+    | 'url'
+    | 'uri';
     value: string;
     icon?: TFieldIcon;
     label?: string;
@@ -272,23 +256,30 @@ export interface TCurrencyField extends TBaseField {
     value: number;
     label: string;
     currency?:
-        | 'USD'
-        | 'MXN'
-        | 'EUR'
-        | 'GBP'
-        | 'JPY'
-        | 'AUD'
-        | 'COP'
-        | 'CAD'
-        | 'NZD'
-        | 'CHF';
+    | 'USD'
+    | 'MXN'
+    | 'EUR'
+    | 'GBP'
+    | 'JPY'
+    | 'AUD'
+    | 'COP'
+    | 'CAD'
+    | 'NZD'
+    | 'CHF';
+}
+
+export interface TPercentageField extends TBaseField {
+    icon?: TFieldIcon;
+    value: number;
+    label: string;
 }
 
 type TField =
     | TTextInputField
     | TSelectField
     | TSwitchInputField
-    | TCurrencyField;
+    | TCurrencyField
+    | TPercentageField;
 
 export type TFormHandlerFields = {
     [key: string]: TField;

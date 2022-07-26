@@ -10,6 +10,8 @@ import {
     UISwitchInput,
     UITable,
     UITextInput,
+    TPercentageField,
+    UIPercentageInput
 } from 'renaissance-ui';
 
 export default function Components(props: any) {
@@ -100,6 +102,16 @@ export default function Components(props: any) {
             label: 'Robo Total',
             disabled: true,
         },
+        Percentage1: {
+            name: 'Percentage1',
+            value: 0,
+            label: 'Daños Materiales'
+        },
+        Percentage2: {
+            name: 'Percentage2',
+            value: 0,
+            label: 'Robo Total'
+        }
     });
 
     const submit = (error: any, body: any, updated: any) => {
@@ -142,6 +154,10 @@ export default function Components(props: any) {
                 <UISwitchInput {...fields.Switch1} />
                 <UISwitchInput {...fields.Switch2} />
             </UITable>
+            <UITable label="Deducibles" name="deductibles">
+                <UIPercentageInput {...fields.Percentage1} />
+                <UIPercentageInput {...fields.Percentage2} />
+            </UITable>
         </UIModalEdit>
     );
 }
@@ -157,4 +173,6 @@ type FieldsType = {
     Currency2: TCurrencyField;
     Switch1: TSwitchInputField;
     Switch2: TSwitchInputField;
+    Percentage1: TPercentageField;
+    Percentage2: TPercentageField
 };
