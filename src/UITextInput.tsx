@@ -5,15 +5,26 @@ import React, {
     useRef,
     useState,
 } from 'react';
-import { Input, Text, View } from 'native-base';
+import {
+    HStack,
+    Input,
+    Text,
+    useColorMode,
+    useColorModeValue,
+    View,
+} from 'native-base';
 
 import type { TTextInputField } from './FormHandler';
+import { UIIcon } from './UIIcon';
 
 const TextInput = (props: TTextInputField, ref: any) => {
     const inputRef = useRef<any>(null);
+    const { colorMode } = useColorMode();
     const [focused, setFocused] = useState(false);
     const [borderBottomWidth, setBorderBottomWidth] = useState(0.5);
-    const [borderBottomColor, setBorderBottomColor] = useState('gray4.500');
+    const [borderBottomColor, setBorderBottomColor] = useState(
+        useColorModeValue('gray5.500', 'gray6.500')
+    );
 
     useEffect(() => {
         if (props.borderBottom || props.error) {
@@ -43,9 +54,13 @@ const TextInput = (props: TTextInputField, ref: any) => {
         } else if (focused) {
             setBorderBottomColor('blue.500');
         } else {
-            setBorderBottomColor('gray4.500');
+            if (colorMode === 'light') {
+                setBorderBottomColor('gray5.500');
+            } else {
+                setBorderBottomColor('gray4.500');
+            }
         }
-    }, [props.error, focused]);
+    }, [props.error, focused, colorMode]);
 
     const error = () => {
         if (typeof props.error === 'string') {
@@ -88,48 +103,69 @@ const TextInput = (props: TTextInputField, ref: any) => {
                 width={'100%'}
                 borderBottomWidth={borderBottomWidth}
                 borderBottomColor={borderBottomColor}
-                paddingTop={4}
-                paddingBottom={1}
+                height={12}
+                justifyContent={'center'}
+                alignItems={'center'}
             >
-                <Input
-                    variant={'unstyled'}
-                    ref={inputRef}
-                    size={'xl'}
-                    autoCapitalize={'none'}
-                    type={props.type === 'password' ? 'password' : 'text'}
-                    placeholder={props.label}
-                    value={`${props.value}`}
-                    isDisabled={props.disabled}
-                    onChangeText={change}
-                    padding={0}
-                    paddingLeft={4}
-                    paddingRight={8}
-                    paddingTop={2}
-                    paddingBottom={2}
-                    keyboardType={
-                        props.type === 'password'
-                            ? 'default'
-                            : props.type === 'email'
-                            ? 'email-address'
-                            : props.type === 'number'
-                            ? 'number-pad'
-                            : props.type === 'phone'
-                            ? 'phone-pad'
-                            : props.type === 'url'
-                            ? 'url'
-                            : props.type === 'uri'
-                            ? 'url'
-                            : 'default'
-                    }
-                    onFocus={() => setFocused(true)}
-                    onBlur={() => setFocused(false)}
-                    returnKeyType={props.returnKeyType}
-                    onSubmitEditing={() => {
-                        if (typeof props.next === 'function') {
-                            props.next(props.name);
-                        }
-                    }}
-                />
+                <HStack width="100%">
+                    {typeof props.icon !== 'undefined' && (
+                        <View
+                            width={8}
+                            justifyContent="center"
+                            alignItems={'center'}
+                        >
+                            <UIIcon
+                                name={props.icon}
+                                size={'md'}
+                                color={'gray2.500'}
+                            />
+                        </View>
+                    )}
+
+                    <View flex={1}>
+                        <Input
+                            variant={'unstyled'}
+                            ref={inputRef}
+                            size={'xl'}
+                            autoCapitalize={'none'}
+                            type={
+                                props.type === 'password' ? 'password' : 'text'
+                            }
+                            placeholder={props.label}
+                            value={`${props.value}`}
+                            isDisabled={props.disabled}
+                            onChangeText={change}
+                            padding={0}
+                            paddingLeft={4}
+                            paddingRight={8}
+                            paddingTop={2}
+                            paddingBottom={2}
+                            keyboardType={
+                                props.type === 'password'
+                                    ? 'default'
+                                    : props.type === 'email'
+                                    ? 'email-address'
+                                    : props.type === 'number'
+                                    ? 'number-pad'
+                                    : props.type === 'phone'
+                                    ? 'phone-pad'
+                                    : props.type === 'url'
+                                    ? 'url'
+                                    : props.type === 'uri'
+                                    ? 'url'
+                                    : 'default'
+                            }
+                            onFocus={() => setFocused(true)}
+                            onBlur={() => setFocused(false)}
+                            returnKeyType={props.returnKeyType}
+                            onSubmitEditing={() => {
+                                if (typeof props.next === 'function') {
+                                    props.next(props.name);
+                                }
+                            }}
+                        />
+                    </View>
+                </HStack>
             </View>
             {error()}
         </View>

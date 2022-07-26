@@ -49,12 +49,7 @@ export function UIModal(props: TUIModalProps) {
                         padding={padding}
                     >
                         <View
-                            _light={{
-                                bg: 'white',
-                            }}
-                            _dark={{
-                                bg: 'gray5.500',
-                            }}
+                            bg={'gray6.500'}
                             flex={1}
                             width={'100%'}
                             maxWidth={768}

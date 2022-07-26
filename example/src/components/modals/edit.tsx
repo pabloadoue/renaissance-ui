@@ -1,14 +1,52 @@
 import React, { useState } from 'react';
-import { TTextInputField, UIModalEdit, UITextInput } from 'renaissance-ui';
+import {
+    TSelectField,
+    TTextInputField,
+    UIModalEdit,
+    UISelect,
+    UITable,
+    UITextInput,
+} from 'renaissance-ui';
 
 export default function Components(props: any) {
     const [saving, setSaving] = useState(false);
     const [fields, setFields] = useState<FieldsType>({
-        Text1: {
-            name: 'Text1',
+        Name: {
+            name: 'Name',
             value: '',
-            label: 'Text Input',
+            label: 'Name',
             type: 'text',
+        },
+        LastName: {
+            name: 'LastName',
+            value: '',
+            label: 'Last Name',
+            type: 'text',
+        },
+        FamilyName: {
+            name: 'FamilyName',
+            value: '',
+            label: 'FamilyName',
+            type: 'text',
+        },
+        Email: {
+            name: 'Email',
+            value: '',
+            label: 'Email',
+            type: 'email',
+        },
+        Select1: {
+            name: 'Select1',
+            value: null,
+            label: 'Select State',
+            icon: '3d-rotation',
+            options: [
+                {
+                    label: 'La gran, única e inigualable Ciudad de México',
+                    value: 'CDMX',
+                },
+                { label: 'Estado de México', value: 'MX' },
+            ],
         },
     });
 
@@ -35,11 +73,21 @@ export default function Components(props: any) {
             saving={saving}
             submit={submit}
         >
-            <UITextInput {...fields.Text1} />
+            <UITable label="Datos del contratante" name="policyholder">
+                <UITextInput {...fields.Name} />
+                <UITextInput {...fields.LastName} />
+                <UITextInput {...fields.FamilyName} />
+                <UITextInput {...fields.Email} />
+                <UISelect {...fields.Select1} />
+            </UITable>
         </UIModalEdit>
     );
 }
 
 type FieldsType = {
-    Text1: TTextInputField;
+    Name: TTextInputField;
+    LastName: TTextInputField;
+    FamilyName: TTextInputField;
+    Email: TTextInputField;
+    Select1: TSelectField;
 };

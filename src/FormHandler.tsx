@@ -4,6 +4,7 @@ import findValue from '@pabloadoue/find-value';
 import iterate from 'object-deep-iteration';
 import setval from 'setval';
 
+import type { TUIIconName } from './UIIcon';
 import validator from './Validator';
 
 const Handler = (props: TFormHandlerProps, ref: any) => {
@@ -111,7 +112,6 @@ const Handler = (props: TFormHandlerProps, ref: any) => {
                         change: change,
                         fields: props.fields,
                         key: key,
-                        borderBottom: true,
                         //...childProps,
                         //...fieldProps,
                     });
@@ -228,10 +228,12 @@ export interface TTextInputField extends TBaseField {
         | 'url'
         | 'uri';
     value: string;
+    icon?: TUIIconName;
     label?: string;
 }
 
 export interface TSelectField extends TBaseField {
+    icon?: TUIIconName;
     value: string | number | boolean | null;
     options: TSelectOption[];
     label: string;
@@ -243,6 +245,7 @@ export interface TSwitchInputField extends TBaseField {
 }
 
 export type TSelectOption = {
+    icon?: TUIIconName;
     label: string;
     value: string | number | boolean | null;
 };

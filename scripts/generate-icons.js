@@ -301,7 +301,17 @@ function lintFile(filePath) {
 
 async function buildDefinitions(srcDir) {
     let entries = fs.readdirSync(srcDir, { withFileTypes: true });
-    const whitelist = ['menu', 'lightbulb', 'close', 'delete', 'done'];
+    const whitelist = [
+        'menu',
+        'lightbulb',
+        'close',
+        'delete',
+        'done',
+        'chevron-left',
+        'chevron-right',
+        'arrow-back-ios',
+        'arrow-forward-ios',
+    ];
     for (let entry of entries) {
         if (entry.isDirectory()) {
             const icons = fs.readdirSync(path.join(srcDir, entry.name), {

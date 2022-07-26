@@ -20,6 +20,11 @@ export default function Header(props: any) {
             <UIHeader
                 title="Hola"
                 left={left}
+                bg={{
+                    dark: 'gray5.500',
+                    light: 'white',
+                }}
+                shadow={true}
                 right={[
                     {
                         icon: 'lightbulb',

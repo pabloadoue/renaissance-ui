@@ -33,10 +33,12 @@ import IconAnnouncement from './components/AnnouncementIcon';
 import IconApi from './components/ApiIcon';
 import IconAppBlocking from './components/AppBlockingIcon';
 import IconAppShortcut from './components/AppShortcutIcon';
+import IconArrowBackIos from './components/ArrowBackIosIcon';
 import IconArrowCircleDown from './components/ArrowCircleDownIcon';
 import IconArrowCircleLeft from './components/ArrowCircleLeftIcon';
 import IconArrowCircleRight from './components/ArrowCircleRightIcon';
 import IconArrowCircleUp from './components/ArrowCircleUpIcon';
+import IconArrowForwardIos from './components/ArrowForwardIosIcon';
 import IconArrowOutward from './components/ArrowOutwardIcon';
 import IconArrowRightAlt from './components/ArrowRightAltIcon';
 import IconArticle from './components/ArticleIcon';
@@ -80,6 +82,8 @@ import IconCardTravel from './components/CardTravelIcon';
 import IconChangeHistory from './components/ChangeHistoryIcon';
 import IconCheckCircle from './components/CheckCircleIcon';
 import IconCheckCircleOutline from './components/CheckCircleOutlineIcon';
+import IconChevronLeft from './components/ChevronLeftIcon';
+import IconChevronRight from './components/ChevronRightIcon';
 import IconChromeReaderMode from './components/ChromeReaderModeIcon';
 import IconCircleNotifications from './components/CircleNotificationsIcon';
 import IconClass from './components/ClassIcon';
@@ -462,6 +466,14 @@ export function UIIcon(props: TUIIconProps) {
             return <IconFindReplace {...props} />;
         case 'lightbulb':
             return <IconLightbulb {...props} />;
+        case 'arrow-back-ios':
+            return <IconArrowBackIos {...props} />;
+        case 'arrow-forward-ios':
+            return <IconArrowForwardIos {...props} />;
+        case 'chevron-left':
+            return <IconChevronLeft {...props} />;
+        case 'chevron-right':
+            return <IconChevronRight {...props} />;
         case 'close':
             return <IconClose {...props} />;
         case 'menu':
@@ -625,6 +637,10 @@ export type TUIIconName =
     | 'find-in-page'
     | 'find-replace'
     | 'lightbulb'
+    | 'arrow-back-ios'
+    | 'arrow-forward-ios'
+    | 'chevron-left'
+    | 'chevron-right'
     | 'close'
     | 'menu';
 export const UIIcons = [
@@ -780,6 +796,10 @@ export const UIIcons = [
     'find-in-page',
     'find-replace',
     'lightbulb',
+    'arrow-back-ios',
+    'arrow-forward-ios',
+    'chevron-left',
+    'chevron-right',
     'close',
     'menu',
 ];

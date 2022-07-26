@@ -1,12 +1,11 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { HStack, Text, useColorModeValue, View } from 'native-base';
+import { HStack, Text, View } from 'native-base';
 
 import { TUIButtonSize, TUIButtonVariant, UIButton } from './UIButton';
 import type { TUIIconName } from './UIIcon';
 
 export function UIHeader(props: TUIHeaderProps) {
-    const bg = useColorModeValue('white', 'gray5.500');
     const controls = (
         entry:
             | TUIHeaderControllDefinition
@@ -73,8 +72,13 @@ export function UIHeader(props: TUIHeaderProps) {
     return (
         <View
             width="100%"
-            bg={bg}
-            shadow={1}
+            _dark={{
+                bg: props.bg?.dark,
+            }}
+            _light={{
+                bg: props.bg?.light,
+            }}
+            shadow={props.shadow ? 1 : -1}
             paddingX={2}
             borderTopRadius={props.borderRadius}
         >
@@ -129,6 +133,11 @@ export type TUIHeaderProps = {
     title?: string;
     safeArea?: boolean;
     borderRadius?: number;
+    shadow?: boolean;
+    bg?: {
+        dark: string;
+        light: string;
+    };
     left?: TUIHeaderControllDefinition;
     right?: TUIHeaderControllDefinition | TUIHeaderControllDefinition[];
 };

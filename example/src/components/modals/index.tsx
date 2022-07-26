@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useWindowDimensions } from 'react-native';
 import { ScrollView } from 'native-base';
 import { UIButton } from 'renaissance-ui';
 
@@ -8,12 +9,15 @@ import Edit from './edit';
 
 export default function Components(props: any) {
     const [modalEdit, setModalEdit] = useState(false);
+    const { width } = useWindowDimensions();
     return (
         <>
-            <Header
-                navigation={props.navigation}
-                setColorMode={props.setColorMode}
-            />
+            {width < 768 && (
+                <Header
+                    navigation={props.navigation}
+                    setColorMode={props.setColorMode}
+                />
+            )}
             <ScrollView
                 height="100%"
                 width="100%"
