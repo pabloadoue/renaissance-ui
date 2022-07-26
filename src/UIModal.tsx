@@ -52,7 +52,7 @@ export function UIModal(props: TUIModalProps) {
                             bg={'gray6.500'}
                             flex={1}
                             width={'100%'}
-                            maxWidth={768}
+                            maxWidth={648}
                             borderRadius={8}
                         >
                             {props.children}

@@ -18,7 +18,7 @@ const Handler = (props: TFormHandlerProps, ref: any) => {
         });
     }, [props.fields]);*/
 
-    useEffect(() => {}, [props.saving]);
+    useEffect(() => { }, [props.saving]);
 
     const change = (e: { name: string; value: any }) => {
         const { name, value } = e;
@@ -55,13 +55,13 @@ const Handler = (props: TFormHandlerProps, ref: any) => {
         formFields: TFormHandlerFields,
         skipValidation: boolean | undefined
     ) {
-        let responseFields = { ...formFields };
+        let responseFields = {};
         let errorFields = { ...formFields };
         let validResponse = true;
 
         iterate(formFields, (_obj: any, path: string) => {
             const field = findValue(formFields, path);
-            if (field && typeof field.value !== 'undefined') {
+            if (field && typeof field.value !== 'undefined' && typeof field.name !== "undefined") {
                 const validField = validateField(field, formFields);
                 if (skipValidation !== true) {
                     if (validField === true) {
@@ -218,25 +218,34 @@ type ValidationRuleCheckType = (
 
 export interface TTextInputField extends TBaseField {
     type?:
-        | 'email'
-        | 'password'
-        | 'number'
-        | 'phone'
-        | 'text'
-        | 'decimal'
-        | 'search'
-        | 'url'
-        | 'uri';
+    | 'email'
+    | 'password'
+    | 'number'
+    | 'phone'
+    | 'text'
+    | 'decimal'
+    | 'search'
+    | 'url'
+    | 'uri';
     value: string;
-    icon?: TUIIconName;
+    icon?: TFieldIcon;
     label?: string;
 }
 
+type TFieldIcon = {
+    name: TUIIconName;
+    color: {
+        dark: string;
+        light: string;
+    }
+}
+
 export interface TSelectField extends TBaseField {
-    icon?: TUIIconName;
+    icon?: TFieldIcon;
     value: string | number | boolean | null;
     options: TSelectOption[];
     label: string;
+    loading?: boolean;
 }
 
 export interface TSwitchInputField extends TBaseField {
@@ -250,7 +259,14 @@ export type TSelectOption = {
     value: string | number | boolean | null;
 };
 
-type TField = TTextInputField | TSelectField | TSwitchInputField;
+export interface TCurrencyField extends TBaseField {
+    icon?: TFieldIcon;
+    value: number;
+    label: string;
+    currency?: 'USD' | 'MXN' | 'EUR' | 'GBP' | 'JPY' | 'AUD' | 'COP' | 'CAD' | 'NZD' | 'CHF'
+}
+
+type TField = TTextInputField | TSelectField | TSwitchInputField | TCurrencyField;
 
 export type TFormHandlerFields = {
     [key: string]: TField;

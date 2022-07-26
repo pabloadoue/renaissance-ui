@@ -115,9 +115,14 @@ const TextInput = (props: TTextInputField, ref: any) => {
                             alignItems={'center'}
                         >
                             <UIIcon
-                                name={props.icon}
+                                name={props.icon.name}
                                 size={'md'}
-                                color={'gray2.500'}
+                                _dark={{
+                                    color: props.icon.color.dark
+                                }}
+                                _light={{
+                                    color: props.icon.color.light
+                                }}
                             />
                         </View>
                     )}
@@ -144,16 +149,16 @@ const TextInput = (props: TTextInputField, ref: any) => {
                                 props.type === 'password'
                                     ? 'default'
                                     : props.type === 'email'
-                                    ? 'email-address'
-                                    : props.type === 'number'
-                                    ? 'number-pad'
-                                    : props.type === 'phone'
-                                    ? 'phone-pad'
-                                    : props.type === 'url'
-                                    ? 'url'
-                                    : props.type === 'uri'
-                                    ? 'url'
-                                    : 'default'
+                                        ? 'email-address'
+                                        : props.type === 'number'
+                                            ? 'number-pad'
+                                            : props.type === 'phone'
+                                                ? 'phone-pad'
+                                                : props.type === 'url'
+                                                    ? 'url'
+                                                    : props.type === 'uri'
+                                                        ? 'url'
+                                                        : 'default'
                             }
                             onFocus={() => setFocused(true)}
                             onBlur={() => setFocused(false)}

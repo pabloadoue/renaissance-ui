@@ -10,6 +10,7 @@ import {
     TSelectField,
     TSelectOption,
     TTextInputField,
+    TCurrencyField
 } from './FormHandler';
 import {
     RenaissanceProvider,
@@ -17,6 +18,7 @@ import {
     TRenaissanceProviderProps,
 } from './RenaissanceProvider';
 import { TUIButtonProps, UIButton } from './UIButton';
+import { UICurrencyInput } from './UICurrencyInput';
 import { TUIHeaderProps, UIHeader } from './UIHeader';
 import { TUIIconName, TUIIconProps, UIIcon } from './UIIcon';
 import { TUIModalProps, UIModal } from './UIModal';
@@ -27,6 +29,7 @@ import { UITextInput } from './UITextInput';
 
 export {
     UIButton,
+    UICurrencyInput,
     UIHeader,
     UIIcon,
     UIModal,
@@ -50,6 +53,7 @@ export type {
     TFormHanderRef,
     TFormHandlerFields,
     TTextInputField,
+    TCurrencyField,
     TSelectField,
     TSelectOption,
     TUITableProps,

@@ -11,6 +11,7 @@ import {
     View,
 } from 'native-base';
 
+
 import type { TSelectOption } from '../FormHandler';
 import { UIHeader } from '../UIHeader';
 import { UIIcon } from '../UIIcon';
@@ -62,12 +63,14 @@ export default function UIFormWrapperSelectOptions(props: any) {
                 }}
                 data={options}
                 borderRadius={8}
-                renderItem={({ item }) => {
+                renderItem={({ item, index }) => {
                     const selected = value === item.value;
+                    const borderBottom = index < options.length - 1;
                     return (
                         <ListItem
                             {...item}
                             selected={selected}
+                            borderBottom={borderBottom}
                             change={(value: any) => {
                                 if (typeof change === 'function') {
                                     change(value);
@@ -108,28 +111,30 @@ const ListItem = (props: TListItemProps) => {
                             height={12}
                             justifyContent="center"
                             paddingX={2}
-                            borderBottomWidth={1}
+                            borderBottomWidth={props.borderBottom ? 1 : 0}
                             borderBottomColor={borderBottomColor}
                         >
                             <HStack>
                                 <HStack space={1} flex={1}>
-                                    <View
-                                        width={8}
-                                        justifyContent="center"
-                                        alignItems={'center'}
-                                    >
-                                        {typeof props.icon !== 'undefined' && (
+                                    {typeof props.icon !== 'undefined' && (
+                                        <View
+                                            width={8}
+                                            justifyContent="center"
+                                            alignItems={'center'}
+                                        >
                                             <UIIcon
                                                 name={props.icon}
                                                 size={'md'}
                                                 color={'gray2.500'}
                                             />
-                                        )}
-                                    </View>
+                                        </View>
+                                    )}
                                     <Text
                                         fontSize={18}
                                         color={'gray.500'}
                                         numberOfLines={1}
+                                        width="100%"
+                                        paddingX={2}
                                     >
                                         {props.label}
                                     </Text>
@@ -157,5 +162,6 @@ const ListItem = (props: TListItemProps) => {
 
 interface TListItemProps extends TSelectOption {
     selected: boolean;
+    borderBottom: boolean;
     change: (value: any) => void;
 }

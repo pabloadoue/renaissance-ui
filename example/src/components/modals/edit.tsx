@@ -6,6 +6,8 @@ import {
     UISelect,
     UITable,
     UITextInput,
+    TCurrencyField,
+    UICurrencyInput
 } from 'renaissance-ui';
 
 export default function Components(props: any) {
@@ -39,7 +41,13 @@ export default function Components(props: any) {
             name: 'Select1',
             value: null,
             label: 'Select State',
-            icon: '3d-rotation',
+            icon: {
+                name: "3d-rotation",
+                color: {
+                    dark: "gray.500",
+                    light: "gray.500"
+                }
+            },
             options: [
                 {
                     label: 'La gran, única e inigualable Ciudad de México',
@@ -48,6 +56,37 @@ export default function Components(props: any) {
                 { label: 'Estado de México', value: 'MX' },
             ],
         },
+        Select2: {
+            name: 'Select2',
+            value: null,
+            label: 'Select Loading',
+            icon: {
+                name: "3d-rotation",
+                color: {
+                    dark: "gray.500",
+                    light: "gray.500"
+                }
+            },
+            loading: true,
+            options: [
+                {
+                    label: 'La gran, única e inigualable Ciudad de México',
+                    value: 'CDMX',
+                },
+                { label: 'Estado de México', value: 'MX' },
+            ],
+        },
+        Currency1: {
+            name: 'Currency1',
+            value: 0,
+            label: 'Prima Anual'
+        },
+        Currency2: {
+            name: 'Currency2',
+            value: 0,
+            label: 'Prima Modal',
+            currency: 'MXN'
+        }
     });
 
     const submit = (error: any, body: any, updated: any) => {
@@ -79,6 +118,11 @@ export default function Components(props: any) {
                 <UITextInput {...fields.FamilyName} />
                 <UITextInput {...fields.Email} />
                 <UISelect {...fields.Select1} />
+                <UISelect {...fields.Select2} />
+            </UITable>
+            <UITable label="Datos de la Prima" name="premium">
+                <UICurrencyInput {...fields.Currency1} />
+                <UICurrencyInput {...fields.Currency2} />
             </UITable>
         </UIModalEdit>
     );
@@ -90,4 +134,7 @@ type FieldsType = {
     FamilyName: TTextInputField;
     Email: TTextInputField;
     Select1: TSelectField;
+    Select2: TSelectField;
+    Currency1: TCurrencyField;
+    Currency2: TCurrencyField;
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { HStack, Pressable, Text, View } from 'native-base';
+import { HStack, Pressable, Spinner, Text, View } from 'native-base';
 
 import type { TSelectField } from './FormHandler';
 import { UIIcon } from './UIIcon';
@@ -15,6 +15,7 @@ export function UISelect(props: TSelectField) {
         if (props.error) {
             setBorderBottomColor('red');
         } else if (props.borderBottom) {
+            setBorderBottomWidth(0.5);
             setBorderBottomColor('gray5.500');
         } else {
             setBorderBottomWidth(0);
@@ -48,17 +49,54 @@ export function UISelect(props: TSelectField) {
         return result;
     };
 
+    const right = () => {
+        if (props.loading) {
+            return <HStack
+                flex={1}
+                justifyContent="flex-end"
+                alignItems={'center'}
+                space={1}
+                paddingLeft={2}
+            >
+                <Spinner />
+            </HStack>
+        } else {
+            return <HStack
+                flex={1}
+                justifyContent="flex-end"
+                alignItems={'center'}
+                space={1}
+                paddingLeft={2}
+            >
+                <Text
+                    fontSize={18}
+                    color={'gray2.500'}
+                    numberOfLines={1}
+                    paddingX={2}
+                >
+                    {value()}
+                </Text>
+                <View>
+                    <UIIcon
+                        name="arrow-forward-ios"
+                        color={'gray4.500'}
+                    />
+                </View>
+            </HStack>
+        }
+    }
+
     return (
         <View>
             <Pressable
                 onPress={() => {
-                    if (props.disabled !== true) {
+                    if (props.disabled !== true && !props.loading) {
                         //@ts-expect-error
-                        navigation.navigate('SelectOptions', {
-                            change: change,
+                        navigation.navigate("SelectOptions", {
+                            title: props.label,
                             options: props.options,
-                            label: props.label,
-                            value: props.value,
+                            change: change,
+                            value: props.value
                         });
                     }
                 }}
@@ -68,14 +106,14 @@ export function UISelect(props: TSelectField) {
                     return (
                         <View
                             width="100%"
-                            opacity={props.disabled || isPressed ? 0.5 : 1}
+                            opacity={props.disabled || isPressed || props.loading ? 0.5 : 1}
                             height={12}
                             justifyContent="center"
                             paddingX={2}
                             borderBottomWidth={borderBottomWidth}
                             borderBottomColor={borderBottomColor}
                         >
-                            <HStack width="100%">
+                            <HStack width="100%" space={2}>
                                 <HStack space={1}>
                                     <View
                                         width={8}
@@ -84,9 +122,14 @@ export function UISelect(props: TSelectField) {
                                     >
                                         {typeof props.icon !== 'undefined' && (
                                             <UIIcon
-                                                name={props.icon}
+                                                name={props.icon.name}
                                                 size={'md'}
-                                                color={'gray2.500'}
+                                                _dark={{
+                                                    color: props.icon.color.dark
+                                                }}
+                                                _light={{
+                                                    color: props.icon.color.light
+                                                }}
                                             />
                                         )}
                                     </View>
@@ -94,27 +137,7 @@ export function UISelect(props: TSelectField) {
                                         {props.label}
                                     </Text>
                                 </HStack>
-                                <HStack
-                                    flex={1}
-                                    justifyContent="flex-end"
-                                    alignItems={'center'}
-                                    space={1}
-                                    paddingLeft={4}
-                                >
-                                    <Text
-                                        fontSize={18}
-                                        color={'gray2.500'}
-                                        numberOfLines={1}
-                                    >
-                                        {value()}
-                                    </Text>
-                                    <View>
-                                        <UIIcon
-                                            name="arrow-forward-ios"
-                                            color={'gray4.500'}
-                                        />
-                                    </View>
-                                </HStack>
+                                {right()}
                             </HStack>
                         </View>
                     );
