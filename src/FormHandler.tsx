@@ -274,6 +274,13 @@ export interface TPercentageField extends TBaseField {
     label: string;
 }
 
+export interface TDateField extends TBaseField {
+    icon?: TFieldIcon;
+    value: string;
+    label: string;
+    time?: boolean;
+}
+
 type TField =
     | TTextInputField
     | TSelectField

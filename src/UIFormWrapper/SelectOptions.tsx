@@ -20,7 +20,7 @@ export default function UIFormWrapperSelectOptions(props: any) {
     const { colors } = useTheme();
     const { colorMode } = useColorMode();
     const [topOffset, setTopOffset] = useState(0);
-    const title = findValue(route.params, 'label') || '';
+    const title = findValue(route.params, 'title') || '';
     const options: TSelectOption[] = findValue(route.params, 'options') || [];
     const change: ((value: any) => void) | null =
         findValue(route.params, 'change') || null;

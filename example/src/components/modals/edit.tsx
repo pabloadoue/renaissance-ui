@@ -11,8 +11,12 @@ import {
     UITable,
     UITextInput,
     TPercentageField,
-    UIPercentageInput
+    UIPercentageInput,
+    TDateField,
+    UIDateInput
 } from 'renaissance-ui';
+
+import dayjs from "dayjs";
 
 export default function Components(props: any) {
     const [saving, setSaving] = useState(false);
@@ -80,10 +84,47 @@ export default function Components(props: any) {
                 { label: 'Estado de México', value: 'MX' },
             ],
         },
+        Select3: {
+            name: 'Select3',
+            value: null,
+            label: 'Another Select',
+            icon: {
+                name: '3d-rotation',
+                color: {
+                    dark: 'gray.500',
+                    light: 'gray.500',
+                },
+            },
+            options: [
+                {
+                    label: 'Value 1',
+                    value: 1
+                },
+                {
+                    label: 'Value 2',
+                    value: 2
+                },
+                {
+                    label: 'Value 3',
+                    value: 3
+                },
+                {
+                    label: 'Value 4',
+                    value: 4
+                },
+            ],
+        },
         Currency1: {
             name: 'Currency1',
             value: 0,
             label: 'Prima Anual',
+            icon: {
+                name: "add-card",
+                color: {
+                    dark: 'gray.500',
+                    light: 'gray.500',
+                }
+            }
         },
         Currency2: {
             name: 'Currency2',
@@ -111,6 +152,17 @@ export default function Components(props: any) {
             name: 'Percentage2',
             value: 0,
             label: 'Robo Total'
+        },
+        Date1: {
+            name: 'Date1',
+            value: dayjs().hour(0).minute(0).second(0).format(),
+            label: 'Inicio de Vigencia'
+        },
+        Date2: {
+            name: 'Date2',
+            value: dayjs().hour(0).minute(0).second(0).format(),
+            time: true,
+            label: 'Fin de Vigencia'
         }
     });
 
@@ -145,6 +197,7 @@ export default function Components(props: any) {
                 <UITextInput {...fields.Email} />
                 <UISelect {...fields.Select1} />
                 <UISelect {...fields.Select2} />
+                <UISelect {...fields.Select3} />
             </UITable>
             <UITable label="Datos de la Prima" name="premium">
                 <UICurrencyInput {...fields.Currency1} />
@@ -158,6 +211,10 @@ export default function Components(props: any) {
                 <UIPercentageInput {...fields.Percentage1} />
                 <UIPercentageInput {...fields.Percentage2} />
             </UITable>
+            <UITable label="Vigencia" name="period">
+                <UIDateInput {...fields.Date1} />
+                <UIDateInput {...fields.Date2} />
+            </UITable>
         </UIModalEdit>
     );
 }
@@ -169,10 +226,13 @@ type FieldsType = {
     Email: TTextInputField;
     Select1: TSelectField;
     Select2: TSelectField;
+    Select3: TSelectField;
     Currency1: TCurrencyField;
     Currency2: TCurrencyField;
     Switch1: TSwitchInputField;
     Switch2: TSwitchInputField;
     Percentage1: TPercentageField;
-    Percentage2: TPercentageField
+    Percentage2: TPercentageField;
+    Date1: TDateField,
+    Date2: TDateField
 };
