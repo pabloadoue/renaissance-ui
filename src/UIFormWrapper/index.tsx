@@ -1,11 +1,15 @@
 import React from 'react';
-import { DefaultTheme, NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
+import {
+    createNavigationContainerRef,
+    DefaultTheme,
+    NavigationContainer,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 export const navigationRef = createNavigationContainerRef();
 
-
 import { useTheme } from 'native-base';
+
 import SelectOptions from './SelectOptions';
 
 export function UIFormWrapper(props: TUIFormWrapperProps) {
@@ -25,7 +29,11 @@ export function UIFormWrapper(props: TUIFormWrapperProps) {
     };
 
     return (
-        <NavigationContainer independent={true} theme={theme} ref={navigationRef}>
+        <NavigationContainer
+            independent={true}
+            theme={theme}
+            ref={navigationRef}
+        >
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false,

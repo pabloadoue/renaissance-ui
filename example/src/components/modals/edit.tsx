@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {
+    TCurrencyField,
     TSelectField,
     TTextInputField,
+    UICurrencyInput,
     UIModalEdit,
     UISelect,
     UITable,
     UITextInput,
-    TCurrencyField,
-    UICurrencyInput
 } from 'renaissance-ui';
 
 export default function Components(props: any) {
@@ -42,11 +42,11 @@ export default function Components(props: any) {
             value: null,
             label: 'Select State',
             icon: {
-                name: "3d-rotation",
+                name: '3d-rotation',
                 color: {
-                    dark: "gray.500",
-                    light: "gray.500"
-                }
+                    dark: 'gray.500',
+                    light: 'gray.500',
+                },
             },
             options: [
                 {
@@ -61,11 +61,11 @@ export default function Components(props: any) {
             value: null,
             label: 'Select Loading',
             icon: {
-                name: "3d-rotation",
+                name: '3d-rotation',
                 color: {
-                    dark: "gray.500",
-                    light: "gray.500"
-                }
+                    dark: 'gray.500',
+                    light: 'gray.500',
+                },
             },
             loading: true,
             options: [
@@ -79,14 +79,14 @@ export default function Components(props: any) {
         Currency1: {
             name: 'Currency1',
             value: 0,
-            label: 'Prima Anual'
+            label: 'Prima Anual',
         },
         Currency2: {
             name: 'Currency2',
             value: 0,
             label: 'Prima Modal',
-            currency: 'MXN'
-        }
+            currency: 'MXN',
+        },
     });
 
     const submit = (error: any, body: any, updated: any) => {

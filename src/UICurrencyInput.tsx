@@ -1,6 +1,6 @@
-import React, { useEffect, useState, forwardRef, useRef } from 'react';
-import { HStack, Text, View, Input, useColorMode } from 'native-base';
-import numeral from "numeral";
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import { HStack, Input, Text, useColorMode, View } from 'native-base';
+import numeral from 'numeral';
 
 import type { TCurrencyField } from './FormHandler';
 import { UIIcon } from './UIIcon';
@@ -11,7 +11,7 @@ function CurrencyInput(props: TCurrencyField, _ref: any) {
     const [focused, setFocused] = useState(false);
     const [borderBottomWidth, setBorderBottomWidth] = useState(0.5);
     const [borderBottomColor, setBorderBottomColor] = useState('gray5.500');
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState('');
 
     useEffect(() => {
         if (props.borderBottom || props.error) {
@@ -37,7 +37,7 @@ function CurrencyInput(props: TCurrencyField, _ref: any) {
 
     useEffect(() => {
         let a = numeral(props.value).value();
-        let value = "0";
+        let value = '0';
         if (a === null) {
             a = 0;
         }
@@ -57,10 +57,10 @@ function CurrencyInput(props: TCurrencyField, _ref: any) {
                 value = numeral(a).format('$ 0,0[.]0000');
             }
         }
-        if (typeof props.value === "string") {
+        if (typeof props.value === 'string') {
             const val = `${props.value}`;
-            if (val.includes(".")) {
-                const decimals = val.split(".")[1]?.length || 0;
+            if (val.includes('.')) {
+                const decimals = val.split('.')[1]?.length || 0;
                 if (decimals <= 0) {
                     value = `${value}.`;
                 }
@@ -74,8 +74,8 @@ function CurrencyInput(props: TCurrencyField, _ref: any) {
         if (value === null) {
             value = 0;
         } else {
-            if (val.includes(".")) {
-                const decimals = val.split(".")[1]?.length || 0;
+            if (val.includes('.')) {
+                const decimals = val.split('.')[1]?.length || 0;
                 if (decimals <= 0) {
                     value = `${value}.`;
                 }
@@ -85,18 +85,18 @@ function CurrencyInput(props: TCurrencyField, _ref: any) {
         if (checkValid(`${value}`)) {
             let resp = {
                 name: props.name,
-                value: `${value}`
+                value: `${value}`,
             };
 
             if (props.disabled !== true) {
-                if (typeof props.change === "function") {
+                if (typeof props.change === 'function') {
                     props.change(resp);
                 } else {
-                    console.log("No change function defined");
+                    console.log('No change function defined');
                 }
             }
         }
-    }
+    };
 
     return (
         <View>
@@ -121,10 +121,10 @@ function CurrencyInput(props: TCurrencyField, _ref: any) {
                                     name={props.icon.name}
                                     size={'md'}
                                     _dark={{
-                                        color: props.icon.color.dark
+                                        color: props.icon.color.dark,
                                     }}
                                     _light={{
-                                        color: props.icon.color.light
+                                        color: props.icon.color.light,
                                     }}
                                 />
                             </View>
@@ -140,25 +140,47 @@ function CurrencyInput(props: TCurrencyField, _ref: any) {
                         paddingLeft={2}
                     >
                         <Input
-                            variant={"unstyled"}
-                            size={"xl"}
+                            variant={'unstyled'}
+                            size={'xl'}
                             ref={inputRef}
-                            textAlign={"right"}
-                            autoCapitalize={"none"}
+                            textAlign={'right'}
+                            autoCapitalize={'none'}
                             autoCorrect={false}
-                            type={"text"}
-                            selection={focused ? typeof props.currency === "string" ? { start: (value.length + props.currency.length + 1), end: (value.length + props.currency.length + 1) } : { start: value.length, end: value.length } : undefined}
-                            value={typeof props.currency === "string" ? `${props.currency} ${value}` : `${value}`}
+                            type={'text'}
+                            selection={
+                                focused
+                                    ? typeof props.currency === 'string'
+                                        ? {
+                                              start:
+                                                  value.length +
+                                                  props.currency.length +
+                                                  1,
+                                              end:
+                                                  value.length +
+                                                  props.currency.length +
+                                                  1,
+                                          }
+                                        : {
+                                              start: value.length,
+                                              end: value.length,
+                                          }
+                                    : undefined
+                            }
+                            value={
+                                typeof props.currency === 'string'
+                                    ? `${props.currency} ${value}`
+                                    : `${value}`
+                            }
                             isDisabled={props.disabled}
                             onChangeText={change}
                             padding={0}
                             paddingRight={4}
-                            keyboardType={"numeric"}
+                            keyboardType={'numeric'}
                             onFocus={() => setFocused(true)}
                             onBlur={() => setFocused(false)}
                             returnKeyType={props.returnKeyType}
                             onSubmitEditing={() => {
-                                if (typeof props.next === "function") {
+                                if (typeof props.next === 'function') {
                                     props.next(props.name);
                                 }
                             }}
@@ -172,11 +194,11 @@ function CurrencyInput(props: TCurrencyField, _ref: any) {
 
 const countDecimals = (input: number) => {
     const value = `${input}`;
-    return value.split(".")[1]?.length || 0;
-}
+    return value.split('.')[1]?.length || 0;
+};
 
 const checkValid = (input: string | null) => {
-    if (typeof input === "string") {
+    if (typeof input === 'string') {
         if (input.length > 0) {
             const re = /^[0-9.]+$/;
             if (!re.test(input)) {

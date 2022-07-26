@@ -11,7 +11,6 @@ import {
     View,
 } from 'native-base';
 
-
 import type { TSelectOption } from '../FormHandler';
 import { UIHeader } from '../UIHeader';
 import { UIIcon } from '../UIIcon';

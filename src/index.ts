@@ -5,12 +5,12 @@ LogBox.ignoreLogs([
 
 import {
     FormHandler,
+    TCurrencyField,
     TFormHanderRef,
     TFormHandlerFields,
     TSelectField,
     TSelectOption,
     TTextInputField,
-    TCurrencyField
 } from './FormHandler';
 import {
     RenaissanceProvider,

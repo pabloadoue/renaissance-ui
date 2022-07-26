@@ -51,40 +51,41 @@ export function UISelect(props: TSelectField) {
 
     const right = () => {
         if (props.loading) {
-            return <HStack
-                flex={1}
-                justifyContent="flex-end"
-                alignItems={'center'}
-                space={1}
-                paddingLeft={2}
-            >
-                <Spinner />
-            </HStack>
-        } else {
-            return <HStack
-                flex={1}
-                justifyContent="flex-end"
-                alignItems={'center'}
-                space={1}
-                paddingLeft={2}
-            >
-                <Text
-                    fontSize={18}
-                    color={'gray2.500'}
-                    numberOfLines={1}
-                    paddingX={2}
+            return (
+                <HStack
+                    flex={1}
+                    justifyContent="flex-end"
+                    alignItems={'center'}
+                    space={1}
+                    paddingLeft={2}
                 >
-                    {value()}
-                </Text>
-                <View>
-                    <UIIcon
-                        name="arrow-forward-ios"
-                        color={'gray4.500'}
-                    />
-                </View>
-            </HStack>
+                    <Spinner />
+                </HStack>
+            );
+        } else {
+            return (
+                <HStack
+                    flex={1}
+                    justifyContent="flex-end"
+                    alignItems={'center'}
+                    space={1}
+                    paddingLeft={2}
+                >
+                    <Text
+                        fontSize={18}
+                        color={'gray2.500'}
+                        numberOfLines={1}
+                        paddingX={2}
+                    >
+                        {value()}
+                    </Text>
+                    <View>
+                        <UIIcon name="arrow-forward-ios" color={'gray4.500'} />
+                    </View>
+                </HStack>
+            );
         }
-    }
+    };
 
     return (
         <View>
@@ -92,11 +93,11 @@ export function UISelect(props: TSelectField) {
                 onPress={() => {
                     if (props.disabled !== true && !props.loading) {
                         //@ts-expect-error
-                        navigation.navigate("SelectOptions", {
+                        navigation.navigate('SelectOptions', {
                             title: props.label,
                             options: props.options,
                             change: change,
-                            value: props.value
+                            value: props.value,
                         });
                     }
                 }}
@@ -106,7 +107,11 @@ export function UISelect(props: TSelectField) {
                     return (
                         <View
                             width="100%"
-                            opacity={props.disabled || isPressed || props.loading ? 0.5 : 1}
+                            opacity={
+                                props.disabled || isPressed || props.loading
+                                    ? 0.5
+                                    : 1
+                            }
                             height={12}
                             justifyContent="center"
                             paddingX={2}
@@ -125,10 +130,12 @@ export function UISelect(props: TSelectField) {
                                                 name={props.icon.name}
                                                 size={'md'}
                                                 _dark={{
-                                                    color: props.icon.color.dark
+                                                    color: props.icon.color
+                                                        .dark,
                                                 }}
                                                 _light={{
-                                                    color: props.icon.color.light
+                                                    color: props.icon.color
+                                                        .light,
                                                 }}
                                             />
                                         )}
