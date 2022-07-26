@@ -43,7 +43,7 @@ export function UIModalEdit(props: TUIModalEditProps) {
                     <UIHeader
                         safeArea={false}
                         borderRadius={8}
-                        title={''}
+                        title={props.title}
                         left={{
                             icon: 'close',
                             color: 'gray',

@@ -85,7 +85,7 @@ function CurrencyInput(props: TCurrencyField, _ref: any) {
         if (checkValid(`${value}`)) {
             let resp = {
                 name: props.name,
-                value: `${value}`,
+                value: value,
             };
 
             if (props.disabled !== true) {

@@ -204,7 +204,10 @@ type TBaseField = {
     borderBottom?: boolean;
     returnKeyType?: 'done' | 'next' | 'go' | 'search' | 'send';
     next?: (name: string) => void;
-    change?: (value: { name: string; value: string }) => void;
+    change?: (value: {
+        name: string;
+        value: string | boolean | number | null;
+    }) => void;
 };
 
 type TValidationRule = {
@@ -253,6 +256,7 @@ export interface TSelectField extends TBaseField {
 }
 
 export interface TSwitchInputField extends TBaseField {
+    icon?: TFieldIcon;
     value: boolean;
     label: string;
 }

@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import {
     TCurrencyField,
     TSelectField,
+    TSwitchInputField,
     TTextInputField,
     UICurrencyInput,
     UIModalEdit,
     UISelect,
+    UISwitchInput,
     UITable,
     UITextInput,
 } from 'renaissance-ui';
@@ -87,6 +89,17 @@ export default function Components(props: any) {
             label: 'Prima Modal',
             currency: 'MXN',
         },
+        Switch1: {
+            name: 'Switch1',
+            value: false,
+            label: 'Daños Materiales',
+        },
+        Switch2: {
+            name: 'Switch2',
+            value: false,
+            label: 'Robo Total',
+            disabled: true,
+        },
     });
 
     const submit = (error: any, body: any, updated: any) => {
@@ -105,6 +118,7 @@ export default function Components(props: any) {
 
     return (
         <UIModalEdit
+            title={'Modal Edit'}
             open={props.open}
             close={props.close}
             fields={fields}
@@ -124,6 +138,10 @@ export default function Components(props: any) {
                 <UICurrencyInput {...fields.Currency1} />
                 <UICurrencyInput {...fields.Currency2} />
             </UITable>
+            <UITable label="Coberturas" name="cover">
+                <UISwitchInput {...fields.Switch1} />
+                <UISwitchInput {...fields.Switch2} />
+            </UITable>
         </UIModalEdit>
     );
 }
@@ -137,4 +155,6 @@ type FieldsType = {
     Select2: TSelectField;
     Currency1: TCurrencyField;
     Currency2: TCurrencyField;
+    Switch1: TSwitchInputField;
+    Switch2: TSwitchInputField;
 };

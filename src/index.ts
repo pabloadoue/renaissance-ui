@@ -10,6 +10,7 @@ import {
     TFormHandlerFields,
     TSelectField,
     TSelectOption,
+    TSwitchInputField,
     TTextInputField,
 } from './FormHandler';
 import {
@@ -24,6 +25,7 @@ import { TUIIconName, TUIIconProps, UIIcon } from './UIIcon';
 import { TUIModalProps, UIModal } from './UIModal';
 import { TUIModalEditProps, UIModalEdit } from './UIModalEdit';
 import { UISelect } from './UISelect';
+import { UISwitchInput } from './UISwitchInput';
 import { TUITableProps, UITable } from './UITable';
 import { UITextInput } from './UITextInput';
 
@@ -37,6 +39,7 @@ export {
     UITable,
     UITextInput,
     UISelect,
+    UISwitchInput,
     FormHandler,
     RenaissanceProvider,
 };
@@ -57,4 +60,5 @@ export type {
     TSelectField,
     TSelectOption,
     TUITableProps,
+    TSwitchInputField,
 };
