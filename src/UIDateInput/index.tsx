@@ -1,16 +1,16 @@
 import React, { forwardRef, useEffect, useRef, useState } from 'react';
-import { HStack, Pressable, Text, useColorMode, View } from 'native-base';
 import dayjs, { Dayjs } from 'dayjs';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
 import localeData from 'dayjs/plugin/localeData';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import { HStack, Pressable, Text, useColorMode, View } from 'native-base';
 dayjs.extend(localizedFormat);
 dayjs.extend(localeData);
 
 import type { TDateField } from '../FormHandler';
 import { UIIcon } from '../UIIcon';
 
-import Calendar from "./calendar";
-import Time from "./time";
+import Calendar from './calendar';
+import Time from './time';
 
 function DateInput(props: TDateField, _ref: any) {
     const inputRef = useRef<any>(null);
@@ -68,7 +68,7 @@ function DateInput(props: TDateField, _ref: any) {
                 console.log('No change function defined');
             }
         }
-    }
+    };
 
     return (
         <View>
@@ -111,39 +111,74 @@ function DateInput(props: TDateField, _ref: any) {
                         paddingLeft={2}
                         space={2}
                     >
-                        <Pressable onPress={() => {
-                            setCalendarOpen(!calendarOpen);
-                            setTimeOpen(false);
-                        }}>
+                        <Pressable
+                            onPress={() => {
+                                setCalendarOpen(!calendarOpen);
+                                setTimeOpen(false);
+                            }}
+                        >
                             {(params) => {
                                 const { isPressed } = params;
-                                return <View bg={"gray5.500"} paddingX={2} paddingY={0} borderRadius={4} opacity={isPressed ? .5 : 1}>
-                                    <Text fontSize={18}>{value.format('ll')}</Text>
-                                </View>
-
+                                return (
+                                    <View
+                                        bg={'gray5.500'}
+                                        paddingX={2}
+                                        paddingY={0}
+                                        borderRadius={4}
+                                        opacity={isPressed ? 0.5 : 1}
+                                    >
+                                        <Text fontSize={18}>
+                                            {value.format('ll')}
+                                        </Text>
+                                    </View>
+                                );
                             }}
                         </Pressable>
-                        {props.time && <Pressable onPress={() => {
-                            setTimeOpen(!timeOpen);
-                            setCalendarOpen(false);
-                        }}>
-                            {(params) => {
-                                const { isPressed } = params;
-                                return <View bg={"gray5.500"} paddingX={2} paddingY={0} borderRadius={4} opacity={isPressed ? .5 : 1}>
-                                    <Text fontSize={18}>{value.format('HH:mm')}</Text>
-                                </View>
-
-                            }}
-                        </Pressable>}
-
+                        {props.time && (
+                            <Pressable
+                                onPress={() => {
+                                    setTimeOpen(!timeOpen);
+                                    setCalendarOpen(false);
+                                }}
+                            >
+                                {(params) => {
+                                    const { isPressed } = params;
+                                    return (
+                                        <View
+                                            bg={'gray5.500'}
+                                            paddingX={2}
+                                            paddingY={0}
+                                            borderRadius={4}
+                                            opacity={isPressed ? 0.5 : 1}
+                                        >
+                                            <Text fontSize={18}>
+                                                {value.format('HH:mm')}
+                                            </Text>
+                                        </View>
+                                    );
+                                }}
+                            </Pressable>
+                        )}
                     </HStack>
                 </HStack>
-                {calendarOpen && <View width="100%">
-                    <Calendar value={value} change={change} close={() => setCalendarOpen(false)} />
-                </View>}
-                {timeOpen && <View width="100%">
-                    <Time value={value} change={change} close={() => setTimeOpen(false)} />
-                </View>}
+                {calendarOpen && (
+                    <View width="100%">
+                        <Calendar
+                            value={value}
+                            change={change}
+                            close={() => setCalendarOpen(false)}
+                        />
+                    </View>
+                )}
+                {timeOpen && (
+                    <View width="100%">
+                        <Time
+                            value={value}
+                            change={change}
+                            close={() => setTimeOpen(false)}
+                        />
+                    </View>
+                )}
             </View>
         </View>
     );

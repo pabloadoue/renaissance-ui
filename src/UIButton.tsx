@@ -1,61 +1,72 @@
 import React from 'react';
-import { Button, IconButton } from 'native-base';
+import { Button, IconButton, Tooltip } from 'native-base';
 
 import type { TUIIconName } from './UIIcon';
 import { UIIcon } from './UIIcon';
 
 export function UIButton(props: TUIButtonProps) {
-    if (typeof props.label === 'string') {
-        return (
-            <Button
-                variant={props.variant}
-                isLoading={props.loading}
-                isDisabled={props.disabled}
-                colorScheme={props.color}
-                size={props.size}
-                leftIcon={
-                    props.leftIcon && (
-                        <UIIcon name={props.leftIcon} size={'sm'} />
-                    )
-                }
-                rightIcon={
-                    props.rightIcon && (
-                        <UIIcon name={props.rightIcon} size={'sm'} />
-                    )
-                }
-                onPress={() => {
-                    if (
-                        typeof props.onPress === 'function' &&
-                        props.disabled !== true
-                    ) {
-                        props.onPress();
+    const content = () => {
+        if (typeof props.label === 'string') {
+            return (
+                <Button
+                    variant={props.variant}
+                    isLoading={props.loading}
+                    isDisabled={props.disabled}
+                    colorScheme={props.color}
+                    size={props.size}
+                    leftIcon={
+                        props.leftIcon && (
+                            <UIIcon name={props.leftIcon} size={'sm'} />
+                        )
                     }
-                }}
-            >
-                {props.label}
-            </Button>
-        );
-    } else if (typeof props.icon === 'string') {
-        return (
-            <IconButton
-                variant={props.variant}
-                isDisabled={props.disabled}
-                colorScheme={props.color}
-                size={props.size}
-                icon={<UIIcon name={props.icon} size={'md'} />}
-                onPress={() => {
-                    if (
-                        typeof props.onPress === 'function' &&
-                        props.disabled !== true
-                    ) {
-                        props.onPress();
+                    rightIcon={
+                        props.rightIcon && (
+                            <UIIcon name={props.rightIcon} size={'sm'} />
+                        )
                     }
-                }}
-            />
-        );
-    }
+                    onPress={() => {
+                        if (
+                            typeof props.onPress === 'function' &&
+                            props.disabled !== true
+                        ) {
+                            props.onPress();
+                        }
+                    }}
+                >
+                    {props.label}
+                </Button>
+            );
+        } else if (typeof props.icon === 'string') {
+            return (
+                <IconButton
+                    variant={props.variant}
+                    isDisabled={props.disabled}
+                    colorScheme={props.color}
+                    size={props.size}
+                    icon={<UIIcon name={props.icon} size={'md'} />}
+                    onPress={() => {
+                        if (
+                            typeof props.onPress === 'function' &&
+                            props.disabled !== true
+                        ) {
+                            props.onPress();
+                        }
+                    }}
+                />
+            );
+        }
+        return null;
+    };
 
-    return null;
+    if (typeof props.tooltip === 'string') {
+        return (
+            <Tooltip label={props.tooltip} openDelay={250}>
+                {content()}
+            </Tooltip>
+        );
+    } else {
+        return <>{content()}</>;
+    }
 }
 
 UIButton.defaultProps = {
@@ -76,6 +87,7 @@ export type TUIButtonProps = {
     onPress?: () => void;
     color?: string;
     variant?: TUIButtonVariant;
+    tooltip?: string;
 };
 
 export type TUIButtonVariant =

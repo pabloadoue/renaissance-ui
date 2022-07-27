@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
+import dayjs from 'dayjs';
 import {
     TCurrencyField,
+    TDateField,
+    TPercentageField,
     TSelectField,
     TSwitchInputField,
     TTextInputField,
     UICurrencyInput,
+    UIDateInput,
     UIModalEdit,
+    UIPercentageInput,
     UISelect,
     UISwitchInput,
     UITable,
     UITextInput,
-    TPercentageField,
-    UIPercentageInput,
-    TDateField,
-    UIDateInput
 } from 'renaissance-ui';
-
-import dayjs from "dayjs";
 
 export default function Components(props: any) {
     const [saving, setSaving] = useState(false);
@@ -98,19 +97,19 @@ export default function Components(props: any) {
             options: [
                 {
                     label: 'Value 1',
-                    value: 1
+                    value: 1,
                 },
                 {
                     label: 'Value 2',
-                    value: 2
+                    value: 2,
                 },
                 {
                     label: 'Value 3',
-                    value: 3
+                    value: 3,
                 },
                 {
                     label: 'Value 4',
-                    value: 4
+                    value: 4,
                 },
             ],
         },
@@ -119,12 +118,12 @@ export default function Components(props: any) {
             value: 0,
             label: 'Prima Anual',
             icon: {
-                name: "add-card",
+                name: 'add-card',
                 color: {
                     dark: 'gray.500',
                     light: 'gray.500',
-                }
-            }
+                },
+            },
         },
         Currency2: {
             name: 'Currency2',
@@ -146,24 +145,24 @@ export default function Components(props: any) {
         Percentage1: {
             name: 'Percentage1',
             value: 0,
-            label: 'Daños Materiales'
+            label: 'Daños Materiales',
         },
         Percentage2: {
             name: 'Percentage2',
             value: 0,
-            label: 'Robo Total'
+            label: 'Robo Total',
         },
         Date1: {
             name: 'Date1',
             value: dayjs().hour(0).minute(0).second(0).format(),
-            label: 'Inicio de Vigencia'
+            label: 'Inicio de Vigencia',
         },
         Date2: {
             name: 'Date2',
             value: dayjs().hour(0).minute(0).second(0).format(),
             time: true,
-            label: 'Fin de Vigencia'
-        }
+            label: 'Fin de Vigencia',
+        },
     });
 
     const submit = (error: any, body: any, updated: any) => {
@@ -233,6 +232,6 @@ type FieldsType = {
     Switch2: TSwitchInputField;
     Percentage1: TPercentageField;
     Percentage2: TPercentageField;
-    Date1: TDateField,
-    Date2: TDateField
+    Date1: TDateField;
+    Date2: TDateField;
 };

@@ -311,6 +311,9 @@ async function buildDefinitions(srcDir) {
         'chevron-right',
         'arrow-back-ios',
         'arrow-forward-ios',
+        'home',
+        'open-in-browser',
+        'view-sidebar',
     ];
     for (let entry of entries) {
         if (entry.isDirectory()) {

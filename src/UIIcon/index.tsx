@@ -157,8 +157,11 @@ import IconFilterAltOff from './components/FilterAltOffIcon';
 import IconFilterListAlt from './components/FilterListAltIcon';
 import IconFindInPage from './components/FindInPageIcon';
 import IconFindReplace from './components/FindReplaceIcon';
+import IconHome from './components/HomeIcon';
 import IconLightbulb from './components/LightbulbIcon';
 import IconMenu from './components/MenuIcon';
+import IconOpenInBrowser from './components/OpenInBrowserIcon';
+import IconViewSidebar from './components/ViewSidebarIcon';
 
 export function UIIcon(props: TUIIconProps) {
     switch (props.name) {
@@ -464,8 +467,14 @@ export function UIIcon(props: TUIIconProps) {
             return <IconFindInPage {...props} />;
         case 'find-replace':
             return <IconFindReplace {...props} />;
+        case 'home':
+            return <IconHome {...props} />;
         case 'lightbulb':
             return <IconLightbulb {...props} />;
+        case 'open-in-browser':
+            return <IconOpenInBrowser {...props} />;
+        case 'view-sidebar':
+            return <IconViewSidebar {...props} />;
         case 'arrow-back-ios':
             return <IconArrowBackIos {...props} />;
         case 'arrow-forward-ios':
@@ -636,7 +645,10 @@ export type TUIIconName =
     | 'filter-list-alt'
     | 'find-in-page'
     | 'find-replace'
+    | 'home'
     | 'lightbulb'
+    | 'open-in-browser'
+    | 'view-sidebar'
     | 'arrow-back-ios'
     | 'arrow-forward-ios'
     | 'chevron-left'
@@ -795,7 +807,10 @@ export const UIIcons = [
     'filter-list-alt',
     'find-in-page',
     'find-replace',
+    'home',
     'lightbulb',
+    'open-in-browser',
+    'view-sidebar',
     'arrow-back-ios',
     'arrow-forward-ios',
     'chevron-left',

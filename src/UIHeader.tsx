@@ -32,6 +32,7 @@ export function UIHeader(props: TUIHeaderProps) {
                     size,
                     loading,
                     disabled,
+                    tooltip,
                 } = entry;
                 return (
                     <UIButton
@@ -46,6 +47,7 @@ export function UIHeader(props: TUIHeaderProps) {
                         variant={variant || undefined}
                         onPress={press || undefined}
                         disabled={disabled || undefined}
+                        tooltip={tooltip || undefined}
                     />
                 );
             }
@@ -153,4 +155,5 @@ export type TUIHeaderControllDefinition = {
     loading?: boolean;
     press?: () => void;
     disabled?: boolean;
+    tooltip?: string;
 };

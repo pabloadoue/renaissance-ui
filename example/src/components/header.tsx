@@ -18,7 +18,7 @@ export default function Header(props: any) {
     return (
         <View width="100%" position="absolute" zIndex={1000}>
             <UIHeader
-                title="Hola"
+                title={props.title}
                 left={left}
                 bg={{
                     dark: 'gray5.500',
@@ -29,6 +29,7 @@ export default function Header(props: any) {
                     {
                         icon: 'lightbulb',
                         color: 'gray',
+                        tooltip: 'Toggle Darkmode',
                         press: () => {
                             if (colorMode === 'light') {
                                 props.setColorMode('dark');

@@ -14,6 +14,7 @@ export default function Components(props: any) {
         <>
             {width < 768 && (
                 <Header
+                    title={props.title}
                     navigation={props.navigation}
                     setColorMode={props.setColorMode}
                 />

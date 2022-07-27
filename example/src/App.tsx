@@ -22,6 +22,7 @@ import {
 } from 'renaissance-ui';
 
 import Components from './components';
+import DrawerView from './drawerView';
 import Linking from './linking';
 
 const Stack = createNativeStackNavigator();
@@ -115,6 +116,14 @@ export default function App() {
                     <Stack.Screen name="components">
                         {(props) => (
                             <Components
+                                {...props}
+                                setColorMode={setColorMode}
+                            />
+                        )}
+                    </Stack.Screen>
+                    <Stack.Screen name="drawerView">
+                        {(props) => (
+                            <DrawerView
                                 {...props}
                                 setColorMode={setColorMode}
                             />

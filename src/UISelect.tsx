@@ -97,7 +97,7 @@ export function UISelect(props: TSelectField) {
                             title: props.label,
                             options: props.options,
                             change: change,
-                            value: props.value
+                            value: props.value,
                         });
                     }
                 }}

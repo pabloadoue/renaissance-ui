@@ -7,6 +7,7 @@ export default function Components(props: any) {
     return (
         <>
             <Header
+                title={props.title}
                 navigation={props.navigation}
                 setColorMode={props.setColorMode}
             />

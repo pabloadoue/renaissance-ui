@@ -60,7 +60,7 @@ function PercentageInput(props: TPercentageField, _ref: any) {
         if (checkValid(`${val}`)) {
             let resp = {
                 name: props.name,
-                value: val
+                value: val,
             };
 
             if (props.disabled !== true) {
@@ -71,8 +71,7 @@ function PercentageInput(props: TPercentageField, _ref: any) {
                 }
             }
         }
-
-    }
+    };
 
     return (
         <View>
@@ -126,9 +125,9 @@ function PercentageInput(props: TPercentageField, _ref: any) {
                             selection={
                                 focused
                                     ? {
-                                        start: value.length,
-                                        end: value.length,
-                                    }
+                                          start: value.length,
+                                          end: value.length,
+                                      }
                                     : undefined
                             }
                             value={`${value}`}
@@ -146,7 +145,9 @@ function PercentageInput(props: TPercentageField, _ref: any) {
                                 }
                             }}
                         />
-                        <Text paddingRight={1} fontSize={18}>%</Text>
+                        <Text paddingRight={1} fontSize={18}>
+                            %
+                        </Text>
                     </HStack>
                 </HStack>
             </View>
