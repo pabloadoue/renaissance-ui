@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useColorScheme } from 'react-native';
 import {
     Lato_100Thin,
     Lato_100Thin_Italic,
@@ -14,20 +15,25 @@ import {
     Lato_900Black_Italic,
     useFonts,
 } from '@expo-google-fonts/lato';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
+import { Spinner, View, VStack } from 'native-base';
 import {
     RenaissanceProvider,
     TRenaissanceProviderPallete,
 } from 'renaissance-ui';
 
+const Stack = createNativeStackNavigator();
+
 import Components from './components';
 import DrawerView from './drawerView';
 import Linking from './linking';
-
-const Stack = createNativeStackNavigator();
+import Logo from './Logo';
 
 export default function App() {
+    const colorScheme = useColorScheme();
+    const [loading, setLoading] = useState(true);
     const [fontsLoaded] = useFonts({
         Lato_100Thin_Italic,
         Lato_100Thin,
@@ -99,25 +105,97 @@ export default function App() {
         },
     };
 
-    if (fontsLoaded) {
+    const load = useCallback(async () => {
+        try {
+            const savedColorMode: string | null = await AsyncStorage.getItem(
+                'colorMode'
+            );
+            if (
+                (savedColorMode && savedColorMode === 'dark') ||
+                savedColorMode === 'light'
+            ) {
+                setColorMode(savedColorMode);
+            } else {
+                await AsyncStorage.setItem('colorMode', 'light');
+                setColorMode('light');
+            }
+        } catch (error) {
+            throw error;
+        }
+    }, []);
+
+    useEffect(() => {
+        if (fontsLoaded) {
+            load()
+                .then(() => {
+                    setLoading(false);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
+    }, [fontsLoaded, setLoading, load]);
+
+    const switchColorMode = (newColorMode: 'light' | 'dark') => {
+        AsyncStorage.setItem('colorMode', newColorMode)
+            .then(() => {
+                setColorMode(newColorMode);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    if (loading) {
+        return (
+            <RenaissanceProvider
+                colorMode={colorScheme === 'dark' ? 'dark' : 'light'}
+                pallete={pallete}
+                fonts={fonts}
+                linking={Linking()}
+            >
+                <StatusBar style={colorScheme === 'light' ? 'dark' : 'light'} />
+                <VStack
+                    flex={1}
+                    justifyContent="center"
+                    alignItems={'center'}
+                    bg={'gray6.500'}
+                >
+                    <Logo
+                        color={
+                            colorScheme === 'light' ? 'primary.500' : 'white'
+                        }
+                        size={25}
+                    />
+                    <View marginTop={4}>
+                        <Spinner
+                            color={
+                                colorScheme === 'light' ? 'gray.500' : 'white'
+                            }
+                        />
+                    </View>
+                </VStack>
+            </RenaissanceProvider>
+        );
+    } else {
         return (
             <RenaissanceProvider
                 colorMode={colorMode}
                 pallete={pallete}
-                fonts={fonts}
                 linking={Linking()}
             >
                 <StatusBar style={colorMode === 'light' ? 'dark' : 'light'} />
                 <Stack.Navigator
                     screenOptions={{
                         headerShown: false,
+                        gestureEnabled: false,
                     }}
                 >
                     <Stack.Screen name="components">
                         {(props) => (
                             <Components
                                 {...props}
-                                setColorMode={setColorMode}
+                                setColorMode={switchColorMode}
                             />
                         )}
                     </Stack.Screen>
@@ -125,7 +203,7 @@ export default function App() {
                         {(props) => (
                             <DrawerView
                                 {...props}
-                                setColorMode={setColorMode}
+                                setColorMode={switchColorMode}
                             />
                         )}
                     </Stack.Screen>
@@ -133,6 +211,4 @@ export default function App() {
             </RenaissanceProvider>
         );
     }
-
-    return null;
 }

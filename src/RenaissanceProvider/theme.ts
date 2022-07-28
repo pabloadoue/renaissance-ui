@@ -1,3 +1,6 @@
+import { colorContrastRatioCalculator } from '@mdhnpm/color-contrast-ratio-calculator';
+import findValue from '@pabloadoue/find-value';
+import ColorConvert from 'color';
 import { Harmonizer } from 'color-harmony';
 import { extendTheme } from 'native-base';
 
@@ -96,14 +99,110 @@ const handler = {
             ...handler.pallete,
             ...pallete,
         };
+        const providedFonts = typeof fonts !== 'undefined' ? fonts : {};
         const colors = handler.colors(colorMode);
         const theme = extendTheme({
             useSystemColorMode: false,
             initialColorMode: colorMode,
-            ...fonts,
+            ...providedFonts,
             components: {
                 Button: {
+                    variants: {
+                        ghost: (props: any) => {
+                            const { colorScheme } = props;
+                            const sourceColor =
+                                typeof findValue(
+                                    props,
+                                    `theme.colors.${colorScheme}`
+                                ) === 'string'
+                                    ? findValue(
+                                          props,
+                                          `theme.colors.${colorScheme}`
+                                      )
+                                    : findValue(
+                                          props,
+                                          `theme.colors.${colorScheme}.500`
+                                      ) !== null
+                                    ? findValue(
+                                          props,
+                                          `theme.colors.${colorScheme}.500`
+                                      )
+                                    : '#000000';
+                            const parsedColor = ColorConvert(sourceColor);
+                            //const contrast = colorContrastRatioCalculator(parsedColor.hex(), '#000000');
+                            let darkColor = null;
+                            for (let i = 1; i <= 100; i++) {
+                                const index = i / 100;
+                                const lightenColor = parsedColor.lighten(index);
+                                const ligthnenContrast =
+                                    colorContrastRatioCalculator(
+                                        lightenColor.hex(),
+                                        '#000000'
+                                    );
+
+                                if (!darkColor && ligthnenContrast > 5) {
+                                    darkColor = lightenColor;
+                                }
+                            }
+
+                            if (!darkColor) {
+                                darkColor = parsedColor.negate();
+                            }
+
+                            return {
+                                _light: {
+                                    _icon: {
+                                        color: parsedColor.toString(),
+                                    },
+                                    _text: {
+                                        color: parsedColor.toString(),
+                                    },
+                                    _hover: {
+                                        backgroundColor: parsedColor
+                                            .fade(0.9)
+                                            .toString(),
+                                    },
+                                    _pressed: {
+                                        opacity: 0.5,
+                                        backgroundColor: parsedColor
+                                            .fade(0.95)
+                                            .toString(),
+                                    },
+                                },
+                                _dark: {
+                                    _icon: {
+                                        color: darkColor.toString(),
+                                    },
+                                    _text: {
+                                        color: darkColor.toString(),
+                                    },
+                                    _hover: {
+                                        backgroundColor: darkColor
+                                            .fade(0.9)
+                                            .toString(),
+                                    },
+                                    _pressed: {
+                                        opacity: 0.5,
+                                        backgroundColor: darkColor
+                                            .fade(0.95)
+                                            .toString(),
+                                    },
+                                },
+                            };
+                        },
+                    },
                     sizes: {
+                        xl: {
+                            px: 2,
+                            py: 3,
+                            _text: {
+                                fontSize: 16,
+                                paddingLeft: 3,
+                            },
+                            _icon: {
+                                size: 5,
+                            },
+                        },
                         lg: {
                             px: 3,
                             py: 1.5,
@@ -122,8 +221,105 @@ const handler = {
                         },
                     },
                 },
-                IconButton: {
+                Icon: {
                     sizes: {
+                        '2xs': 2,
+                        'xs': 3,
+                        'sm': 7,
+                        'md': 5,
+                        'lg': 6,
+                        'xl': 7,
+                        '2xl': 8,
+                        '3xl': 9,
+                        '4xl': 10,
+                        '5xl': 12,
+                        '6xl': 16,
+                    },
+                },
+                IconButton: {
+                    variants: {
+                        ghost: (props: any) => {
+                            const { colorScheme } = props;
+                            const sourceColor =
+                                typeof findValue(
+                                    props,
+                                    `theme.colors.${colorScheme}`
+                                ) === 'string'
+                                    ? findValue(
+                                          props,
+                                          `theme.colors.${colorScheme}`
+                                      )
+                                    : findValue(
+                                          props,
+                                          `theme.colors.${colorScheme}.500`
+                                      ) !== null
+                                    ? findValue(
+                                          props,
+                                          `theme.colors.${colorScheme}.500`
+                                      )
+                                    : '#000000';
+                            const parsedColor = ColorConvert(sourceColor);
+                            const contrast = colorContrastRatioCalculator(
+                                parsedColor.hex(),
+                                '#000000'
+                            );
+
+                            const darkColor =
+                                contrast < 4.5
+                                    ? parsedColor.negate()
+                                    : parsedColor;
+
+                            return {
+                                _light: {
+                                    _icon: {
+                                        color: parsedColor.toString(),
+                                    },
+                                    _hover: {
+                                        backgroundColor: parsedColor
+                                            .fade(0.85)
+                                            .toString(),
+                                    },
+                                    _pressed: {
+                                        opacity: 0.5,
+                                        backgroundColor: parsedColor
+                                            .fade(0.85)
+                                            .toString(),
+                                    },
+                                },
+                                _dark: {
+                                    _icon: {
+                                        color: darkColor.toString(),
+                                    },
+                                    _hover: {
+                                        backgroundColor: darkColor
+                                            .fade(0.85)
+                                            .toString(),
+                                    },
+                                    _pressed: {
+                                        opacity: 0.5,
+                                        backgroundColor: darkColor
+                                            .fade(0.85)
+                                            .toString(),
+                                    },
+                                },
+                            };
+                        },
+                    },
+                    sizes: {
+                        xl: {
+                            p: 2,
+                            px: 2,
+                            py: 2,
+                            _icon: {
+                                size: 'xl',
+                            },
+                            _hover: {
+                                borderRadius: 8,
+                            },
+                            _pressed: {
+                                borderRadius: 8,
+                            },
+                        },
                         lg: {
                             px: 1.5,
                             py: 1.5,

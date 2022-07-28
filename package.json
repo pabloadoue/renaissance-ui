@@ -52,6 +52,7 @@
     "@commitlint/config-conventional": "^17.0.2",
     "@react-native-community/eslint-config": "^3.0.2",
     "@release-it/conventional-changelog": "^5.0.0",
+    "@types/color": "^3.0.3",
     "@types/jest": "^28.1.2",
     "@types/numeral": "^2.0.2",
     "@types/react": "~17.0.21",
@@ -190,11 +191,14 @@
     ]
   },
   "dependencies": {
+    "@mdhnpm/color-contrast-ratio-calculator": "^1.0.4",
     "@pabloadoue/find-value": "^1.0.2",
     "@react-navigation/drawer": "^6.4.3",
     "@react-navigation/native": "^6.0.11",
     "@react-navigation/native-stack": "^6.7.0",
     "capitalize": "^2.0.4",
+    "color": "^4.2.3",
+    "color-contrast-checker": "^2.1.0",
     "color-harmony": "^0.3.0",
     "dayjs": "^1.11.4",
     "deep-iterator": "^1.1.0",

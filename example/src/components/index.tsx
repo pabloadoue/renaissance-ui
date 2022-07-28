@@ -26,7 +26,7 @@ export default function Components(props: any) {
     const { colors } = useTheme();
     const { width } = useWindowDimensions();
     const [title, setTitle] = useState('');
-    const drawerBg = colorMode === 'light' ? colors.white : colors.gray5['500'];
+    const drawerBg = colorMode === 'light' ? colors.white : colors.gray5['600'];
     return (
         <View flex={1}>
             {width >= 768 ? (
@@ -36,6 +36,7 @@ export default function Components(props: any) {
                 screenOptions={{
                     drawerType: width >= 768 ? 'permanent' : 'front',
                     headerShown: false,
+                    swipeEnabled: true,
                     drawerStyle: {
                         backgroundColor: drawerBg,
                         width: width >= 768 ? 268 : '80%',

@@ -2,6 +2,8 @@ import React from 'react';
 import { useColorMode, View } from 'native-base';
 import { UIHeader } from 'renaissance-ui';
 
+import HeaderLogo from '../Logo';
+
 export default function Header(props: any) {
     const { colorMode } = useColorMode();
     let left = {};
@@ -20,6 +22,7 @@ export default function Header(props: any) {
             <UIHeader
                 title={props.title}
                 left={left}
+                logo={HeaderLogo}
                 bg={{
                     dark: 'gray5.500',
                     light: 'white',

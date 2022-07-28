@@ -14,10 +14,16 @@ export function UIButton(props: TUIButtonProps) {
                     isDisabled={props.disabled}
                     colorScheme={props.color}
                     size={props.size}
+                    isHovered={props.hovered}
+                    justifyContent={
+                        props.align === 'left'
+                            ? 'flex-start'
+                            : props.align === 'right'
+                            ? 'flex-end'
+                            : 'center'
+                    }
                     leftIcon={
-                        props.leftIcon && (
-                            <UIIcon name={props.leftIcon} size={'sm'} />
-                        )
+                        props.leftIcon && <UIIcon name={props.leftIcon} />
                     }
                     rightIcon={
                         props.rightIcon && (
@@ -41,9 +47,10 @@ export function UIButton(props: TUIButtonProps) {
                 <IconButton
                     variant={props.variant}
                     isDisabled={props.disabled}
+                    isHovered={props.hovered}
                     colorScheme={props.color}
                     size={props.size}
-                    icon={<UIIcon name={props.icon} size={'md'} />}
+                    icon={<UIIcon name={props.icon} />}
                     onPress={() => {
                         if (
                             typeof props.onPress === 'function' &&
@@ -78,7 +85,7 @@ UIButton.defaultProps = {
 
 export type TUIButtonProps = {
     label?: string;
-    size?: 'sm' | 'md' | 'lg';
+    size?: 'sm' | 'md' | 'lg' | 'xl';
     icon?: TUIIconName;
     leftIcon?: TUIIconName;
     rightIcon?: TUIIconName;
@@ -88,6 +95,8 @@ export type TUIButtonProps = {
     color?: string;
     variant?: TUIButtonVariant;
     tooltip?: string;
+    hovered?: boolean;
+    align?: 'left' | 'right';
 };
 
 export type TUIButtonVariant =

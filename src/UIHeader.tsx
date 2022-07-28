@@ -58,12 +58,22 @@ export function UIHeader(props: TUIHeaderProps) {
     const title = () => {
         if (typeof props.title === 'string') {
             return (
-                <Text fontSize={18} fontWeight="regular">
+                <Text fontSize={18} fontWeight="normal" color={props.color}>
                     {props.title}
                 </Text>
             );
         }
         return null;
+    };
+
+    const logo = () => {
+        if (typeof props.logo !== 'undefined') {
+            return props.logo({
+                size: 17,
+            });
+        } else {
+            return null;
+        }
     };
 
     const headerStyle = {
@@ -93,6 +103,7 @@ export function UIHeader(props: TUIHeaderProps) {
                         space={2}
                     >
                         {controls(props.left, 0)}
+                        {logo()}
                         {title()}
                     </HStack>
                     <HStack
@@ -129,6 +140,7 @@ const SafeArea = (props: {
 
 UIHeader.defaultProps = {
     safeArea: true,
+    color: 'gray.500',
 };
 
 export type TUIHeaderProps = {
@@ -136,10 +148,12 @@ export type TUIHeaderProps = {
     safeArea?: boolean;
     borderRadius?: number;
     shadow?: boolean;
+    color?: string;
     bg?: {
         dark: string;
         light: string;
     };
+    logo?: (props: any) => JSX.Element;
     left?: TUIHeaderControllDefinition;
     right?: TUIHeaderControllDefinition | TUIHeaderControllDefinition[];
 };

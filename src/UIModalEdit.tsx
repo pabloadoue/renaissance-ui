@@ -24,7 +24,7 @@ export function UIModalEdit(props: TUIModalEditProps) {
             },
         },
         {
-            color: 'blue',
+            color: 'primary',
             label: 'Continuar',
             icon: 'done',
             loading: props.saving,

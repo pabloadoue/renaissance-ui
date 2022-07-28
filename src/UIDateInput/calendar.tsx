@@ -154,6 +154,20 @@ export default function UIDateInputCalendar(props: UIDateCalendarProps) {
                             selectedColor: colors.primary['500'],
                         },
                     }}
+                    theme={{
+                        calendarBackground: 'transparent',
+                        stylesheet: {
+                            calendar: {
+                                main: {
+                                    container: {
+                                        backgroundColor: 'transparent',
+                                    },
+                                },
+                            },
+                        },
+                        dayTextColor: colors.gray['500'],
+                        textDisabledColor: colors.gray3['500'],
+                    }}
                     onDayPress={({ dateString }) => {
                         const hour = props.value.hour();
                         const minute = props.value.minute();

@@ -19,6 +19,14 @@ export default function Linking() {
                         },
                     },
                 },
+                drawerView: {
+                    path: 'drawerView',
+                    screens: {
+                        screen1: {
+                            path: 'screen1',
+                        },
+                    },
+                },
             },
         },
     };
@@ -27,4 +35,5 @@ export default function Linking() {
 
 type RootStackParamList = {
     components: undefined;
+    drawerView: undefined;
 };

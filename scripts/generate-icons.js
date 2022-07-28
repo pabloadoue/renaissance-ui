@@ -47,6 +47,8 @@ async function buildIndex(indexDefinitions) {
     export function UIIcon(props:TUIIconProps){
         switch(props.name){
             ${cases}
+            default:
+                return null;
         }
     }
 
@@ -314,6 +316,7 @@ async function buildDefinitions(srcDir) {
         'home',
         'open-in-browser',
         'view-sidebar',
+        'apps',
     ];
     for (let entry of entries) {
         if (entry.isDirectory()) {
@@ -383,7 +386,7 @@ async function buildDefinitions(srcDir) {
                         ) {
                             definitions[name] = definition;
                         } else {
-                            //definitions[name] = definition;
+                            definitions[name] = definition;
                         }
                     }
                 }

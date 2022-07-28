@@ -1,3 +1,5 @@
+import 'react-native-gesture-handler';
+
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs([
     'Non-serializable values were found in the navigation state',
@@ -23,6 +25,11 @@ import {
 import { TUIButtonProps, UIButton } from './UIButton';
 import { UICurrencyInput } from './UICurrencyInput';
 import { UIDateInput } from './UIDateInput';
+import {
+    TUIDrawerLayoutProps,
+    UIDrawerLayout,
+    UIDrawerLayoutScreen,
+} from './UIDrawerLayout';
 import { TUIHeaderProps, UIHeader } from './UIHeader';
 import { TUIIconName, TUIIconProps, UIIcon } from './UIIcon';
 import { TUIModalProps, UIModal } from './UIModal';
@@ -32,6 +39,7 @@ import { UISelect } from './UISelect';
 import { UISwitchInput } from './UISwitchInput';
 import { TUITableProps, UITable } from './UITable';
 import { UITextInput } from './UITextInput';
+import { Validator } from './Validator';
 
 export {
     UIButton,
@@ -48,6 +56,9 @@ export {
     RenaissanceProvider,
     UIPercentageInput,
     UIDateInput,
+    Validator,
+    UIDrawerLayout,
+    UIDrawerLayoutScreen,
 };
 
 export type {
@@ -69,4 +80,5 @@ export type {
     TSwitchInputField,
     TPercentageField,
     TDateField,
+    TUIDrawerLayoutProps,
 };
