@@ -318,7 +318,6 @@ import IconBubbleChart from './components/BubbleChartIcon';
 import IconBugReport from './components/BugReportIcon';
 import IconBuildCircle from './components/BuildCircleIcon';
 import IconBuild from './components/BuildIcon';
-import IconBungalow from './components/BungalowIcon';
 import IconBurstMode from './components/BurstModeIcon';
 import IconBusAlert from './components/BusAlertIcon';
 import IconBusinessCenter from './components/BusinessCenterIcon';
@@ -626,7 +625,6 @@ import IconDryCleaning from './components/DryCleaningIcon';
 import IconDry from './components/DryIcon';
 import IconDuo from './components/DuoIcon';
 import IconDvr from './components/DvrIcon';
-import IconDynamicFeed from './components/DynamicFeedIcon';
 import IconDynamicForm from './components/DynamicFormIcon';
 import IconEarbudsBattery from './components/EarbudsBatteryIcon';
 import IconEarbuds from './components/EarbudsIcon';
@@ -634,7 +632,6 @@ import IconEast from './components/EastIcon';
 import IconEco from './components/EcoIcon';
 import IconEdgesensorHigh from './components/EdgesensorHighIcon';
 import IconEdgesensorLow from './components/EdgesensorLowIcon';
-import IconEditAttributes from './components/EditAttributesIcon';
 import IconEditCalendar from './components/EditCalendarIcon';
 import IconEditDocument from './components/EditDocumentIcon';
 import IconEdit from './components/EditIcon';
@@ -1639,7 +1636,6 @@ import IconScreenLockPortrait from './components/ScreenLockPortraitIcon';
 import IconScreenLockRotation from './components/ScreenLockRotationIcon';
 import IconScreenRotationAlt from './components/ScreenRotationAltIcon';
 import IconScreenRotation from './components/ScreenRotationIcon';
-import IconScreenSearchDesktop from './components/ScreenSearchDesktopIcon';
 import IconScreenShare from './components/ScreenShareIcon';
 import IconScreenshot from './components/ScreenshotIcon';
 import IconScreenshotMonitor from './components/ScreenshotMonitorIcon';
@@ -1967,7 +1963,6 @@ import IconTopic from './components/TopicIcon';
 import IconTornado from './components/TornadoIcon';
 import IconTouchApp from './components/TouchAppIcon';
 import IconTour from './components/TourIcon';
-import IconToys from './components/ToysIcon';
 import IconTrackChanges from './components/TrackChangesIcon';
 import IconTraffic from './components/TrafficIcon';
 import IconTrain from './components/TrainIcon';
@@ -2124,7 +2119,6 @@ import IconWidthFull from './components/WidthFullIcon';
 import IconWidthNormal from './components/WidthNormalIcon';
 import IconWidthWide from './components/WidthWideIcon';
 import IconWifi1Bar from './components/Wifi1BarIcon';
-import IconWifi2Bar from './components/Wifi2BarIcon';
 import IconWifiCalling3 from './components/WifiCalling3Icon';
 import IconWifiCalling from './components/WifiCallingIcon';
 import IconWifiChannel from './components/WifiChannelIcon';
@@ -3617,8 +3611,6 @@ export function UIIcon(props: TUIIconProps) {
             return <IconDeselect {...props} />;
         case 'drafts':
             return <IconDrafts {...props} />;
-        case 'dynamic-feed':
-            return <IconDynamicFeed {...props} />;
         case 'file-copy':
             return <IconFileCopy {...props} />;
         case 'filter-list':
@@ -3989,8 +3981,6 @@ export function UIIcon(props: TUIIconProps) {
             return <IconScreenLockRotation {...props} />;
         case 'screen-rotation':
             return <IconScreenRotation {...props} />;
-        case 'screen-search-desktop':
-            return <IconScreenSearchDesktop {...props} />;
         case 'screenshot':
             return <IconScreenshot {...props} />;
         case 'screenshot-monitor':
@@ -4097,8 +4087,6 @@ export function UIIcon(props: TUIIconProps) {
             return <IconWidgets {...props} />;
         case 'wifi-1-bar':
             return <IconWifi1Bar {...props} />;
-        case 'wifi-2-bar':
-            return <IconWifi2Bar {...props} />;
         case 'wifi-calling-3':
             return <IconWifiCalling3 {...props} />;
         case 'wifi-channel':
@@ -4601,8 +4589,6 @@ export function UIIcon(props: TUIIconProps) {
             return <IconTabletAndroid {...props} />;
         case 'tablet-mac':
             return <IconTabletMac {...props} />;
-        case 'toys':
-            return <IconToys {...props} />;
         case 'tv':
             return <IconTv {...props} />;
         case 'videogame-asset':
@@ -5271,8 +5257,6 @@ export function UIIcon(props: TUIIconProps) {
             return <IconDirectionsWalk {...props} />;
         case 'dry-cleaning':
             return <IconDryCleaning {...props} />;
-        case 'edit-attributes':
-            return <IconEditAttributes {...props} />;
         case 'edit-location':
             return <IconEditLocation {...props} />;
         case 'edit-location-alt':
@@ -5869,8 +5853,6 @@ export function UIIcon(props: TUIIconProps) {
             return <IconBeachAccess {...props} />;
         case 'bento':
             return <IconBento {...props} />;
-        case 'bungalow':
-            return <IconBungalow {...props} />;
         case 'business-center':
             return <IconBusinessCenter {...props} />;
         case 'cabin':
@@ -7218,7 +7200,6 @@ export type TUIIconName =
     | 'delete-sweep'
     | 'deselect'
     | 'drafts'
-    | 'dynamic-feed'
     | 'file-copy'
     | 'filter-list'
     | 'filter-list-off'
@@ -7404,7 +7385,6 @@ export type TUIIconName =
     | 'screen-lock-portrait'
     | 'screen-lock-rotation'
     | 'screen-rotation'
-    | 'screen-search-desktop'
     | 'screenshot'
     | 'screenshot-monitor'
     | 'sd-storage'
@@ -7458,7 +7438,6 @@ export type TUIIconName =
     | 'water'
     | 'widgets'
     | 'wifi-1-bar'
-    | 'wifi-2-bar'
     | 'wifi-calling-3'
     | 'wifi-channel'
     | 'wifi-find'
@@ -7710,7 +7689,6 @@ export type TUIIconName =
     | 'tablet'
     | 'tablet-android'
     | 'tablet-mac'
-    | 'toys'
     | 'tv'
     | 'videogame-asset'
     | 'videogame-asset-off'
@@ -8045,7 +8023,6 @@ export type TUIIconName =
     | 'directions-transit-filled'
     | 'directions-walk'
     | 'dry-cleaning'
-    | 'edit-attributes'
     | 'edit-location'
     | 'edit-location-alt'
     | 'edit-road'
@@ -8344,7 +8321,6 @@ export type TUIIconName =
     | 'bathtub'
     | 'beach-access'
     | 'bento'
-    | 'bungalow'
     | 'business-center'
     | 'cabin'
     | 'carpenter'
@@ -9378,7 +9354,6 @@ export const UIIcons = [
     'delete-sweep',
     'deselect',
     'drafts',
-    'dynamic-feed',
     'file-copy',
     'filter-list',
     'filter-list-off',
@@ -9564,7 +9539,6 @@ export const UIIcons = [
     'screen-lock-portrait',
     'screen-lock-rotation',
     'screen-rotation',
-    'screen-search-desktop',
     'screenshot',
     'screenshot-monitor',
     'sd-storage',
@@ -9618,7 +9592,6 @@ export const UIIcons = [
     'water',
     'widgets',
     'wifi-1-bar',
-    'wifi-2-bar',
     'wifi-calling-3',
     'wifi-channel',
     'wifi-find',
@@ -9870,7 +9843,6 @@ export const UIIcons = [
     'tablet',
     'tablet-android',
     'tablet-mac',
-    'toys',
     'tv',
     'videogame-asset',
     'videogame-asset-off',
@@ -10205,7 +10177,6 @@ export const UIIcons = [
     'directions-transit-filled',
     'directions-walk',
     'dry-cleaning',
-    'edit-attributes',
     'edit-location',
     'edit-location-alt',
     'edit-road',
@@ -10504,7 +10475,6 @@ export const UIIcons = [
     'bathtub',
     'beach-access',
     'bento',
-    'bungalow',
     'business-center',
     'cabin',
     'carpenter',

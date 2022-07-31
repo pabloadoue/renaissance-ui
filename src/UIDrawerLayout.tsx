@@ -7,8 +7,16 @@ import {
     DrawerContentComponentProps,
 } from '@react-navigation/drawer';
 import { StatusBar } from 'expo-status-bar';
-import { FlatList, Text, useColorMode, useTheme, View } from 'native-base';
+import {
+    Button,
+    FlatList,
+    Text,
+    useColorMode,
+    useTheme,
+    View,
+} from 'native-base';
 
+import { TUIAvatarProps, UIAvatar } from './UIAvatar';
 import { UIButton } from './UIButton';
 import { UIHeader } from './UIHeader';
 import type { TUIIconName } from './UIIcon';
@@ -164,8 +172,29 @@ const DrawerContent = (props: IDrawerContentProps) => {
                             drawerWidth < 100 ? 'center' : 'flex-start',
                     }}
                 />
-                <View bg={'pink'}>
-                    <Text>Footer</Text>
+                <View paddingX={drawerWidth < 100 ? 2 : 2}>
+                    {drawerWidth < 100 ? (
+                        <Button
+                            variant={'ghost'}
+                            colorScheme="white"
+                            size={'lg'}
+                        >
+                            <UIAvatar {...props.user} size={'sm'} />
+                        </Button>
+                    ) : (
+                        <Button
+                            variant={'ghost'}
+                            leftIcon={<UIAvatar {...props.user} size={'sm'} />}
+                            _text={{
+                                marginLeft: 2,
+                            }}
+                            colorScheme="black"
+                            size={'lg'}
+                            justifyContent={'flex-start'}
+                        >
+                            Pablo Adoue Peralta
+                        </Button>
+                    )}
                     <SafeAreaView edges={['bottom']} />
                 </View>
             </View>
@@ -175,7 +204,6 @@ const DrawerContent = (props: IDrawerContentProps) => {
 
 const DrawerItem = (props: TDrawerItemProps) => {
     const { active, drawerWidth } = props;
-    const { width } = useWindowDimensions();
 
     if (typeof props.drawerIcon === 'function') {
         const icon = props.drawerIcon({
@@ -218,7 +246,7 @@ const DrawerItem = (props: TDrawerItemProps) => {
             } else {
                 return (
                     <UIButton
-                        color={width >= 760 ? 'white' : 'black'}
+                        color={'black'}
                         hovered={active}
                         align={'left'}
                         size={'xl'}
@@ -244,16 +272,21 @@ const DrawerItem = (props: TDrawerItemProps) => {
 
 export const UIDrawerLayoutScreen = Screen;
 
+type TUIDrawerLayoutUser = {
+    name: TUIAvatarProps['name'];
+    lastName: TUIAvatarProps['lastName'];
+};
+
 interface IDrawerContentProps extends DrawerContentComponentProps {
     title: string;
-    user: any;
+    user: TUIDrawerLayoutUser;
     toggleDrawerWidth: () => void;
     drawerWidth: number;
 }
 
 export interface TUIDrawerLayoutProps {
     title: string;
-    user: any;
+    user: TUIDrawerLayoutUser;
     children: JSX.Element | JSX.Element[];
 }
 

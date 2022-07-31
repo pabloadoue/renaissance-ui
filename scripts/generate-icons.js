@@ -303,6 +303,14 @@ function lintFile(filePath) {
 
 async function buildDefinitions(srcDir) {
     let entries = fs.readdirSync(srcDir, { withFileTypes: true });
+    const blacklist = [
+        'bungalow',
+        'dynamic-feed',
+        'edit-attributes',
+        'screen-search-desktop',
+        'toys',
+        'wifi-2-bar',
+    ];
     const whitelist = [
         'menu',
         'lightbulb',
@@ -380,13 +388,15 @@ async function buildDefinitions(srcDir) {
                         }
                     }
                     if (Object.keys(definition).length > 0) {
-                        if (
-                            Object.keys(definitions).length <= 150 ||
-                            whitelist.includes(name)
-                        ) {
-                            definitions[name] = definition;
-                        } else {
-                            definitions[name] = definition;
+                        if (!blacklist.includes(name)) {
+                            if (
+                                Object.keys(definitions).length <= 150 ||
+                                whitelist.includes(name)
+                            ) {
+                                definitions[name] = definition;
+                            } else {
+                                definitions[name] = definition;
+                            }
                         }
                     }
                 }

@@ -5,7 +5,13 @@ import Screen from './screen';
 
 export default function DrawerView(_props: any) {
     return (
-        <UIDrawerLayout title={'Drawer View'} user={{}}>
+        <UIDrawerLayout
+            title={'Drawer View'}
+            user={{
+                name: 'Pablo',
+                lastName: 'Adoue',
+            }}
+        >
             <UIDrawerLayoutScreen
                 name={'screen1'}
                 component={Screen}

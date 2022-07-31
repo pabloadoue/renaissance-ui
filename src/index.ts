@@ -22,6 +22,7 @@ import {
     TRenaissanceProviderPallete,
     TRenaissanceProviderProps,
 } from './RenaissanceProvider';
+import { TUIAvatarProps, UIAvatar } from './UIAvatar';
 import { TUIButtonProps, UIButton } from './UIButton';
 import { UICurrencyInput } from './UICurrencyInput';
 import { UIDateInput } from './UIDateInput';
@@ -42,6 +43,7 @@ import { UITextInput } from './UITextInput';
 import { Validator } from './Validator';
 
 export {
+    UIAvatar,
     UIButton,
     UICurrencyInput,
     UIHeader,
@@ -81,4 +83,5 @@ export type {
     TPercentageField,
     TDateField,
     TUIDrawerLayoutProps,
+    TUIAvatarProps,
 };
