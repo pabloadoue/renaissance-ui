@@ -166,6 +166,8 @@ const TextInput = (props: TTextInputField, ref: any) => {
                             onSubmitEditing={() => {
                                 if (typeof props.next === 'function') {
                                     props.next(props.name);
+                                } else if (typeof props.submit === 'function') {
+                                    props.submit();
                                 }
                             }}
                         />

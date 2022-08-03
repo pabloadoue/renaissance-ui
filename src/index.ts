@@ -30,6 +30,7 @@ import {
     TUIDrawerLayoutProps,
     UIDrawerLayout,
     UIDrawerLayoutScreen,
+    UIDrawerLayoutScreenWrapper,
 } from './UIDrawerLayout';
 import { TUIHeaderProps, UIHeader } from './UIHeader';
 import { TUIIconName, TUIIconProps, UIIcon } from './UIIcon';
@@ -40,6 +41,7 @@ import { UISelect } from './UISelect';
 import { UISwitchInput } from './UISwitchInput';
 import { TUITableProps, UITable } from './UITable';
 import { UITextInput } from './UITextInput';
+import { TUIWebViewProps, UIWebView } from './UIWebView';
 import { Validator } from './Validator';
 
 export {
@@ -61,6 +63,8 @@ export {
     Validator,
     UIDrawerLayout,
     UIDrawerLayoutScreen,
+    UIDrawerLayoutScreenWrapper,
+    UIWebView,
 };
 
 export type {
@@ -84,4 +88,5 @@ export type {
     TDateField,
     TUIDrawerLayoutProps,
     TUIAvatarProps,
+    TUIWebViewProps,
 };

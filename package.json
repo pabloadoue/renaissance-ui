@@ -216,6 +216,7 @@
     "react-native-screens": "^3.15.0",
     "react-native-svg": "^12.4.0",
     "react-native-uuid": "^2.0.1",
+    "react-native-webview": "^11.23.0",
     "replaceall": "^0.1.6",
     "setval": "^5.1.2",
     "validator": "^13.7.0"

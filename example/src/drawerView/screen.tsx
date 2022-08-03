@@ -1,10 +1,11 @@
 import React from 'react';
-import { Text, View } from 'native-base';
+import { Text } from 'native-base';
+import { UIDrawerLayoutScreenWrapper } from 'renaissance-ui';
 
 export default function DrawerView(_props: any) {
     return (
-        <View flex={1} justifyContent={'center'} alignItems={'center'}>
-            <Text>Hello from the Screen</Text>
-        </View>
+        <UIDrawerLayoutScreenWrapper>
+            <Text>Screen View</Text>
+        </UIDrawerLayoutScreenWrapper>
     );
 }

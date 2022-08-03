@@ -19,7 +19,7 @@ import {
 import { TUIAvatarProps, UIAvatar } from './UIAvatar';
 import { UIButton } from './UIButton';
 import { UIHeader } from './UIHeader';
-import type { TUIIconName } from './UIIcon';
+import { TUIIconName, UIIcon } from './UIIcon';
 
 const Drawer = createDrawerNavigator();
 const { Screen } = Drawer;
@@ -33,7 +33,7 @@ export const UIDrawerLayout = (props: TUIDrawerLayoutProps) => {
             ? width >= 768
                 ? colors.primary['500']
                 : colors.white
-            : colors.gray4;
+            : colors.gray4['500'];
     const [drawerWidth, setDrawerWidth] = useState(width >= 768 ? 74 : width);
 
     const toggleDrawerWidth = () => {
@@ -59,8 +59,8 @@ export const UIDrawerLayout = (props: TUIDrawerLayoutProps) => {
             ) : null}
             <Drawer.Navigator
                 screenOptions={{
-                    headerShown: true,
-                    swipeEnabled: false,
+                    headerShown: false,
+                    swipeEnabled: true,
                     lazy: true,
                     drawerType: width >= 768 ? 'permanent' : 'back',
                     drawerStyle: {
@@ -71,13 +71,16 @@ export const UIDrawerLayout = (props: TUIDrawerLayoutProps) => {
                         borderBottomWidth: 0,
                         borderLeftWidth: 0,
                     },
-                    sceneContainerStyle: {},
+                    sceneContainerStyle: {
+                        backgroundColor: 'transparent',
+                    },
                 }}
                 drawerContent={(drawerProps) => (
                     <DrawerContent
                         {...props}
                         drawerWidth={drawerWidth}
                         toggleDrawerWidth={toggleDrawerWidth}
+                        toggleColorMode={props.toggleColorMode}
                         {...drawerProps}
                     />
                 )}
@@ -173,6 +176,23 @@ const DrawerContent = (props: IDrawerContentProps) => {
                     }}
                 />
                 <View paddingX={drawerWidth < 100 ? 2 : 2}>
+                    {typeof props.toggleColorMode === 'function' && (
+                        <DrawerItem
+                            title={''}
+                            name="toggle-color-mode"
+                            drawerIcon={() => <UIIcon name="lightbulb" />}
+                            drawerWidth={drawerWidth}
+                            navigation={navigation}
+                            active={false}
+                            onPress={() => {
+                                if (
+                                    typeof props.toggleColorMode === 'function'
+                                ) {
+                                    props.toggleColorMode();
+                                }
+                            }}
+                        />
+                    )}
                     {drawerWidth < 100 ? (
                         <Button
                             variant={'ghost'}
@@ -270,6 +290,42 @@ const DrawerItem = (props: TDrawerItemProps) => {
     }
 };
 
+export const UIDrawerLayoutScreenWrapper = (props: any) => {
+    const { width } = useWindowDimensions();
+    const { colors } = useTheme();
+    const { colorMode } = useColorMode();
+    const drawerBg =
+        colorMode === 'light'
+            ? width >= 768
+                ? colors.primary['500']
+                : colors.white
+            : colors.gray4['500'];
+
+    const children = () => {
+        if (typeof props.children !== 'undefined') {
+            if (React.isValidElement(props.children)) {
+                return React.cloneElement(props.children, {
+                    ...props,
+                });
+            }
+        }
+        return null;
+    };
+
+    return (
+        <View width="100%" height="100%" bg={drawerBg}>
+            <View
+                width="100%"
+                height="100%"
+                borderLeftRadius={8}
+                bg="gray6.500"
+            >
+                {children()}
+            </View>
+        </View>
+    );
+};
+
 export const UIDrawerLayoutScreen = Screen;
 
 type TUIDrawerLayoutUser = {
@@ -282,12 +338,14 @@ interface IDrawerContentProps extends DrawerContentComponentProps {
     user: TUIDrawerLayoutUser;
     toggleDrawerWidth: () => void;
     drawerWidth: number;
+    toggleColorMode?: () => void;
 }
 
 export interface TUIDrawerLayoutProps {
     title: string;
     user: TUIDrawerLayoutUser;
     children: JSX.Element | JSX.Element[];
+    toggleColorMode?: () => void;
 }
 
 type TDrawerItemProps = {

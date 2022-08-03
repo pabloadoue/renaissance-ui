@@ -192,6 +192,7 @@ type TBaseField = {
         name: string;
         value: string | boolean | number | null;
     }) => void;
+    submit?: () => void;
 };
 
 type TValidationRule = {

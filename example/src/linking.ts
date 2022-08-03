@@ -17,6 +17,9 @@ export default function Linking() {
                         modals: {
                             path: 'modals',
                         },
+                        webview: {
+                            path: 'webview',
+                        },
                     },
                 },
                 drawerView: {

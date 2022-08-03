@@ -17,6 +17,7 @@ import Header from './header';
 import Home from './home';
 import Inputs from './inputs';
 import Modals from './modals';
+import WebView from './webview';
 
 const Drawer = createDrawerNavigator();
 
@@ -58,6 +59,15 @@ export default function Components(props: any) {
                 <Drawer.Screen name="inputs">
                     {(childProps) => (
                         <Inputs
+                            {...childProps}
+                            title={title}
+                            setColorMode={setColorMode}
+                        />
+                    )}
+                </Drawer.Screen>
+                <Drawer.Screen name="webview">
+                    {(childProps) => (
+                        <WebView
                             {...childProps}
                             title={title}
                             setColorMode={setColorMode}
@@ -133,6 +143,13 @@ const DrawerContent = (props: any) => {
                 label: 'Modals',
                 screen: 'modals',
                 icon: 'open-in-browser',
+                navigation: '',
+                active: false,
+            },
+            {
+                label: 'Web View',
+                screen: 'webview',
+                icon: 'language',
                 navigation: '',
                 active: false,
             },
