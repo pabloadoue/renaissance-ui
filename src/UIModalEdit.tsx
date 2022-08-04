@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { View } from 'native-base';
 
@@ -63,10 +64,7 @@ export function UIModalEdit(props: TUIModalEditProps) {
                 </View>
                 <View flex={1} borderRadius={8}>
                     <KeyboardAwareScrollView
-                        contentContainerStyle={{
-                            paddingTop: 60,
-                            paddingBottom: 40,
-                        }}
+                        contentContainerStyle={styles.contentContainer}
                         extraHeight={200}
                         onScroll={(e) => {
                             setTopOffset(e.nativeEvent.contentOffset.y);
@@ -93,3 +91,7 @@ export interface TUIModalEditProps extends TUIModalProps, TFormHandlerProps {
     title?: string;
     close: () => void;
 }
+
+const styles = StyleSheet.create({
+    contentContainer: { paddingTop: 60, paddingBottom: 40 },
+});

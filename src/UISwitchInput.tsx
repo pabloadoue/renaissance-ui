@@ -35,10 +35,10 @@ function SwitchInput(props: TSwitchInputField, _ref: any) {
         }
     }, [props.error, colorMode]);
 
-    const change = (value: boolean) => {
+    const change = (updatedValue: boolean) => {
         let resp = {
             name: props.name,
-            value: value,
+            value: updatedValue,
         };
 
         if (props.disabled !== true) {

@@ -29,6 +29,7 @@ const Stack = createNativeStackNavigator();
 import Components from './components';
 import DrawerView from './drawerView';
 import Linking from './linking';
+import ListDetailView from './listDetailView';
 import Logo from './Logo';
 
 export default function App() {
@@ -202,6 +203,14 @@ export default function App() {
                     <Stack.Screen name="drawerView">
                         {(props) => (
                             <DrawerView
+                                {...props}
+                                setColorMode={switchColorMode}
+                            />
+                        )}
+                    </Stack.Screen>
+                    <Stack.Screen name="listDetailView">
+                        {(props) => (
+                            <ListDetailView
                                 {...props}
                                 setColorMode={switchColorMode}
                             />

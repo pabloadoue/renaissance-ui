@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useWindowDimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Modal, View } from 'native-base';
 
@@ -36,10 +36,7 @@ export function UIModal(props: TUIModalProps) {
             >
                 <SafeAreaView
                     edges={width >= 768 ? ['top', 'bottom'] : ['top']}
-                    style={{
-                        flex: 1,
-                        width: '100%',
-                    }}
+                    style={styles.safeArea}
                 >
                     <View
                         flex={1}
@@ -77,3 +74,10 @@ export type TUIModalProps = {
     children?: JSX.Element | JSX.Element[];
     animation?: 'fade' | 'slide';
 };
+
+const styles = StyleSheet.create({
+    safeArea: {
+        flex: 1,
+        width: '100%',
+    },
+});

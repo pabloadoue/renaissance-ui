@@ -28,6 +28,41 @@ export default function Linking() {
                         screen1: {
                             path: 'screen1',
                         },
+                        screen2: {
+                            path: 'screen2',
+                        },
+                        screen3: {
+                            path: 'screen3',
+                        },
+                    },
+                },
+                listDetailView: {
+                    path: 'listDetailView',
+                    screens: {
+                        screen1: {
+                            path: 'screen1/:selected?',
+                            screens: {
+                                detail: {
+                                    path: '',
+                                },
+                            },
+                        },
+                        screen2: {
+                            path: 'screen2/:selected?',
+                            screens: {
+                                detail: {
+                                    path: '',
+                                },
+                            },
+                        },
+                        screen3: {
+                            path: 'screen3/:selected?',
+                            screens: {
+                                detail: {
+                                    path: '',
+                                },
+                            },
+                        },
                     },
                 },
             },
@@ -39,4 +74,5 @@ export default function Linking() {
 type RootStackParamList = {
     components: undefined;
     drawerView: undefined;
+    listDetailView: undefined;
 };

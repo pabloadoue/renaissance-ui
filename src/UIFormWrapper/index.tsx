@@ -13,11 +13,9 @@ import { useTheme } from 'native-base';
 import SelectOptions from './SelectOptions';
 
 export function UIFormWrapper(props: TUIFormWrapperProps) {
-    //const { colorMode } = useColorMode();
     const { colors } = useTheme();
 
     const primary = colors.primary['500'];
-    //const bg = colorMode === "dark" ? colors.gray5["500"] : colors.white;
     const theme = {
         ...DefaultTheme,
         colors: {

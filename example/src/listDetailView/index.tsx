@@ -9,7 +9,7 @@ export default function DrawerView(props: any) {
     const { colorMode } = useColorMode();
     return (
         <UIDrawerLayout
-            title={'Drawer View'}
+            title={'List Detail View'}
             user={{
                 name: 'Pablo',
                 lastName: 'Adoue',

@@ -13,24 +13,24 @@ export default function UIDateInputTimePicker(props: UIDateTimeProps) {
     );
 
     useEffect(() => {
-        const hours = [];
+        const updatedHours = [];
         for (let i = 0; i < 24; i++) {
-            hours.push({
+            updatedHours.push({
                 label: `${i < 10 ? `0${i}` : i}`,
                 value: i,
             });
         }
-        setHours(hours);
+        setHours(updatedHours);
 
-        const minutes = [];
+        const updatedMinutes = [];
         for (let i = 0; i <= 11; i++) {
             const value = 5 * i;
-            minutes.push({
+            updatedMinutes.push({
                 label: `${value < 10 ? `0${value}` : `${value}`}`,
                 value: value,
             });
         }
-        setMinutes(minutes);
+        setMinutes(updatedMinutes);
     }, []);
 
     const renderHours = () => {

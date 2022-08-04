@@ -68,10 +68,7 @@ const WebComponent = (props: TUIWebViewProps, ref: any) => {
                             ref={viewContainerRef}
                             key={frameKey}
                             src={props.url}
-                            style={{
-                                flex: 1,
-                                border: 'none',
-                            }}
+                            style={styles.iframe}
                             onLoadStart={() => {
                                 console.log('Load Started');
                             }}
@@ -130,5 +127,9 @@ export type TUIWebViewProps = {
 const styles = StyleSheet.create({
     webview: {
         flex: 1,
+    },
+    iframe: {
+        flex: 1,
+        border: 'none',
     },
 });

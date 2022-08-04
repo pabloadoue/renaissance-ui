@@ -129,7 +129,7 @@ const handler = {
                                       )
                                     : '#000000';
                             const parsedColor = ColorConvert(sourceColor);
-                            //const contrast = colorContrastRatioCalculator(parsedColor.hex(), '#000000');
+
                             let darkColor = null;
                             for (let i = 1; i <= 100; i++) {
                                 const index = i / 100;
@@ -259,15 +259,24 @@ const handler = {
                                       )
                                     : '#000000';
                             const parsedColor = ColorConvert(sourceColor);
-                            const contrast = colorContrastRatioCalculator(
-                                parsedColor.hex(),
-                                '#000000'
-                            );
+                            let darkColor = null;
+                            for (let i = 1; i <= 100; i++) {
+                                const index = i / 100;
+                                const lightenColor = parsedColor.lighten(index);
+                                const ligthnenContrast =
+                                    colorContrastRatioCalculator(
+                                        lightenColor.hex(),
+                                        '#000000'
+                                    );
 
-                            const darkColor =
-                                contrast < 4.5
-                                    ? parsedColor.negate()
-                                    : parsedColor;
+                                if (!darkColor && ligthnenContrast > 5) {
+                                    darkColor = lightenColor;
+                                }
+                            }
+
+                            if (!darkColor) {
+                                darkColor = parsedColor.negate();
+                            }
 
                             return {
                                 _light: {

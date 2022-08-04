@@ -37,24 +37,24 @@ function CurrencyInput(props: TCurrencyField, _ref: any) {
 
     useEffect(() => {
         let a = numeral(props.value).value();
-        let value = '0';
+        let newValue = '0';
         if (a === null) {
             a = 0;
         }
         if (a % 1 === 0) {
-            value = numeral(a).format('$ 0,0');
+            newValue = numeral(a).format('$ 0,0');
         } else {
             const decimals = countDecimals(a);
             if (decimals === 1) {
-                value = numeral(a).format('$ 0,0[.]0');
+                newValue = numeral(a).format('$ 0,0[.]0');
             } else if (decimals === 2) {
-                value = numeral(a).format('$ 0,0[.]00');
+                newValue = numeral(a).format('$ 0,0[.]00');
             } else if (decimals === 3) {
-                value = numeral(a).format('$ 0,0[.]000');
+                newValue = numeral(a).format('$ 0,0[.]000');
             } else if (decimals === 4) {
-                value = numeral(a).format('$ 0,0[.]0000');
+                newValue = numeral(a).format('$ 0,0[.]0000');
             } else {
-                value = numeral(a).format('$ 0,0[.]0000');
+                newValue = numeral(a).format('$ 0,0[.]0000');
             }
         }
         if (typeof props.value === 'string') {
@@ -62,30 +62,30 @@ function CurrencyInput(props: TCurrencyField, _ref: any) {
             if (val.includes('.')) {
                 const decimals = val.split('.')[1]?.length || 0;
                 if (decimals <= 0) {
-                    value = `${value}.`;
+                    newValue = `${newValue}.`;
                 }
             }
         }
-        setValue(value);
+        setValue(newValue);
     }, [props.value]);
 
     const change = (val: string) => {
-        let value: number | string | null = numeral(val).value();
-        if (value === null) {
-            value = 0;
+        let newValue: number | string | null = numeral(val).value();
+        if (newValue === null) {
+            newValue = 0;
         } else {
             if (val.includes('.')) {
                 const decimals = val.split('.')[1]?.length || 0;
                 if (decimals <= 0) {
-                    value = `${value}.`;
+                    newValue = `${newValue}.`;
                 }
             }
         }
 
-        if (checkValid(`${value}`)) {
+        if (checkValid(`${newValue}`)) {
             let resp = {
                 name: props.name,
-                value: value,
+                value: newValue,
             };
 
             if (props.disabled !== true) {
@@ -146,6 +146,7 @@ function CurrencyInput(props: TCurrencyField, _ref: any) {
                             textAlign={'right'}
                             autoCapitalize={'none'}
                             autoCorrect={false}
+                            width="100%"
                             type={'text'}
                             selection={
                                 focused

@@ -1,5 +1,5 @@
 import React, { ReactNode, useMemo, useState } from 'react';
-import { useWindowDimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import findValue from '@pabloadoue/find-value';
 import {
@@ -75,6 +75,7 @@ export const UIDrawerLayout = (props: TUIDrawerLayoutProps) => {
                         backgroundColor: 'transparent',
                     },
                 }}
+                // eslint-disable-next-line react/no-unstable-nested-components
                 drawerContent={(drawerProps) => (
                     <DrawerContent
                         {...props}
@@ -94,16 +95,17 @@ export const UIDrawerLayout = (props: TUIDrawerLayoutProps) => {
 const DrawerContent = (props: IDrawerContentProps) => {
     const { descriptors, navigation, drawerWidth } = props;
     const { width } = useWindowDimensions();
+    const { colorMode } = useColorMode();
 
     const screens = useMemo(() => {
         const result: TDrawerItemProps[] = [];
         Object.keys(descriptors).map((key) => {
             const screen = descriptors[key];
             if (typeof screen !== 'undefined') {
-                const { options, route, navigation } = screen;
+                const { options, route } = screen;
                 const { title, drawerIcon } = options;
                 const { name } = route;
-                const active = navigation.isFocused();
+                const active = screen.navigation.isFocused();
                 if (
                     typeof title !== 'undefined' &&
                     typeof drawerIcon !== 'undefined'
@@ -111,7 +113,7 @@ const DrawerContent = (props: IDrawerContentProps) => {
                     result.push({
                         title: title,
                         name: name,
-                        navigation: navigation,
+                        navigation: screen.navigation,
                         active: active,
                         drawerIcon: drawerIcon,
                         drawerWidth: drawerWidth,
@@ -133,7 +135,7 @@ const DrawerContent = (props: IDrawerContentProps) => {
                         <UIButton
                             icon={'apps'}
                             color={'white'}
-                            tooltip={'Regresar'}
+                            tooltip={'Inicio'}
                             size={'xl'}
                             onPress={() => {
                                 navigation.navigate('home');
@@ -141,24 +143,25 @@ const DrawerContent = (props: IDrawerContentProps) => {
                         />
                     ) : (
                         <UIHeader
+                            type="center"
                             safeArea={width < 768}
                             title={props.title}
-                            color={width >= 768 ? 'white' : 'black'}
-                            right={[
-                                {
-                                    icon: 'view-sidebar',
-                                    size: 'lg',
-                                    color: 'gray',
-                                    tooltip: 'Cerrar la barra lateral',
-                                    press: () => {
-                                        if (width >= 768) {
-                                            props.toggleDrawerWidth();
-                                        } else {
-                                            navigation.closeDrawer();
-                                        }
-                                    },
+                            color={colorMode === 'light' ? 'black' : 'white'}
+                            shadow={true}
+                            bg={{
+                                dark: 'gray4.500',
+                                light: 'white',
+                            }}
+                            left={{
+                                icon: 'apps',
+                                color:
+                                    colorMode === 'light'
+                                        ? 'primary'
+                                        : 'primary',
+                                press: () => {
+                                    navigation.navigate('home');
                                 },
-                            ]}
+                            }}
                         />
                     )}
                 </View>
@@ -169,17 +172,19 @@ const DrawerContent = (props: IDrawerContentProps) => {
                         return <DrawerItem {...item} />;
                     }}
                     paddingX={drawerWidth < 100 ? 2 : 4}
-                    contentContainerStyle={{
-                        flexGrow: 1,
-                        justifyContent:
-                            drawerWidth < 100 ? 'center' : 'flex-start',
-                    }}
+                    keyExtractor={(item) => item.name}
+                    contentContainerStyle={
+                        drawerWidth < 100
+                            ? styles.drawerContentSmall
+                            : styles.drawerContentLarge
+                    }
                 />
                 <View paddingX={drawerWidth < 100 ? 2 : 2}>
                     {typeof props.toggleColorMode === 'function' && (
                         <DrawerItem
-                            title={''}
+                            title={'Toogle Color Mode'}
                             name="toggle-color-mode"
+                            // eslint-disable-next-line react/no-unstable-nested-components
                             drawerIcon={() => <UIIcon name="lightbulb" />}
                             drawerWidth={drawerWidth}
                             navigation={navigation}
@@ -364,3 +369,15 @@ type TDrawerItemProps = {
     onPress?: () => void;
     drawerWidth: number;
 };
+
+const styles = StyleSheet.create({
+    drawerContentSmall: {
+        flexGrow: 1,
+        justifyContent: 'center',
+    },
+    drawerContentLarge: {
+        flexGrow: 1,
+        justifyContent: 'flex-start',
+        paddingTop: 14,
+    },
+});

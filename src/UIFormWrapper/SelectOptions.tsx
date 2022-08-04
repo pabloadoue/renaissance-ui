@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
 import findValue from '@pabloadoue/find-value';
 import {
     FlatList,
@@ -70,21 +71,18 @@ export default function UIFormWrapperSelectOptions(props: any) {
                             {...item}
                             selected={selected}
                             borderBottom={borderBottom}
-                            change={(value: any) => {
+                            change={(updatedValue: any) => {
                                 if (typeof change === 'function') {
-                                    change(value);
+                                    change(updatedValue);
                                     navigation.navigate('Form');
                                 }
                             }}
                         />
                     );
                 }}
-                contentContainerStyle={{
-                    backgroundColor: bg,
-                    marginVertical: 80,
-                    marginHorizontal: 16,
-                    borderRadius: 8,
-                }}
+                contentContainerStyle={
+                    (styles.contentContainer, { backgroundColor: bg })
+                }
             />
         </View>
     );
@@ -164,3 +162,11 @@ interface TListItemProps extends TSelectOption {
     borderBottom: boolean;
     change: (value: any) => void;
 }
+
+const styles = StyleSheet.create({
+    contentContainer: {
+        marginVertical: 80,
+        marginHorizontal: 16,
+        borderRadius: 8,
+    },
+});

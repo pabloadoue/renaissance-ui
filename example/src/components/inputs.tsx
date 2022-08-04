@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { StyleSheet } from 'react-native';
 import { View } from 'native-base';
 import {
     FormHandler,
@@ -45,7 +46,7 @@ export default function Components(props: any) {
                 navigation={props.navigation}
                 setColorMode={props.setColorMode}
             />
-            <View flex={1} style={{ paddingTop: 200 }}>
+            <View flex={1} style={styles.contentContainer}>
                 <FormHandler
                     ref={formRef}
                     fields={fields}
@@ -74,3 +75,9 @@ export default function Components(props: any) {
 type FieldsType = {
     Text1: TTextInputField;
 };
+
+const styles = StyleSheet.create({
+    contentContainer: {
+        paddingTop: 200,
+    },
+});

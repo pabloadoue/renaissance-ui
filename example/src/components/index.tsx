@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React, { useEffect, useMemo, useState } from 'react';
-import { useWindowDimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import {
@@ -43,8 +44,8 @@ export default function Components(props: any) {
                         width: width >= 768 ? 268 : '80%',
                     },
                 }}
-                drawerContent={(props) => (
-                    <DrawerContent {...props} setTitle={setTitle} />
+                drawerContent={(drawerProps) => (
+                    <DrawerContent {...drawerProps} setTitle={setTitle} />
                 )}
             >
                 <Drawer.Screen name="home">
@@ -160,6 +161,13 @@ const DrawerContent = (props: any) => {
                 navigation: '',
                 active: false,
             },
+            {
+                label: 'List Detail View',
+                screen: 'listDetailView',
+                icon: 'vertical-split',
+                navigation: '',
+                active: false,
+            },
         ];
     }, []);
 
@@ -176,9 +184,11 @@ const DrawerContent = (props: any) => {
             <FlatList
                 data={screens}
                 keyExtractor={(item) => item.screen}
-                contentContainerStyle={{
-                    paddingVertical: width >= 768 ? 80 : 20,
-                }}
+                contentContainerStyle={
+                    width >= 768
+                        ? styles.contentContainerStyle
+                        : styles.contentContainerStyleSmall
+                }
                 renderItem={({ item }) => {
                     const isActive = item.screen === active;
                     return (
@@ -243,3 +253,12 @@ type TDrawerItemProps = {
     active: boolean;
     navigation: any;
 };
+
+const styles = StyleSheet.create({
+    contentContainerStyleSmall: {
+        paddingVertical: 20,
+    },
+    contentContainerStyle: {
+        paddingVertical: 80,
+    },
+});

@@ -1,9 +1,9 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { HStack, Text, View } from 'native-base';
+import { HStack, Input, Text, View } from 'native-base';
 
-import { TUIButtonSize, TUIButtonVariant, UIButton } from './UIButton';
-import type { TUIIconName } from './UIIcon';
+import { TUIButtonSize, TUIButtonVariant, UIButton } from '../UIButton';
+import { TUIIconName, UIIcon } from '../UIIcon';
 
 export function UIHeader(props: TUIHeaderProps) {
     const controls = (
@@ -58,7 +58,7 @@ export function UIHeader(props: TUIHeaderProps) {
     const title = () => {
         if (typeof props.title === 'string') {
             return (
-                <Text fontSize={18} fontWeight="normal" color={props.color}>
+                <Text fontSize={18} fontWeight="medium" color={props.color}>
                     {props.title}
                 </Text>
             );
@@ -81,20 +81,67 @@ export function UIHeader(props: TUIHeaderProps) {
         width: '100%',
     };
 
-    return (
-        <View
-            width="100%"
-            _dark={{
-                bg: props.bg?.dark,
-            }}
-            _light={{
-                bg: props.bg?.light,
-            }}
-            shadow={props.shadow ? 1 : -1}
-            paddingX={2}
-            borderTopRadius={props.borderRadius}
-        >
-            <SafeArea safeArea={props.safeArea}>
+    const content = () => {
+        if (props.type === 'center') {
+            return (
+                <HStack style={headerStyle} alignItems="center">
+                    <View
+                        flex={3}
+                        alignItems="flex-start"
+                        justifyContent={'center'}
+                    >
+                        {controls(props.left, 0)}
+                    </View>
+                    <View
+                        flex={6}
+                        justifyContent="center"
+                        alignItems={'center'}
+                    >
+                        {title()}
+                    </View>
+                    <View
+                        flex={3}
+                        alignItems="flex-end"
+                        justifyContent={'center'}
+                    >
+                        {controls(props.right, 0)}
+                    </View>
+                </HStack>
+            );
+        } else if (props.type === 'search') {
+            return (
+                <HStack style={headerStyle} alignItems="center">
+                    <View flex={1}>
+                        <View position={'absolute'} zIndex={1} top={2}>
+                            <UIIcon name="search" color="gray.500" size={6} />
+                        </View>
+                        <Input
+                            placeholder="Buscar"
+                            variant={'unstyled'}
+                            size={'xl'}
+                            paddingLeft={8}
+                            autoCapitalize={'none'}
+                            onChangeText={(value) => {
+                                if (typeof props.search === 'function') {
+                                    props.search(value);
+                                }
+                            }}
+                        />
+                    </View>
+                    <View>
+                        <UIButton
+                            label="Regresar"
+                            onPress={() => {
+                                if (typeof props.back === 'function') {
+                                    props.back();
+                                }
+                            }}
+                        />
+                    </View>
+                </HStack>
+            );
+        } else {
+            return (
                 <HStack style={headerStyle}>
                     <HStack
                         flex={1}
@@ -102,6 +149,9 @@ export function UIHeader(props: TUIHeaderProps) {
                         alignItems={'center'}
                         space={2}
                     >
+                        {typeof props.left === 'undefined' && (
+                            <View width={2} />
+                        )}
                         {controls(props.left, 0)}
                         {logo()}
                         {title()}
@@ -114,7 +164,25 @@ export function UIHeader(props: TUIHeaderProps) {
                         {controls(props.right, 0)}
                     </HStack>
                 </HStack>
-            </SafeArea>
+            );
+        }
+    };
+
+    return (
+        <View
+            width="100%"
+            _dark={{
+                bg: props.bg?.dark,
+            }}
+            _light={{
+                bg: props.bg?.light,
+            }}
+            shadow={props.shadow ? 1 : -1}
+            paddingX={2}
+            borderTopRadius={props.borderRadius}
+            borderTopLeftRadius={props.borderLeftRadius}
+        >
+            <SafeArea safeArea={props.safeArea}>{content()}</SafeArea>
         </View>
     );
 }
@@ -141,12 +209,15 @@ const SafeArea = (props: {
 UIHeader.defaultProps = {
     safeArea: true,
     color: 'gray.500',
+    type: 'left',
 };
 
 export type TUIHeaderProps = {
     title?: string;
+    type?: 'left' | 'center' | 'search';
     safeArea?: boolean;
     borderRadius?: number;
+    borderLeftRadius?: number;
     shadow?: boolean;
     color?: string;
     bg?: {
@@ -156,18 +227,22 @@ export type TUIHeaderProps = {
     logo?: (props: any) => JSX.Element;
     left?: TUIHeaderControllDefinition;
     right?: TUIHeaderControllDefinition | TUIHeaderControllDefinition[];
+    back?: () => void;
+    search?: (value: string) => void;
 };
 
-export type TUIHeaderControllDefinition = {
-    label?: string;
-    icon?: TUIIconName;
-    leftIcon?: TUIIconName;
-    rightIcon?: TUIIconName;
-    color?: string;
-    variant?: TUIButtonVariant;
-    size?: TUIButtonSize;
-    loading?: boolean;
-    press?: () => void;
-    disabled?: boolean;
-    tooltip?: string;
-};
+export type TUIHeaderControllDefinition =
+    | {
+          label?: string;
+          icon?: TUIIconName;
+          leftIcon?: TUIIconName;
+          rightIcon?: TUIIconName;
+          color?: string;
+          variant?: TUIButtonVariant;
+          size?: TUIButtonSize;
+          loading?: boolean;
+          press?: () => void;
+          disabled?: boolean;
+          tooltip?: string;
+      }
+    | undefined;

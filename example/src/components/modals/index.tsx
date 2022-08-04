@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useWindowDimensions } from 'react-native';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import { ScrollView } from 'native-base';
 import { UIButton } from 'renaissance-ui';
 
@@ -8,7 +8,7 @@ import Header from '../header';
 import Edit from './edit';
 
 export default function Components(props: any) {
-    const [modalEdit, setModalEdit] = useState(false);
+    const [modalEdit, setModalEdit] = useState(true);
     const { width } = useWindowDimensions();
     return (
         <>
@@ -22,7 +22,7 @@ export default function Components(props: any) {
             <ScrollView
                 height="100%"
                 width="100%"
-                contentContainerStyle={{ paddingTop: 120 }}
+                contentContainerStyle={styles.contentContainer}
             >
                 <UIButton
                     label="Open Modal Edit"
@@ -33,3 +33,9 @@ export default function Components(props: any) {
         </>
     );
 }
+
+const styles = StyleSheet.create({
+    contentContainer: {
+        paddingTop: 120,
+    },
+});

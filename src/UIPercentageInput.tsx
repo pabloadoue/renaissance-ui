@@ -44,9 +44,9 @@ function PercentageInput(props: TPercentageField, _ref: any) {
         }
     }, [props.value]);
 
-    const change = (value: string) => {
-        if (checkValid(`${value}`)) {
-            setValue(`${value}`);
+    const change = (updatedValue: string) => {
+        if (checkValid(`${updatedValue}`)) {
+            setValue(`${updatedValue}`);
         }
     };
 
