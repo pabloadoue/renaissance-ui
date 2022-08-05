@@ -227,5 +227,6 @@
     "replaceall": "^0.1.6",
     "setval": "^5.1.2",
     "validator": "^13.7.0"
-  }
+  },
+  "private": false
 }
