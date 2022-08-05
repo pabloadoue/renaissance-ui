@@ -18,10 +18,12 @@ import {
     TTextInputField,
 } from './FormHandler';
 import {
+    AppErrorContext,
     RenaissanceProvider,
     TRenaissanceProviderPallete,
     TRenaissanceProviderProps,
 } from './RenaissanceProvider';
+import { TUIAlertDialogProps, UIAlertDialog } from './UIAlertDialog';
 import { TUIAvatarProps, UIAvatar } from './UIAvatar';
 import { TUIButtonProps, UIButton } from './UIButton';
 import { UICurrencyInput } from './UICurrencyInput';
@@ -66,6 +68,7 @@ export {
     UISelect,
     UISwitchInput,
     FormHandler,
+    AppErrorContext,
     RenaissanceProvider,
     UIPercentageInput,
     UIDateInput,
@@ -76,6 +79,7 @@ export {
     UIWebView,
     UIList,
     UIListDetailViewLayout,
+    UIAlertDialog,
 };
 
 export type {
@@ -104,4 +108,5 @@ export type {
     TUIListDetailViewLayoutProps,
     TUIHeaderControllDefinition,
     TUIListItem,
+    TUIAlertDialogProps,
 };

@@ -3,6 +3,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import type { LinkingOptions } from '@react-navigation/native';
 import { NativeBaseProvider, useColorMode } from 'native-base';
 
+import { AppErrorContext, AppErrorProvider } from './appError';
 import Navigator from './navigator';
 import theme from './theme';
 
@@ -12,7 +13,13 @@ export function RenaissanceProvider(props: TRenaissanceProviderProps) {
     const lightTheme = theme('light', props.pallete, props.fonts);
     const darkTheme = theme('dark', props.pallete, props.fonts);
 
-    //console.log(lightTheme.components.IconButton.sizes);
+    /*const [errors, setErrors] = useState<IAppError[]>([]);
+    const newError = (error: TAppError) => {
+        setErrors([...errors, { id: uuid.v4() as string, ...error }]);
+    };
+    const removeError = (id: string) => {
+        setErrors(errors.filter((error) => error.id !== id));
+    };*/
 
     const getTheme = (mode: 'light' | 'dark' | null | undefined) => {
         if (mode === 'dark') {
@@ -27,7 +34,7 @@ export function RenaissanceProvider(props: TRenaissanceProviderProps) {
             <ColorModeProvider colorMode={colorMode}>
                 <SafeAreaProvider>
                     <Navigator linking={props.linking}>
-                        {props.children}
+                        <AppErrorProvider>{props.children}</AppErrorProvider>
                     </Navigator>
                 </SafeAreaProvider>
             </ColorModeProvider>
@@ -80,3 +87,5 @@ export type TRenaissanceProviderPallete = {
         dark: string;
     };
 };
+
+export { AppErrorContext };

@@ -14,6 +14,7 @@ import {
 } from 'native-base';
 import { TUIIconName, UIIcon } from 'renaissance-ui';
 
+import Errors from './error';
 import Header from './header';
 import Home from './home';
 import Inputs from './inputs';
@@ -84,6 +85,15 @@ export default function Components(props: any) {
                         />
                     )}
                 </Drawer.Screen>
+                <Drawer.Screen name="errors">
+                    {(childProps) => (
+                        <Errors
+                            {...childProps}
+                            title={title}
+                            setColorMode={setColorMode}
+                        />
+                    )}
+                </Drawer.Screen>
             </Drawer.Navigator>
         </View>
     );
@@ -107,30 +117,6 @@ const DrawerContent = (props: any) => {
         });
     }, [props.descriptors, setActive]);
 
-    /*const screens: TDrawerItemProps[] = [
-        {
-            label: 'Home',
-            screen: 'home',
-            icon: 'home',
-            navigation: '',
-            active: false,
-        },
-        {
-            label: 'Modals',
-            screen: 'modals',
-            icon: 'open-in-browser',
-            navigation: '',
-            active: false,
-        },
-        {
-            label: 'Drawer View',
-            screen: 'drawerView',
-            icon: 'view-sidebar',
-            navigation: '',
-            active: false,
-        },
-    ];*/
-
     const screens: TDrawerItemProps[] = useMemo(() => {
         return [
             {
@@ -144,6 +130,13 @@ const DrawerContent = (props: any) => {
                 label: 'Modals',
                 screen: 'modals',
                 icon: 'open-in-browser',
+                navigation: '',
+                active: false,
+            },
+            {
+                label: 'Errors',
+                screen: 'errors',
+                icon: 'error',
                 navigation: '',
                 active: false,
             },

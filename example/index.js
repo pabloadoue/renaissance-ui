@@ -1,4 +1,7 @@
 import { registerRootComponent } from 'expo';
+import('react-error-overlay').then((m) => {
+    m.stopReportingRuntimeErrors();
+});
 
 import App from './src/App';
 

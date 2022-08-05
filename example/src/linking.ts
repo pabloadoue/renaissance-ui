@@ -20,6 +20,9 @@ export default function Linking() {
                         webview: {
                             path: 'webview',
                         },
+                        errors: {
+                            path: 'errors',
+                        },
                     },
                 },
                 drawerView: {
