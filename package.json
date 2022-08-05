@@ -1,5 +1,5 @@
 {
-  "name": "renaissance-ui",
+  "name": "@renaissance/ui",
   "version": "1.0.0",
   "description": "test",
   "main": "lib/commonjs/index",
