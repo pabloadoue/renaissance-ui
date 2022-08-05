@@ -1,5 +1,5 @@
 {
-  "name": "@renaissance/ui",
+  "name": "renaissance-ui",
   "version": "1.0.0",
   "description": "test",
   "main": "lib/commonjs/index",
@@ -101,10 +101,7 @@
     },
     "npm": {
       "publish": true,
-      "publishArgs": [
-        "--access",
-        "public"
-      ]
+      "publishArgs": []
     },
     "github": {
       "release": true
@@ -231,6 +228,5 @@
     "replaceall": "^0.1.6",
     "setval": "^5.1.2",
     "validator": "^13.7.0"
-  },
-  "private": false
+  }
 }
