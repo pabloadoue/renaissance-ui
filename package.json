@@ -100,7 +100,11 @@
       "tagName": "v${version}"
     },
     "npm": {
-      "publish": true
+      "publish": true,
+      "publishArgs": [
+        "--access",
+        "public"
+      ]
     },
     "github": {
       "release": true
