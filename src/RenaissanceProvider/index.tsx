@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
+import { useWindowDimensions } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { NativeBaseProvider, useColorMode } from 'native-base';
+import { NativeBaseProvider, useColorMode, View } from 'native-base';
 
 import { AppErrorContext, AppErrorProvider } from './appError';
 import theme from './theme';
 
 export function RenaissanceProvider(props: TRenaissanceProviderProps) {
     const { colorMode } = props;
+    const { width, height } = useWindowDimensions();
 
     const lightTheme = theme('light', props.pallete, props.fonts);
     const darkTheme = theme('dark', props.pallete, props.fonts);
@@ -23,7 +25,11 @@ export function RenaissanceProvider(props: TRenaissanceProviderProps) {
         <NativeBaseProvider theme={getTheme(colorMode)}>
             <ColorModeProvider colorMode={colorMode}>
                 <SafeAreaProvider>
-                    <AppErrorProvider>{props.children}</AppErrorProvider>
+                    <AppErrorProvider>
+                        <View bg={'gray6.500'} height={height} width={width}>
+                            {props.children}
+                        </View>
+                    </AppErrorProvider>
                 </SafeAreaProvider>
             </ColorModeProvider>
         </NativeBaseProvider>
