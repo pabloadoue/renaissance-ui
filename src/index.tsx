@@ -11,7 +11,6 @@ import {
     TTextInputField,
 } from './FormHandler';
 import {
-    AppErrorContext,
     RenaissanceProvider,
     TRenaissanceProviderPallete,
     TRenaissanceProviderProps,
@@ -29,7 +28,6 @@ import { TUIWebViewProps, UIWebView } from './UIWebView';
 import { Validator } from './Validator';
 
 export {
-    AppErrorContext,
     RenaissanceProvider,
     UIButton,
     UIBox,

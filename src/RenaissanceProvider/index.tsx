@@ -3,7 +3,6 @@ import { useWindowDimensions } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NativeBaseProvider, useColorMode, View } from 'native-base';
 
-import { AppErrorContext, AppErrorProvider } from './appError';
 import theme from './theme';
 
 export function RenaissanceProvider(props: TRenaissanceProviderProps) {
@@ -25,11 +24,9 @@ export function RenaissanceProvider(props: TRenaissanceProviderProps) {
         <NativeBaseProvider theme={getTheme(colorMode)}>
             <ColorModeProvider colorMode={colorMode}>
                 <SafeAreaProvider>
-                    <AppErrorProvider>
-                        <View bg={'gray6.500'} height={height} width={width}>
-                            {props.children}
-                        </View>
-                    </AppErrorProvider>
+                    <View bg={'gray6.500'} height={height} width={width}>
+                        {props.children}
+                    </View>
                 </SafeAreaProvider>
             </ColorModeProvider>
         </NativeBaseProvider>
@@ -80,5 +77,3 @@ export type TRenaissanceProviderPallete = {
         dark: string;
     };
 };
-
-export { AppErrorContext };
