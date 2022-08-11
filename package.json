@@ -1,6 +1,6 @@
 {
   "name": "renaissance-ui",
-  "version": "0.1.0",
+  "version": "1.0.2",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -28,7 +28,7 @@
     "prepare": "bob build",
     "release": "release-it",
     "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn && yarn example pods"
+    "bootstrap": "yarn example"
   },
   "keywords": [
     "react-native",
@@ -45,12 +45,23 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "dependencies": {
+    "@mdhnpm/color-contrast-ratio-calculator": "^1.0.4",
+    "@pabloadoue/find-value": "^1.0.2",
+    "color": "^4.2.3",
+    "color-harmony": "^0.3.0",
+    "native-base": "^3.4.11",
+    "react-native-safe-area-context": "3.3.2",
+    "react-native-svg": "12.1.1",
+    "react-native-uuid": "^2.0.1"
+  },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.7",
     "@babel/eslint-parser": "^7.18.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@react-native-community/eslint-config": "^3.0.2",
     "@release-it/conventional-changelog": "^5.0.0",
+    "@types/color": "^3.0.3",
     "@types/jest": "^28.1.2",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.68.0",
@@ -58,6 +69,7 @@
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
     "jest": "^28.1.1",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
@@ -105,7 +117,10 @@
   },
   "eslintConfig": {
     "root": true,
-    "parser": "@babel/eslint-parser",
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "simple-import-sort"
+    ],
     "extends": [
       "@react-native-community",
       "prettier"
@@ -116,9 +131,41 @@
         {
           "quoteProps": "consistent",
           "singleQuote": true,
-          "tabWidth": 2,
+          "tabWidth": 4,
           "trailingComma": "es5",
           "useTabs": false
+        }
+      ],
+      "simple-import-sort/imports": [
+        "error",
+        {
+          "groups": [
+            [
+              "react-native-gesture-handler"
+            ],
+            [
+              "^react",
+              "^@?\\w"
+            ],
+            [
+              "^(@|components)(/.*|$)"
+            ],
+            [
+              "^\\u0000"
+            ],
+            [
+              "^\\.\\.(?!/?$)",
+              "^\\.\\./?$"
+            ],
+            [
+              "^\\./(?=.*/)(?!/?$)",
+              "^\\.(?!/?$)",
+              "^\\./?$"
+            ],
+            [
+              "^.+\\.?(css)$"
+            ]
+          ]
         }
       ]
     }
